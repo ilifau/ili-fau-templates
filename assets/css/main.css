@@ -1,0 +1,28 @@
+/**
+ *  ILI FAU Templates plugin main css file
+ * 
+ *  Contents
+ *  ========
+ *  1. Front Page Slider
+ */
+ 
+ /* -----------------------------------------
+   1. Front Page Slider
+   ----------------------------------------- */
+.slick-slide {
+    height: calc(75vh - 10em)!important;
+    min-height: 480px!important;
+}
+
+@media screen and (min-width: 768px) {
+    #ilifautpl-hero {
+        padding-top: 10em;
+    } 
+} 
+
+@media screen and (max-width: 767px) {
+    .slick-slide {
+        height: 50vh!important;
+        min-height: 240px!important;
+    }
+} 
