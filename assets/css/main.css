@@ -86,6 +86,36 @@ h3.ilifautpl-slider-subtitle {
 
 /* span.ilifautpl-slide-read-more {} */
 
+/* Slick */
+
+.ilifautpl-arrow {
+    position: absolute;
+    top: calc(53% - 64px); /* image height / 2 */
+    background: url('../img/arrow-right.png');
+    background-size: cover;
+    display: block;
+    width: 70px;
+    height: 128px;
+    opacity: .4;
+    transition: opacity .2s ease-in;
+}
+
+.ilifautpl-arrow.prev {
+    left: 25px;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.ilifautpl-arrow.next {
+    right: 25px;
+}
+
+.ilifautpl-arrow:hover {
+    opacity: .9;
+}
+
+/* Responsive */
+
 @media screen and (min-width: 1921px) {
     #ilifautpl-hero::after{
         transform: skewY(-1deg);

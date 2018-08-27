@@ -9,7 +9,9 @@ jQuery(document).ready(function($) {
         infinite: true,
         focusOnSelect: false,
         adaptiveHeight: false,
-        fade: false,
+        fade: true,
         arrows: true,
+        prevArrow: $('.ilifautpl-arrow.prev'),
+        nextArrow: $('.ilifautpl-arrow.next'),
     });
 });
