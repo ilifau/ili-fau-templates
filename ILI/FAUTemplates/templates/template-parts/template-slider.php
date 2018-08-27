@@ -9,7 +9,7 @@ $ilifautpl_meta = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
 if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
     echo '<div class="slick-slider">';
         foreach( $ilifautpl_meta as $key => $slide ):
-            $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="#">' . __('Zum Artikel', 'ilifautpl') . '</a>' : '';
+            $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="#">' . __('Zum Inhalt', 'ilifautpl') . '</a>' : '';
             $ilifautpl_headline = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="#">' . $ilifautpl_meta[$key]['headline'] . '</a>' : $ilifautpl_meta[$key]['headline'];
             
             echo '<div class="slick-slide" style="background:url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
