@@ -1,34 +1,50 @@
 jQuery(document).ready(function($) {
-    // Add slides
+    var options = ilifautpl_options_admin;
+    
+    // Add slides button
     $('.ilifautpl-add-slide').on('click', function() {
-        if( $('.ilifautpl-input-slide-wrapper').length > 4 ) {
-            alert('Es dürfen maximal 5 Slides eingefügt werden.');
+        if( $('.ilifautpl-input-slide-wrapper').length >= ilifautpl_options_admin.max_num_slides ) {
+            alert('Es dürfen maximal ' + ilifautpl_options_admin.max_num_slides + ' Slides pro Seite angezeigt werden.');
             return;
         }
-        
+
         if( $('.ilifautpl-input-slide:last').val() !== '' ) {
-            $('.ilifautpl-input-slide-wrapper:last').clone().insertAfter('.ilifautpl-input-slide-wrapper:last');
+            var new_wrapper = $('.ilifautpl-input-slide-wrapper:last').clone().insertAfter('.ilifautpl-input-slide-wrapper:last');
+            var new_id = $('.ilifautpl-input-slide-wrapper:last').data('id') + 1;
+
+            new_wrapper.attr('data-id', new_id);
+            new_wrapper.find('.ilifautpl-label').text('Slide ' + new_id);
+            new_wrapper.find('input').val('');
+            new_wrapper.find('textarea').val('');
         }
-        
-        $('.ilifautpl-input-slide:last').val('');
     });
     
-    // Remove slides
+    // Remove slides button
     $(document).on('click', '.ilifautpl-remove-slide', function() {
+        if( ! confirm('Sind Sie sicher? Die Aktion kann nicht rückgängig gemacht werden.') )
+            return;
+        
         if( $('.ilifautpl-input-slide-wrapper').length < 2 ) {
             $('.ilifautpl-input-slide').val('');
             return;
         }
 
         $(this).closest('.ilifautpl-input-slide-wrapper').remove();
+        
+        $('.ilifautpl-input-slide-wrapper').each(function(index, slide) {
+            var id = index + 1;
+            $(slide).attr('data-id', id);
+            $(slide).find('.ilifautpl-label').text('Slide ' + id);
+        });
     });
     
-    // Select media for slides
+    // Select media button
     $(document).on('click', '.ilifautpl-input-slide-media', function(e) {
         e.preventDefault();
         
-        var _this = $(this).prev('.ilifautpl-input-slide');
         var image_frame;
+        var id = $(this).data('id');
+        var _this = $(this).closest('.ilifautpl-input-slide-wrapper').find('.ilifautpl-input-slide');
         
         if(image_frame) {
             image_frame.open();
@@ -73,5 +89,10 @@ jQuery(document).ready(function($) {
         });
 
         image_frame.open();
+    });
+    
+    $('.button-ilifautpl-save').on('click', function(e) {
+        // e.preventDefault();
+        // return;
     });
 });

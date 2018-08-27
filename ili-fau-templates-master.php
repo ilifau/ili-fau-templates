@@ -47,6 +47,9 @@ function activation() {
     // Sprachdateien werden eingebunden.
     load_textdomain();
     
+    // Bildgröße für Slides hinzufügen
+    add_image_size( 'ilifautpl-slide', 1920, 1080 );
+    
     // Überprüft die minimal erforderliche PHP- u. WP-Version.
     system_requirements();
 
@@ -63,6 +66,9 @@ function deactivation() {
     // Hier können die Funktionen hinzugefügt werden, die
     // bei der Deaktivierung des Plugins aufgerufen werden müssen.
     // Bspw. wp_clear_scheduled_hook, flush_rewrite_rules, etc.
+    
+    // Bildgröße für Slides entfernen
+    remove_image_size( 'ilifautpl-slide' );
 }
 
 /*
@@ -114,6 +120,7 @@ function autoload() {
  * @return void
  */
 function register_scripts_and_styles() {
+    // CSS
     wp_register_style( 'ili-fau-templates', plugins_url('assets/css/main.css', __FILE__ ) );
     wp_enqueue_style( 'ili-fau-templates' );
     
@@ -123,6 +130,7 @@ function register_scripts_and_styles() {
     wp_register_style( 'ili-fau-templates-slick-theme', plugins_url('inc/slick/slick-theme.css', __FILE__ ) );
     wp_enqueue_style( 'ili-fau-templates-slick-theme' );
     
+    // JS
     wp_register_script( 'ili-fau-templates-slick', plugins_url('inc/slick/slick.js', __FILE__), array('jquery'), '1.8.0', true );
     wp_enqueue_script( 'ili-fau-templates-slick' );
     
@@ -143,10 +151,16 @@ function register_admin_scripts_and_styles()
     $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && in_array( get_page_template_slug(), $allowed_templates );
 
     if( $is_ili_fau_template ) {
+        $options = get_option('ili_fau_templates');
+        $max_num_slides = $options['ili_fau_templates_max_num_slides'];
+        
         wp_register_script( 'ili-fau-templates-admin', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), '0.0.1', true );
         wp_enqueue_script( 'ili-fau-templates-admin' );
         
         wp_register_style( 'ili-fau-templates-admin', plugins_url('assets/css/admin.css', __FILE__ ) );
+        wp_localize_script( 'ili-fau-templates-admin', 'ilifautpl_options_admin', array(
+            'max_num_slides' => $max_num_slides
+        ) );
         wp_enqueue_style( 'ili-fau-templates-admin' );
     }
 }

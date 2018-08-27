@@ -12,7 +12,6 @@ defined('ABSPATH') || exit;
 class Main {
     
     public $options;
-    
     public $settings;
 
     public function __construct($plugin_basename) {

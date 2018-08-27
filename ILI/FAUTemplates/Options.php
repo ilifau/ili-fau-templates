@@ -18,8 +18,8 @@ class Options {
      */
     public function default_options() {
         $options = [
-            'ili_fau_templates_field_1' => '',
-            'ili_fau_templates_field_2' => '',
+            'ili_fau_templates_max_num_slides' => '',
+            'ili_fau_templates_field_role' => '',
             // Hier können weitere Felder ('key' => 'value') angelegt werden.
         ];
 

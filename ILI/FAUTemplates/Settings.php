@@ -13,9 +13,7 @@ class Settings {
      * object
      */
     protected $main;
-    
     protected $option_name;
-    
     protected $options;
     
     /*
@@ -66,8 +64,8 @@ class Settings {
         register_setting('ili_fau_templates_options', $this->option_name, [$this, 'options_validate']);
         add_settings_section('ili_fau_options_section_1', FALSE, '__return_false', 'ili_fau_templates_options');
         
-        add_settings_field('ili_fau_templates_field_1', __('Field 1', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_1'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
-        add_settings_field('ili_fau_templates_field_2', __('Field 2', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_2'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_max_num_slides', __('Max. Anzahl Slides pro Seite', 'ili-fau-templates'), [$this, 'ili_fau_templates_max_num_slides'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
     }
 
     /*
@@ -76,8 +74,13 @@ class Settings {
      * @return array
      */
     public function options_validate($input) {
-        $input['ili_fau_templates_text'] = ! empty( $input['ili_fau_templates_field_1'] ) ? $input['ili_fau_templates_field_1'] : '';
-        $input['ili_fau_templates_number'] = ! empty( $input['ili_fau_templates_field_2'] ) ? absint( $input['ili_fau_templates_field_2'] ) : '0';
+        $input['ili_fau_templates_max_num_slides'] = absint( $input['ili_fau_templates_max_num_slides'] );
+        
+        if( $input['ili_fau_templates_max_num_slides'] < 1 ) {
+            $input['ili_fau_templates_max_num_slides'] = 1;
+        }
+        
+        $input['ili_fau_templates_number'] = ! empty( $input['ili_fau_templates_field_role'] ) ? absint( $input['ili_fau_templates_field_role'] ) : '0';
 
         return $input;
     }
@@ -86,9 +89,9 @@ class Settings {
      * Erstes Feld der Optionsseite
      * @return void
      */
-    public function ili_fau_templates_field_1() {
+    public function ili_fau_templates_max_num_slides() {
         ?>
-        <input type='text' name="<?php printf('%s[ili_fau_templates_field_1]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_field_1; ?>">
+        <input type='text' name="<?php printf('%s[ili_fau_templates_max_num_slides]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_max_num_slides; ?>">
         <?php
     }
     
@@ -96,16 +99,14 @@ class Settings {
      * Zweites Feld der Optionsseite (Checkbox)
      * @return void
      */
-    public function ili_fau_templates_field_2() {
+    public function ili_fau_templates_field_role() {
+        $roles = get_editable_roles();
         ?>
-        <select name="<?php printf('%s[ili_fau_templates_field_2]', $this->option_name); ?>">
-            <?php foreach( array(
-                0 => '0',
-                1 => '1',
-            ) as $key => $val ) {
-                ?><option value="<?php echo $val; ?>"<?php
-                    if( $key == $this->options->ili_fau_templates_field_2) echo ' selected="selected"';
-                ?>><?php echo $val; ?></option>
+        <select name="<?php printf('%s[ili_fau_templates_field_role]', $this->option_name); ?>">
+            <?php foreach( $roles as $key => $role ) {
+                ?><option value="<?php echo $key ?>"<?php
+                    if( $key == $this->options->ili_fau_templates_field_role) echo ' selected="selected"';
+                ?>><?php echo $role['name'] ?></option>
         <?php } ?>
         </select> 
         <?php
@@ -120,7 +121,6 @@ class Settings {
         $content = [
             '<p>' . __('Here comes the Context Help content.', 'ili-fau-templates') . '</p>',
         ];
-
 
         $help_tab = [
             'id' => $this->admin_settings_page,
