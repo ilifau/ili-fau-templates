@@ -10,5 +10,6 @@ jQuery(document).ready(function($) {
         focusOnSelect: false,
         adaptiveHeight: false,
         fade: false,
+        arrows: true,
     });
 });

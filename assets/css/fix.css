@@ -1,0 +1,10 @@
+#ilifautpl-hero::after{
+    margin-top: 80px;
+}
+
+@media screen and (max-width: 991px) {
+    #ilifautpl-hero::after{
+        margin-top: 110px;
+        transform: skewY(-2deg);
+    }
+} 

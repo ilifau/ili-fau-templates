@@ -9,17 +9,26 @@
  /* -----------------------------------------
    1. Front Page Slider
    ----------------------------------------- */
+#ilifautpl-hero {
+    background: #fff;
+}
+
+.ilifautpl-hero-inner {
+    display: block;
+    max-width: 2048px;
+    margin: 0 auto;
+}
+
 #ilifautpl-hero::after{
     content: '';
     width: 100%;
     height: 120px;
-    margin-top: 70px;
     position: absolute;
-    background: #fff;
     top: 0;
+    background: #fff;
+    margin-top: 48px;
     transform-origin: right top;
-    transform: skewY(-1.5deg);
-    z-index: 99;
+    transform: skewY(-1.75deg);
     display: block;
     overflow: hidden;
 }
@@ -43,8 +52,6 @@
     display: block;
     position: absolute;
     bottom: 52px;
-    /* left: 4%;
-    width: 92%; */
 }
 
 h2.ilifautpl-slider-headline,
@@ -52,6 +59,7 @@ h3.ilifautpl-slider-subtitle {
     display: inline-block;
     color: #fff;
     background: rgba(0, 51, 102, .875);
+    margin-right: 25px;
 }
 
 h2.ilifautpl-slider-headline {
@@ -59,7 +67,8 @@ h2.ilifautpl-slider-headline {
     font-weight: 600;
     letter-spacing: 1px;
     margin-bottom: 8px;
-    padding: 8px 12px;
+    padding: 4px 12px 8px;
+    line-height: 1.25;
 }
 
 h2.ilifautpl-slider-headline a:hover,
@@ -72,23 +81,33 @@ h3.ilifautpl-slider-subtitle {
     font-weight: 400;
     padding: 6px 12px;
     margin-left: 16px;
+    line-height: 1.5;
 }
 
-span.ilifautpl-slide-read-more {
-    display: inline-block;
-    margin-left: .5em;
+/* span.ilifautpl-slide-read-more {} */
+
+@media screen and (min-width: 1921px) {
+    #ilifautpl-hero::after{
+        transform: skewY(-1deg);
+    }
+    
+    .slick-slide {
+        height: 640px!important;
+        position: relative;
+    }
 }
 
 @media screen and (max-width: 991px) {
     #ilifautpl-hero::after{
         height: 120px;
-        margin-top: 110px;
+        margin-top: 92px;
+        transform: skewY(-2deg);
     }
 } 
 
 @media screen and (min-width: 768px) {
     #ilifautpl-hero {
-        padding-top: 10em;
+        padding-top: 9em;
     }
 } 
 
@@ -100,5 +119,13 @@ span.ilifautpl-slide-read-more {
     .slick-slide {
         height: 50vh!important;
         min-height: 240px!important;
+    }
+    
+    h2.ilifautpl-slider-headline {
+        font-size: 21px;
+    }
+    
+    h3.ilifautpl-slider-subtitle {
+        font-size: 13px;
     }
 } 

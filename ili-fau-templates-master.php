@@ -136,6 +136,12 @@ function register_scripts_and_styles() {
     
     wp_register_script( 'ili-fau-templates-main', plugins_url('assets/js/main.js', __FILE__), array('jquery'), '0.0.1', true );
     wp_enqueue_script( 'ili-fau-templates-main' );
+    
+    // Fix admin bar margin for slick slider
+    if( is_user_logged_in() ) {
+        wp_register_style( 'ili-fau-templates-fix', plugins_url('assets/css/fix.css', __FILE__ ) );
+        wp_enqueue_style( 'ili-fau-templates-fix' );
+    }
 }
 
 /*

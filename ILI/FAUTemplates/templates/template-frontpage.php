@@ -10,7 +10,9 @@
 get_header();
 ?>
     <section id="ilifautpl-hero">
-        <?php include 'template-parts/template-slider.php'; ?>
+        <div class="ilifautpl-hero-inner">
+            <?php include 'template-parts/template-slider.php'; ?>
+        </div>
 	</section>
 	<div id="content">
 		<div class="container">
