@@ -2,7 +2,6 @@ jQuery(document).ready(function($) {
     $('.slick-slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
-        dots: true,
         centerMode: false,
         touchMove: true,
         speed: 1000,
@@ -10,6 +9,7 @@ jQuery(document).ready(function($) {
         focusOnSelect: false,
         adaptiveHeight: false,
         fade: true,
+        dots: true,
         arrows: true,
         prevArrow: $('.ilifautpl-arrow.prev'),
         nextArrow: $('.ilifautpl-arrow.next'),
