@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Part for pages with big hero slider
+ * Template Part "Slick Slider"
  */
 
 $ilifautpl_meta = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );

@@ -9,11 +9,14 @@
 
 get_header();
 ?>
+    <!-- Template Part "Slider" -->
     <section id="ilifautpl-hero">
         <div class="ilifautpl-hero-inner">
             <?php include 'template-parts/template-slider.php'; ?>
         </div>
 	</section>
+    <!-- End Template Part "Slider" -->
+    
 	<div id="content">
 		<div class="container">
 			<?php  echo fau_get_ad('werbebanner_seitlich',false); ?>
@@ -21,6 +24,13 @@ get_header();
 			<div class="row">
 				<div class="startpage-blogroll">
 				    <main<?php echo fau_get_page_langcode($post->ID);?>>
+                    
+                    <!-- Template Part "Topic Boxes" -->
+                    <section id="ilifautpl-topic-boxes">
+                        <?php include 'template-parts/template-topic-boxes.php'; ?>
+                	</section>
+                    <!-- End Template Part "Topic Boxes" -->
+                    
 					<h1 class="screen-reader-text"><?php the_title(); ?></h1>
 					
 					<?php

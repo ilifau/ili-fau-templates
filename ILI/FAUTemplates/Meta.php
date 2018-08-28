@@ -29,8 +29,15 @@ class Meta {
                 
                 add_meta_box(
                     'ilifautpl-slides',
-                    esc_html__( 'Slider (ILI FAU Templates)', 'mnmlwp' ),
+                    esc_html__( 'Slider (ILI FAU Templates)', 'ilifautpl' ),
                     array($this, 'frontpage_slides_callback'),
+                    $screen
+                );
+                
+                add_meta_box(
+                    'ilifautpl-topic-boxes',
+                    esc_html__( 'Themenboxen', 'ilifautpl' ),
+                    array($this, 'frontpage_topic_boxes_callback'),
                     $screen
                 );
             }
@@ -66,6 +73,51 @@ class Meta {
 
         echo '<a class="button ilifautpl-add-slide">' . __('Slide hinzufügen', 'ili-fau-templates') . '</a>';
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="Änderungen speichern">';
+    }
+    
+    // Topic Boxes
+    function frontpage_topic_boxes_callback() {
+        global $post;
+        
+        $original_query = $post;
+        $selected_topic_boxes = get_post_meta($post->ID, '_ilifautpl_topic_boxes', true);
+        
+        if( empty( $selected_topic_boxes ) )
+            $selected_topic_boxes = [];
+        
+        $args = array(
+            'post_type' => 'ilifautpl_topic_box',
+            'post_status' => 'publish',
+            'posts_per_page' => -1,
+            'orderby' => 'title',
+            'order' => 'ASC',
+        );
+
+        $topic_boxes = null;
+        $topic_boxes = new \WP_Query($args);
+
+        if( $topic_boxes->have_posts() ):
+        
+            echo '<select class="ilifautpl-multi-select" multiple="multiple" name="_ilifautpl_topic_boxes[]" id="_ilifautpl_topic_boxes">';
+                echo '<option value="" disabled>Bitte wählen...</option>';
+                while ($topic_boxes->have_posts()) : $topic_boxes->the_post();
+                    echo '<option value="' . $post->ID . '" ';
+                        if( in_array( $post->ID, $selected_topic_boxes ) ) { echo 'selected'; }
+                    echo '>' . $post->post_title . ' (ID ' . $post->ID . ')</option>';
+                endwhile;
+            echo '</select>';
+        
+        endif;
+
+        $post = $original_query;
+        wp_reset_postdata();
+
+        // Multiselect
+        echo '<script>
+            jQuery(document).ready( function($) {
+                $(".ilifautpl-multi-select").multiSelect();
+            });
+        </script>';
     }
     
     // Refresh slide preview image
@@ -128,5 +180,6 @@ class Meta {
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
+        update_post_meta( $post_id, '_ilifautpl_topic_boxes', $_POST['_ilifautpl_topic_boxes'] );
     }
 }

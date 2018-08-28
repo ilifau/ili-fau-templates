@@ -38,3 +38,9 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+/* Multi Select */
+.ms-container {
+    width: 100%!important;
+    max-width: 100%!important;
+}

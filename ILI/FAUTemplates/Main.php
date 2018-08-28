@@ -6,6 +6,7 @@ use ILI\FAUTemplates\Options;
 use ILI\FAUTemplates\Settings;
 use ILI\FAUTemplates\Templates;
 use ILI\FAUTemplates\Meta;
+use ILI\FAUTemplates\CustomPostTypes;
 
 defined('ABSPATH') || exit;
 
@@ -19,6 +20,7 @@ class Main {
         $this->settings = new Settings($this);       
         $this->templates = new Templates($this);       
         $this->meta = new Meta($this);       
+        $this->CustomPostTypes = new CustomPostTypes($this);       
         
         add_action('admin_menu', [$this->settings, 'admin_settings_page']);
         add_action('admin_init', [$this->settings, 'admin_settings']);

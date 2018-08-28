@@ -30,6 +30,7 @@ add_action('plugins_loaded', 'ILI\FAUTemplates\loaded');
 // CSS und JS einbinden.
 add_action('wp_enqueue_scripts', 'ILI\FAUTemplates\register_scripts_and_styles', 99, 1);
 add_action('admin_enqueue_scripts', 'ILI\FAUTemplates\register_admin_scripts_and_styles', 99, 1);
+add_action('init', 'ILI\FAUTemplates\add_image_sizes', 99, 1);
 
 /*
  * Einbindung der Sprachdateien.
@@ -40,15 +41,21 @@ function load_textdomain() {
 }
 
 /*
+ * Bildgrößen definieren
+ * @return void
+ */
+function add_image_sizes() {
+    add_image_size( 'ilifautpl-slide', 1920, 1080, true );
+    add_image_size( 'ilifautpl-topic-box', 800, 450, true);
+}
+
+/*
  * Wird durchgeführt, nachdem das Plugin aktiviert wurde.
  * @return void
  */
 function activation() {
     // Sprachdateien werden eingebunden.
     load_textdomain();
-    
-    // Bildgröße für Slides hinzufügen
-    add_image_size( 'ilifautpl-slide', 1920, 1080 );
     
     // Überprüft die minimal erforderliche PHP- u. WP-Version.
     system_requirements();
@@ -168,6 +175,13 @@ function register_admin_scripts_and_styles()
             'max_num_slides' => $max_num_slides
         ) );
         wp_enqueue_style( 'ili-fau-templates-admin' );
+        
+        // Multi Select
+        wp_register_script( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/js/jquery.multi-select.js', __FILE__), array('jquery'), '0.9.12', true );
+        wp_enqueue_script( 'ili-fau-templates-multiselect' );
+        
+        wp_register_style( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/css/multi-select.dist.css', __FILE__ ) );
+        wp_enqueue_style( 'ili-fau-templates-multiselect' );
     }
 }
 
