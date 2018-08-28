@@ -171,9 +171,25 @@ h3.ilifautpl-slider-subtitle {
     position: relative;
     float: left;
     width: 32%;
-    margin-right: 2%;
+    margin: 0 2% 0 0;
 }
 
 .ilifautpl-topic-box:nth-child(3n) {
     margin-right: 0;
+}
+
+.ilifautpl-topic-box-title {
+    background: #003366;
+    color: #fff;
+    font-weight: 400;
+    font-size: 1.125em;
+    padding: .5em 1em;
+}
+
+@media screen and (max-width: 767px) {
+    .ilifautpl-topic-box {
+        width: 100%;
+        margin: 0;
+        float: none;
+    }
 }

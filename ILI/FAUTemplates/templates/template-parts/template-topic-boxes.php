@@ -25,7 +25,7 @@ echo '<div class="content">';
                 if( ! $ilifautpl_topic_box_target_id )
                     continue;
                 
-                $ilifautpl_topic_box_excerpt = strlen( $box->post_content ) >= $ilifautpl_topix_box_excerpt_length ? substr( $box->post_content, 0, $ilifautpl_topix_box_excerpt_length ) . '<a href="' . esc_url( get_permalink( $ilifautpl_topic_box_target_id ) ) . '">' . __('Mehr lesen', 'ilifautpl') . '</a>' : $box->post_content;
+                $ilifautpl_topic_box_excerpt = strlen( $box->post_content ) >= $ilifautpl_topix_box_excerpt_length ? substr( $box->post_content, 0, $ilifautpl_topix_box_excerpt_length ) . '&hellip; <a href="' . esc_url( get_permalink( $ilifautpl_topic_box_target_id ) ) . '">' . __('Weiter lesen', 'ilifautpl') . '</a>' : $box->post_content;
                 
                 echo '<div class="ilifautpl-topic-box">';
                     echo get_the_post_thumbnail( $box->ID, 'ilifautpl-topic-box', array( 'class' => 'ilifautpl-topic-box-image' ) );
