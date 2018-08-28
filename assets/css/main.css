@@ -152,6 +152,11 @@ h3.ilifautpl-slider-subtitle {
         min-height: 240px!important;
     }
     
+    .slick-dots {
+        margin-bottom: .5em!important;
+    }
+
+    
     h2.ilifautpl-slider-headline {
         font-size: 23px;
     }
@@ -164,7 +169,14 @@ h3.ilifautpl-slider-subtitle {
 /* -----------------------------------------
   2. Topic Boxes
   ----------------------------------------- */
-  
+.ilifautpl-topic-box-row {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5em;
+}
+
 .ilifautpl-topic-box {
     display: block;
     overflow: hidden;
@@ -172,6 +184,8 @@ h3.ilifautpl-slider-subtitle {
     float: left;
     width: 32%;
     margin: 0 2% 0 0;
+    /* margin: 4px calc(2% - 8px) 4px 4px;
+    box-shadow: 1px 2px 2px rgba(0,0,0,.3); */
 }
 
 .ilifautpl-topic-box:nth-child(3n) {
@@ -183,13 +197,30 @@ h3.ilifautpl-slider-subtitle {
     color: #fff;
     font-weight: 400;
     font-size: 1.125em;
-    padding: .5em 1em;
+    padding: 8px 12px;
+}
+
+.ilifautpl-topic-box-content {
+    /* padding: 8px 12px; */
+    padding: 8px 0;
+}
+
+.ilifautpl-topix-box-read-more {
+    font-weight: 600;
 }
 
 @media screen and (max-width: 767px) {
+    .ilifautpl-topic-box-row {
+        margin: 0;
+    }
+    
+    .ilifautpl-topic-box-row:first-of-type {
+        margin-top: 1em;
+    }
+    
     .ilifautpl-topic-box {
         width: 100%;
-        margin: 0;
+        margin: 0 0 1em;
         float: none;
     }
 }
