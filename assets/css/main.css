@@ -12,7 +12,7 @@
    ----------------------------------------- */
 #ilifautpl-hero {
     background: #fff;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 
 .ilifautpl-hero-inner {
@@ -148,6 +148,10 @@ h3.ilifautpl-slider-subtitle {
 } 
 
 @media screen and (max-width: 767px) {
+    #ilifautpl-hero {
+        margin-bottom: 3em;
+    }
+    
     #ilifautpl-hero::after{
         display: none;
     }
@@ -169,30 +173,26 @@ h3.ilifautpl-slider-subtitle {
 /* -----------------------------------------
   2. Topic Boxes
   ----------------------------------------- */
-.ilifautpl-topic-box-row {
-    display: block;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    margin-bottom: 1.5em;
+  
+.ilifautpl-topic-boxes {
+    width: calc(100% - 30px); /* Compensate for negative margins / padding */
+    display: grid;
+    grid-gap: 1.5em 3.5%;
+    grid-template-columns: repeat(3, 31%);
 }
 
 .ilifautpl-topic-box {
     display: block;
     overflow: hidden;
     position: relative;
-    float: left;
-    width: 32%;
-    margin: 0 2% 0 0;
-    /* margin: 4px calc(2% - 8px) 4px 4px;
-    box-shadow: 1px 2px 2px rgba(0,0,0,.3); */
 }
 
 .ilifautpl-topic-box-image {
-    /* transform: skewY(-2deg);
-    position: relative;
-    top: 10px;
-    z-index: 1; */
+    transition: opacity .2s linear;
+}
+
+.ilifautpl-topic-box-image:hover {
+    opacity: .7;
 }
 
 .ilifautpl-topic-box:nth-child(3n) {
@@ -210,7 +210,6 @@ h3.ilifautpl-slider-subtitle {
 }
 
 .ilifautpl-topic-box-content {
-    /* padding: 8px 12px; */
     padding: 8px 0;
 }
 
@@ -218,11 +217,13 @@ h3.ilifautpl-slider-subtitle {
     font-weight: 600;
 }
 
-@media screen and (max-width: 767px) {
-    .ilifautpl-topic-box-row {
-        margin: 0;
+@media screen and (max-width: 991px) {
+    .ilifautpl-topic-boxes {
+        grid-template-columns: repeat(2, 48.25%);
     }
-    
+}
+
+@media screen and (max-width: 639px) {
     .ilifautpl-topic-box {
         width: 100%;
         margin: 0 0 1em;
@@ -231,5 +232,13 @@ h3.ilifautpl-slider-subtitle {
     
     .ilifautpl-topic-box-image {
         top: 16px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .ilifautpl-topic-boxes {
+        width: 100%;
+        grid-gap: 1.5em 0;
+        grid-template-columns: repeat(1, 100%);
     }
 }
