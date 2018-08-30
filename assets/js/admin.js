@@ -91,8 +91,14 @@ jQuery(document).ready(function($) {
         image_frame.open();
     });
     
-    $('.button-ilifautpl-save').on('click', function(e) {
-        // e.preventDefault();
-        // return;
+    // $('.button-ilifautpl-save').on('click', function(e) {
+    //     // e.preventDefault();
+    //     // return;
+    // });
+
+    // Multiselect
+    $('.ilifautpl-multi-select').multiSelect({
+        keepOrder: true,
+        sortable: true,
     });
 });

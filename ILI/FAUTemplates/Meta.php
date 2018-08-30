@@ -82,42 +82,40 @@ class Meta {
         $original_query = $post;
         $selected_topic_boxes = get_post_meta($post->ID, '_ilifautpl_topic_boxes', true);
         
-        if( empty( $selected_topic_boxes ) )
-            $selected_topic_boxes = [];
-        
+        // Topic boxes without selected boxes
         $args = array(
             'post_type' => 'ilifautpl_topic_box',
             'post_status' => 'publish',
-            'posts_per_page' => -1,
+            'exclude' => $selected_topic_boxes,
+            'numberposts' => -1,
             'orderby' => 'title',
             'order' => 'ASC',
         );
 
-        $topic_boxes = null;
-        $topic_boxes = new \WP_Query($args);
+        $remaining_topic_boxes = get_posts( $args );
 
-        if( $topic_boxes->have_posts() ):
-        
-            echo '<select class="ilifautpl-multi-select" multiple="multiple" name="_ilifautpl_topic_boxes[]" id="_ilifautpl_topic_boxes">';
-                echo '<option value="" disabled>Bitte wählen...</option>';
-                while ($topic_boxes->have_posts()) : $topic_boxes->the_post();
-                    echo '<option value="' . $post->ID . '" ';
-                        if( in_array( $post->ID, $selected_topic_boxes ) ) { echo 'selected'; }
-                    echo '>' . $post->post_title . ' (ID ' . $post->ID . ')</option>';
-                endwhile;
-            echo '</select>';
-        
-        endif;
+        if( empty( $selected_topic_boxes ) )
+            $selected_topic_boxes = [];
 
-        $post = $original_query;
-        wp_reset_postdata();
+        echo '<select class="ilifautpl-multi-select" multiple="multiple" name="_ilifautpl_topic_boxes[]" id="_ilifautpl_topic_boxes">';
+            echo '<option value="" disabled>Bitte wählen...</option>';
+            
+            // Output the selected boxes first
+            foreach( $selected_topic_boxes as $box_id ):
+                if( get_post_status ( $box_id ) !== 'publish' )
+                    continue;
 
-        // Multiselect
-        echo '<script>
-            jQuery(document).ready( function($) {
-                $(".ilifautpl-multi-select").multiSelect();
-            });
-        </script>';
+                $box = get_post( $box_id );
+
+                echo '<option value="' . $box->ID . '" selected>' . $box->post_title . ' (ID ' . $box->ID . ')</option>';
+            endforeach;
+
+            // Output the remaining boxes
+            foreach( $remaining_topic_boxes as $box ):
+                echo '<option value="' . $box->ID . '">' . $box->post_title . ' (ID ' . $box->ID . ')</option>';
+            endforeach;
+
+        echo '</select>';
     }
     
     // Refresh slide preview image
@@ -178,8 +176,14 @@ class Meta {
             ) );
         }
 
+        $topic_boxes = $_POST['_ilifautpl_topic_boxes'];
+        
+        foreach( $topic_boxes as $key => $topic_box ) {
+            $topic_boxes[$key] = (int)$topic_box;
+        }
+
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
-        update_post_meta( $post_id, '_ilifautpl_topic_boxes', $_POST['_ilifautpl_topic_boxes'] );
+        update_post_meta( $post_id, '_ilifautpl_topic_boxes', $topic_boxes );
     }
 }

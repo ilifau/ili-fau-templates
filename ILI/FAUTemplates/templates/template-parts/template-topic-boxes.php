@@ -3,17 +3,21 @@
 /**
  * Template Part "Topic Boxes"
  */
- 
-// Get Topic Boxes
+
 $ilifautpl_selected_topic_boxes = get_post_meta( get_the_ID(), '_ilifautpl_topic_boxes', true );
 
-$ilifautpl_topic_boxes = get_posts(array(
-    'post_type' => 'ilifautpl_topic_box',
-    'numberposts' => -1,
-    'include' => $ilifautpl_selected_topic_boxes,
-));
+if( empty( $ilifautpl_selected_topic_boxes ) )  {
+    $ilifautpl_topic_boxes = [];
+} else {
+    $ilifautpl_topic_boxes = get_posts(array(
+        'post_type' => 'ilifautpl_topic_box',
+        'numberposts' => -1,
+        'include' => $ilifautpl_selected_topic_boxes,
+        'orderby' => 'post__in',
+    ));
+}
 
-$ilifautpl_topix_box_excerpt_length = 230;
+$ilifautpl_topix_box_excerpt_length = 150;
 
 echo '<div class="content">';
     echo '<div class="container">';
