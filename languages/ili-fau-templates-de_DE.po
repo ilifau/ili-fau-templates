@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CMS-Basis\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-03 13:57+0200\n"
+"POT-Creation-Date: 2018-08-30 16:43+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: \n"
+"Last-Translator: Sebastian Honert <sebastian.honert@gmail.com>\n"
 "Language-Team: RRZE-Webteam <webmaster@rrze.fau.de>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -13,42 +13,123 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
 "_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;_ex:1,2c;"
 "esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ..\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
+"X-Generator: Poedit 2.0.9\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: node_modules\n"
 
-#: ../CMS/Basis/Settings.php:38
-msgid "CMS Basis"
-msgstr "CMS-Basis"
+#: ../ILI/FAUTemplates/CustomPostTypes.php:19 ../ILI/FAUTemplates/Meta.php:39
+msgid "Themenboxen"
+msgstr ""
 
-#: ../CMS/Basis/Settings.php:49
-msgid "Settings &rsaquo; CMS Basis"
+#: ../ILI/FAUTemplates/CustomPostTypes.php:20
+msgid "Themenbox"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:21
+#: ../ILI/FAUTemplates/CustomPostTypes.php:22
+msgid "Hinzufügen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:23
+msgid "Themenbox bearbeiten"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:24
+msgid "Themenbox hinzufügen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:25
+msgid "Themenbox Ansehen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:26
+msgid "Themenbox Suchen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:27
+#: ../ILI/FAUTemplates/CustomPostTypes.php:28
+msgid "Keine Themenboxen gefunden"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:44
+msgid "Verknüpfte Post-ID"
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:58
+msgid "Themenboxen müssen mit einer gültigen Post-ID verknüpft sein."
+msgstr ""
+
+#: ../ILI/FAUTemplates/CustomPostTypes.php:60
+msgid "Gültige Post-ID"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Meta.php:32
+msgid "Slider (ILI FAU Templates)"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Meta.php:67
+msgid "Media"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Meta.php:67
+msgid "Löschen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Meta.php:74
+msgid "Slide hinzufügen"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Settings.php:36
+msgid "ILI FAU Templates"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Settings.php:47
+#, fuzzy
+#| msgid "Settings &rsaquo; CMS Basis"
+msgid "Settings &rsaquo; ILI FAU Templates"
 msgstr "Einstellungen &rsaquo; CMS-Basis"
 
-#: ../CMS/Basis/Settings.php:68
-msgid "Field 1"
-msgstr "Feld 1"
+#: ../ILI/FAUTemplates/Settings.php:67
+msgid "Max. Anzahl Slides pro Seite"
+msgstr ""
 
-#: ../CMS/Basis/Settings.php:98
+#: ../ILI/FAUTemplates/Settings.php:68
+msgid "Rolle mindestens"
+msgstr ""
+
+#: ../ILI/FAUTemplates/Settings.php:122
 msgid "Here comes the Context Help content."
 msgstr "Hier kommt der Inhalt der Kontexthilfe."
 
-#: ../CMS/Basis/Settings.php:104
+#: ../ILI/FAUTemplates/Settings.php:127
 msgid "Overview"
 msgstr "Übersicht"
 
-#: ../CMS/Basis/Settings.php:108
+#: ../ILI/FAUTemplates/Settings.php:131
 msgid "For more information"
 msgstr "Für mehr Information"
 
-#: ../CMS/Basis/Settings.php:108
+#: ../ILI/FAUTemplates/Settings.php:131
 msgid "RRZE Webteam on Github"
 msgstr "RRZE-Webteam in Github"
 
-#: ../cms-basis.php:91
+#: ../ILI/FAUTemplates/Templates.php:43
+msgid "Landing Page (ILI)"
+msgstr ""
+
+#: ../ILI/FAUTemplates/templates/template-parts/template-slider.php:12
+msgid "Zum Inhalt"
+msgstr ""
+
+#: ../ILI/FAUTemplates/templates/template-parts/template-topic-boxes.php:40
+msgid "Weiter lesen"
+msgstr ""
+
+#: ../ili-fau-templates-master.php:89
 #, php-format
 msgid ""
 "Your server is running PHP version %s. Please upgrade at least to PHP "
@@ -57,7 +138,7 @@ msgstr ""
 "Ihre PHP-Version %s ist veraltet. Bitte aktualisieren Sie mindestens auf die "
 "PHP-Version %s."
 
-#: ../cms-basis.php:95
+#: ../ili-fau-templates-master.php:93
 #, php-format
 msgid ""
 "Your Wordpress version is %s. Please upgrade at least to Wordpress version "
@@ -65,3 +146,9 @@ msgid ""
 msgstr ""
 "Ihre Wordpress-Version %s ist veraltet. Bitte aktualisieren Sie mindestens "
 "auf die Wordpress-Version %s."
+
+#~ msgid "CMS Basis"
+#~ msgstr "CMS-Basis"
+
+#~ msgid "Field 1"
+#~ msgstr "Feld 1"

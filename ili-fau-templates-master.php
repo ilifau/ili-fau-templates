@@ -165,7 +165,7 @@ function register_admin_scripts_and_styles()
 
     if( $is_ili_fau_template ) {
         $options = get_option('ili_fau_templates');
-        $max_num_slides = $options['ili_fau_templates_max_num_slides'];
+        $max_num_slides = $options['ili_fau_templates_max_num_slides'] ? $options['ili_fau_templates_max_num_slides'] : 3;
         
         wp_register_script( 'ili-fau-templates-admin', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), '0.0.1', true );
         wp_enqueue_script( 'ili-fau-templates-admin' );
