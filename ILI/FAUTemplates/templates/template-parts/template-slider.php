@@ -25,8 +25,8 @@ if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
             echo '</div>';
         endforeach;
     echo '</div>';
-    echo '<span class="ilifautpl-arrow prev"></span>';
-    echo '<span class="ilifautpl-arrow next"></span>';
+    echo '<span class="ilifautpl-arrow prev"><em class="fa fa-angle-left"></em></span>';
+    echo '<span class="ilifautpl-arrow next"><em class="fa fa-angle-right"></em></span>';
 endif;
 
 ?>

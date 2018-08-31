@@ -11,11 +11,13 @@
    1. Landing Page - Slider
    ----------------------------------------- */
 #ilifautpl-hero {
+    position: relative;
     background: #fff;
-    margin-bottom: 2em;
+    margin: 0 0 2em;
 }
 
 .ilifautpl-hero-inner {
+    position: relative;
     display: block;
     max-width: 1920px;
     margin: 0 auto;
@@ -26,19 +28,23 @@
     width: 100%;
     height: 120px;
     position: absolute;
-    top: 0;
+    top: 2em;
     background: #fff;
-    margin-top: 40px;
     transform-origin: right top;
     transform: skewY(-1.75deg);
     display: block;
     overflow: hidden;
 }
 
+.slick-slider {
+    position: relative;
+}
+
 .slick-slide {
     height: calc(75vh - 10em)!important;
     min-height: 480px!important;
     position: relative;
+    overflow: hidden;
 }
 
 .slick-slide a,
@@ -87,26 +93,17 @@
     line-height: 1.5;
 }
 
-/* span.ilifautpl-slide-read-more {} */
-
-/* Slick */
-
 .ilifautpl-arrow {
     position: absolute;
-    top: calc(53% - 64px); /* image height / 2 */
-    background: url('../img/arrow-right.png');
-    background-size: cover;
-    display: block;
-    width: 70px;
-    height: 128px;
-    opacity: .4;
+    font-size: 192px;
+    top: calc(50% - 96px); /* arrow height / 2 */
+    color: #fff;
+    opacity: .45;
     transition: opacity .2s ease-in;
 }
 
 .ilifautpl-arrow.prev {
     left: 25px;
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
 }
 
 .ilifautpl-arrow.next {
@@ -137,8 +134,13 @@
 @media screen and (max-width: 991px) {
     #ilifautpl-hero::after{
         height: 120px;
-        margin-top: 92px;
+        margin-top: 2.5em;
         transform: skewY(-2deg);
+    }
+
+    .ilifautpl-arrow {
+        font-size: 100px;
+        top: calc(50% - 50px); /* arrow height / 2 */
     }
 } 
 
@@ -172,6 +174,12 @@
     
     .ilifautpl-slider-content p {
         font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .ilifautpl-arrow em {
+        display: none;
     }
 }
 
