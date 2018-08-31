@@ -76,6 +76,7 @@ function deactivation() {
     
     // Bildgröße für Slides entfernen
     remove_image_size( 'ilifautpl-slide' );
+    remove_image_size( 'ilifautpl-topic-box' );
 }
 
 /*
