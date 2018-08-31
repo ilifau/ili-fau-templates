@@ -3,12 +3,12 @@
  * 
  *  Contents
  *  ========
- *  1. Front Page Slider
- *  2. Topic Boxes
+ *  1. Landing Page - Slider
+ *  2. Landing Page - Topic Boxes
  */
  
  /* -----------------------------------------
-   1. Front Page Slider
+   1. Landing Page - Slider
    ----------------------------------------- */
 #ilifautpl-hero {
     background: #fff;
@@ -171,7 +171,7 @@ h3.ilifautpl-slider-subtitle {
 }
 
 /* -----------------------------------------
-  2. Topic Boxes
+  2. Landing Page - Topic Boxes
   ----------------------------------------- */
   
 .ilifautpl-topic-boxes {

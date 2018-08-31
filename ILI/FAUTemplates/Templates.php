@@ -40,7 +40,7 @@ class Templates {
         
         // Add your templates to this array.
     	$this->templates = array(
-    		'templates/template-frontpage.php' => __('Landing Page (ILI)', 'ili-fau-templates'),
+    		'templates/template-landing-page.php' => __('Landing Page (ILI)', 'ili-fau-templates'),
     	);
     }
     

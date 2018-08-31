@@ -159,7 +159,7 @@ function register_admin_scripts_and_styles()
 {
     $screen = get_current_screen();
     $allowed_post_types = array('post', 'page');
-    $allowed_templates = array('templates/template-frontpage.php');
+    $allowed_templates = array('templates/template-landingpage.php');
 
     $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && in_array( get_page_template_slug(), $allowed_templates );
 

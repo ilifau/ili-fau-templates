@@ -22,29 +22,29 @@ class Meta {
         foreach ( $screens as $screen ) {
             $template = get_post_meta( $post->ID, '_wp_page_template', true );
             
-            // Frontpage slides
-            if( 'templates/template-frontpage.php' === $template ) {
+            // Landing Page slides
+            if( 'templates/template-landing-page.php' === $template ) {
                 
                 wp_enqueue_media();
                 
                 add_meta_box(
                     'ilifautpl-slides',
                     esc_html__( 'Slider (ILI FAU Templates)', 'ilifautpl' ),
-                    array($this, 'frontpage_slides_callback'),
+                    array($this, 'landing_page_slides_callback'),
                     $screen
                 );
                 
                 add_meta_box(
                     'ilifautpl-topic-boxes',
                     esc_html__( 'Themenboxen', 'ilifautpl' ),
-                    array($this, 'frontpage_topic_boxes_callback'),
+                    array($this, 'landing_page_topic_boxes_callback'),
                     $screen
                 );
             }
         }
     }
     
-    public function frontpage_slides_callback() {
+    public function landing_page_slides_callback() {
         wp_nonce_field( 'ilifautpl_meta_boxes_nonce', 'ilifautpl_meta_boxes_nonce' );
 
         $slides = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
@@ -62,7 +62,7 @@ class Meta {
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
             echo '<div class="ilifautpl-input-slide-wrapper" id="ilifautpl-input-slide-wrapper-' . $id . '" data-id="' . $id . '">';
-            echo '<label class="ilifautpl-label" for="ilifautpl-frontpage-slides">Slide ' . $id . '</label>';
+            echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $id . '</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
             echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="text" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
@@ -76,7 +76,7 @@ class Meta {
     }
     
     // Topic Boxes
-    function frontpage_topic_boxes_callback() {
+    function landing_page_topic_boxes_callback() {
         global $post;
         
         $original_query = $post;
