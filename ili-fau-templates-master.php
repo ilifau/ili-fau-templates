@@ -127,6 +127,9 @@ function autoload() {
  * @return void
  */
 function register_scripts_and_styles() {
+    if( ! ilifautpl_is_landing_page('frontend') )
+        return;
+
     // CSS
     wp_register_style( 'ili-fau-templates', plugins_url('assets/css/main.css', __FILE__ ) );
     wp_enqueue_style( 'ili-fau-templates' );
@@ -157,31 +160,50 @@ function register_scripts_and_styles() {
  */
 function register_admin_scripts_and_styles()
 {
-    $screen = get_current_screen();
+    if( ! ilifautpl_is_landing_page('admin') )
+        return;
+
+    $options = get_option('ili_fau_templates');
+    $max_num_slides = $options['ili_fau_templates_max_num_slides'] ? $options['ili_fau_templates_max_num_slides'] : 3;
+    
+    wp_register_script( 'ili-fau-templates-admin', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), '0.0.1', true );
+    wp_enqueue_script( 'ili-fau-templates-admin' );
+    
+    wp_register_style( 'ili-fau-templates-admin', plugins_url('assets/css/admin.css', __FILE__ ) );
+    wp_localize_script( 'ili-fau-templates-admin', 'ilifautpl_options_admin', array(
+        'max_num_slides' => $max_num_slides
+    ) );
+    wp_enqueue_style( 'ili-fau-templates-admin' );
+    
+    // Multi Select
+    wp_register_script( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/js/jquery.multi-select.js', __FILE__), array('jquery'), '0.9.12', true );
+    wp_enqueue_script( 'ili-fau-templates-multiselect' );
+    
+    wp_register_style( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/css/multi-select.dist.css', __FILE__ ) );
+    wp_enqueue_style( 'ili-fau-templates-multiselect' );
+}
+
+/*
+ * Prüft den Seitenkontext
+ * @return bool
+ */
+function ilifautpl_is_landing_page( $context = 'frontend' ) {
+
+    $post_id = get_the_ID();
+
+    // Frontend
+    $allowed_templates = array('templates/template-landing-page.php');
+
+    if( $context === 'frontend' )
+        return in_array( get_page_template_slug( $post_id ), $allowed_templates ); 
+  
+    // Backend
+    $screen = function_exists('get_current_screen') ? get_current_screen( $post_id ) : '';
     $allowed_post_types = array('post', 'page');
     $allowed_templates = array('templates/template-landing-page.php');
 
-    $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && in_array( get_page_template_slug(), $allowed_templates );
-
-    if( $is_ili_fau_template ) {
-        $options = get_option('ili_fau_templates');
-        $max_num_slides = $options['ili_fau_templates_max_num_slides'] ? $options['ili_fau_templates_max_num_slides'] : 3;
-        
-        wp_register_script( 'ili-fau-templates-admin', plugins_url('assets/js/admin.js', __FILE__), array('jquery'), '0.0.1', true );
-        wp_enqueue_script( 'ili-fau-templates-admin' );
-        
-        wp_register_style( 'ili-fau-templates-admin', plugins_url('assets/css/admin.css', __FILE__ ) );
-        wp_localize_script( 'ili-fau-templates-admin', 'ilifautpl_options_admin', array(
-            'max_num_slides' => $max_num_slides
-        ) );
-        wp_enqueue_style( 'ili-fau-templates-admin' );
-        
-        // Multi Select
-        wp_register_script( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/js/jquery.multi-select.js', __FILE__), array('jquery'), '0.9.12', true );
-        wp_enqueue_script( 'ili-fau-templates-multiselect' );
-        
-        wp_register_style( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/css/multi-select.dist.css', __FILE__ ) );
-        wp_enqueue_style( 'ili-fau-templates-multiselect' );
-    }
+    $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && ( in_array( get_page_template_slug( $post_id ), $allowed_templates ) );
+    
+    return $is_ili_fau_template;
 }
 
