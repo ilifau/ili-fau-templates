@@ -32,11 +32,21 @@ echo '<div class="container">';
                 $ilifautpl_topic_box_excerpt = preg_replace('/\s+?(\S+)?$/', '', substr($box->post_content, 0, $ilifautpl_topix_box_excerpt_length)) . '&hellip;';
                 
                 echo '<div class="ilifautpl-topic-box">';
-                    echo '<a href="' . $ilifautpl_topix_box_url . '">';
-                        echo get_the_post_thumbnail( $box->ID, 'ilifautpl-topic-box', array( 'class' => 'ilifautpl-topic-box-image' ) );
-                        echo '<h3>' . $box->post_title . '</h3>';
-                    echo '</a>';
-                    echo '<p>' . $ilifautpl_topic_box_excerpt . ' <a href="' . $ilifautpl_topix_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a></p>';
+                    echo '<div aria-hidden="true" role="presentation" tabindex="-1" class="passpartout" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">';
+                        echo '<meta itemprop="url" content="' . get_the_post_thumbnail_url( $box->ID ) . '">';
+                        echo '<a href="' . $ilifautpl_topix_box_url . '">';
+                            echo get_the_post_thumbnail(
+                                $box->ID,
+                                'ilifautpl-topic-box',
+                                array(
+                                    'class' => 'ilifautpl-topic-box-image',
+                                    'itemprop' => 'thumbnailUrl',
+                                )
+                            );
+                            echo '<h3>' . $box->post_title . '</h3>';
+                        echo '</a>';
+                    echo '</div>';
+                    echo '<p itemprop="description">' . $ilifautpl_topic_box_excerpt . ' <a aria-hidden="true" tabindex="-1" href="' . $ilifautpl_topix_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a><span class="screen-reader-text">' . __('Weiterlesen', 'ilifautpl') . '</span></p>';
                 echo '</div>';
             }
             echo '</div>';
