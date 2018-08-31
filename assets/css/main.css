@@ -146,6 +146,10 @@
     #ilifautpl-hero {
         padding-top: 9em;
     }
+
+    .ilifautpl-slider-content {
+        padding: 0 15px;
+    }
 } 
 
 @media screen and (max-width: 767px) {
