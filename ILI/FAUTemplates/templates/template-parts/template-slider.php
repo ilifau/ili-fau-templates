@@ -14,13 +14,11 @@ if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
             $ilifautpl_headline = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['headline'] . '</a>' : $ilifautpl_meta[$key]['headline'];
             
             echo '<div class="slick-slide" style="background:url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
-                echo '<div class="content">';
-                    echo '<div class="container">';
-                        echo '<div class="row">';
-                            echo '<div class="ilifautpl-slider-content">';
-                                echo '<h3><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_headline . '</a></h3><br />';
-                                echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
-                            echo '</div>';
+                echo '<div class="container">';
+                    echo '<div class="row">';
+                        echo '<div class="ilifautpl-slider-content">';
+                            echo '<h3><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_headline . '</a></h3><br />';
+                            echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
