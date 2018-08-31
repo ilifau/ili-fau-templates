@@ -35,9 +35,9 @@ echo '<div class="content">';
                     echo '<div class="ilifautpl-topic-box">';
                         echo '<a href="' . $ilifautpl_topix_box_url . '">';
                             echo get_the_post_thumbnail( $box->ID, 'ilifautpl-topic-box', array( 'class' => 'ilifautpl-topic-box-image' ) );
-                            echo '<h3 class="ilifautpl-topic-box-title">' . $box->post_title . '</h3>';
+                            echo '<h3>' . $box->post_title . '</h3>';
                         echo '</a>';
-                        echo '<p class="ilifautpl-topic-box-content">' . $ilifautpl_topic_box_excerpt . ' <a class="ilifautpl-topix-box-read-more" href="' . $ilifautpl_topix_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a></p>';
+                        echo '<p>' . $ilifautpl_topic_box_excerpt . ' <a href="' . $ilifautpl_topix_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a></p>';
                     echo '</div>';
                 }
                 echo '</div>';

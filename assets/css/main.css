@@ -54,17 +54,18 @@
     display: block;
     position: absolute;
     bottom: 52px;
+    margin-bottom: 16px;
 }
 
-h2.ilifautpl-slider-headline,
-h3.ilifautpl-slider-subtitle {
+.ilifautpl-slider-content h3,
+.ilifautpl-slider-content p {
     display: inline-block;
     color: #fff;
     background: rgba(0, 51, 102, .875);
     margin-right: 25px;
 }
 
-h2.ilifautpl-slider-headline {
+.ilifautpl-slider-content h3 {
     font-size: 37px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -73,12 +74,12 @@ h2.ilifautpl-slider-headline {
     line-height: 1.25;
 }
 
-h2.ilifautpl-slider-headline a:hover,
-h2.ilifautpl-slider-headline a:active {
+.ilifautpl-slider-content h3 a:hover,
+.ilifautpl-slider-content h3 a:active {
     text-decoration: none;
 }
 
-h3.ilifautpl-slider-subtitle {
+.ilifautpl-slider-content p {
     font-size: 15px;
     font-weight: 400;
     padding: 6px 12px;
@@ -161,11 +162,11 @@ h3.ilifautpl-slider-subtitle {
         min-height: 240px!important;
     }
     
-    h2.ilifautpl-slider-headline {
+    .ilifautpl-slider-content h3 {
         font-size: 23px;
     }
     
-    h3.ilifautpl-slider-subtitle {
+    .ilifautpl-slider-content p {
         font-size: 13px;
     }
 }
@@ -199,7 +200,7 @@ h3.ilifautpl-slider-subtitle {
     margin-right: 0;
 }
 
-.ilifautpl-topic-box-title {
+.ilifautpl-topic-box h3 {
     background: #003366;
     color: #fff;
     font-weight: 400;
@@ -210,11 +211,11 @@ h3.ilifautpl-slider-subtitle {
     z-index: 2;
 }
 
-.ilifautpl-topic-box-content {
+.ilifautpl-topic-box p {
     padding: 8px 0;
 }
 
-.ilifautpl-topix-box-read-more {
+.ilifautpl-topic-box a {
     font-weight: 600;
 }
 
