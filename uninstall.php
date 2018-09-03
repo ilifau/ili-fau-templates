@@ -4,6 +4,8 @@ if( ! defined('WP_UNINSTALL_PLUGIN') ) {
     die;
 }
 
+global $wpdb;
+
 // Delete options
 $option_name = 'ili_fau_templates';
 
@@ -23,3 +25,13 @@ while( $query->have_posts () ) {
   $id = get_the_ID ();
   wp_delete_post ($id, true);
 }
+
+// Delete meta data
+$deleted = $wpdb->query( 
+  $wpdb->prepare( 
+      "
+      DELETE FROM $wpdb->postmeta
+      WHERE meta_key LIKE `_ilifautpl%`
+      "
+      )
+);
