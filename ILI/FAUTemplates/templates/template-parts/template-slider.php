@@ -10,7 +10,7 @@ if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
     echo '<h2 class="screen-reader-text">' . __('Slider', 'ilifautpl') . '</h2>';
     echo '<div class="slick-slider">';
         foreach( $ilifautpl_meta as $key => $slide ):
-            $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Zum Inhalt', 'ilifautpl') . '</a>' : '';
+            $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
             $ilifautpl_headline = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['headline'] . '</a>' : $ilifautpl_meta[$key]['headline'];
             
             echo '<div class="slick-slide" style="background:url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
