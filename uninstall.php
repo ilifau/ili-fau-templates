@@ -23,3 +23,5 @@ while( $query->have_posts () ) {
   $id = get_the_ID ();
   wp_delete_post ($id, true);
 }
+
+// Todo: delete meta data
