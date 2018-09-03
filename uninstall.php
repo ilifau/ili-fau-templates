@@ -4,6 +4,8 @@ if( ! defined('WP_UNINSTALL_PLUGIN') ) {
     die;
 }
 
+global $wpdb;
+
 // Delete options
 $option_name = 'ili_fau_templates';
 
