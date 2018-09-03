@@ -43,9 +43,9 @@ echo '<div class="container">';
                                     'itemprop' => 'thumbnailUrl',
                                 )
                             );
-                            echo '<h3>' . $box->post_title . '</h3>';
                         echo '</a>';
                     echo '</div>';
+                    echo '<h3 itemprop="title"><a href="' . $ilifautpl_topix_box_url . '">' . $box->post_title . '</a></h3>';
                     echo '<p itemprop="description">' . $ilifautpl_topic_box_excerpt . ' <a aria-hidden="true" tabindex="-1" href="' . $ilifautpl_topix_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a><span class="screen-reader-text">' . __('Weiterlesen', 'ilifautpl') . '</span></p>';
                 echo '</div>';
             }

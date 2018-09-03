@@ -223,6 +223,12 @@
     z-index: 2;
 }
 
+.ilifautpl-topic-box h3 a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 400;
+}
+
 .ilifautpl-topic-box p {
     padding: 8px 0;
 }
