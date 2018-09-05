@@ -22,14 +22,15 @@ get_header();
 			<?php  echo fau_get_ad('werbebanner_seitlich',false); ?>
 			
 			<div class="row">
+
+				<!-- Template Part "Topic Boxes" -->
+				<section id="ilifautpl-topic-boxes">
+					<?php include 'template-parts/template-topic-boxes.php'; ?>
+				</section>
+				<!-- End Template Part "Topic Boxes" -->
+				
 				<div class="startpage-blogroll">
 				    <main<?php echo fau_get_page_langcode($post->ID);?>>
-                    
-                    <!-- Template Part "Topic Boxes" -->
-                    <section id="ilifautpl-topic-boxes">
-						<?php include 'template-parts/template-topic-boxes.php'; ?>
-					</section>
-                    <!-- End Template Part "Topic Boxes" -->
                     
 					<h1 class="screen-reader-text"><?php the_title(); ?></h1>
 					

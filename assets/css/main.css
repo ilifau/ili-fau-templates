@@ -188,7 +188,7 @@
   ----------------------------------------- */
   
 .ilifautpl-topic-boxes {
-    width: calc(100% - 30px); /* Compensate for negative margins / padding */
+    width: 100%;
     display: grid;
     grid-gap: 1.5em 3.5%;
     grid-template-columns: repeat(3, 31%);
