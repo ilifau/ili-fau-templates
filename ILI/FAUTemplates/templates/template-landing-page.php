@@ -27,8 +27,8 @@ get_header();
                     
                     <!-- Template Part "Topic Boxes" -->
                     <section id="ilifautpl-topic-boxes">
-                        <?php include 'template-parts/template-topic-boxes.php'; ?>
-                	</section>
+						<?php include 'template-parts/template-topic-boxes.php'; ?>
+					</section>
                     <!-- End Template Part "Topic Boxes" -->
                     
 					<h1 class="screen-reader-text"><?php the_title(); ?></h1>
