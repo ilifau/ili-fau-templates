@@ -8,6 +8,7 @@ class Shortcodes {
     
     function __construct() {
         add_shortcode('ilifautpl_topic_boxes', array($this, 'ilifautpl_shortcode_topic_boxes'));
+        add_shortcode('themenboxen', array($this, 'ilifautpl_shortcode_topic_boxes'));
     }
 
     function ilifautpl_shortcode_topic_boxes( $atts ) {

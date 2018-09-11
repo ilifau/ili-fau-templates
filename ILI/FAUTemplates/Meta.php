@@ -40,6 +40,13 @@ class Meta {
                     array($this, 'landing_page_topic_boxes_callback'),
                     $screen
                 );
+
+                add_meta_box(
+                    'ilifautpl-slider-options',
+                    esc_html__( 'Slider-Einstellungen', 'ilifautpl' ),
+                    array($this, 'landing_page_slider_options_callback'),
+                    $screen
+                );
             }
         }
     }
@@ -117,6 +124,54 @@ class Meta {
 
         echo '</select>';
     }
+
+    // Slider has navigation dots callback
+    public function landing_page_slider_options_callback() {
+        $slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
+        if( ! isset( $slider_has_dots ) ) { $slider_has_dots = 1; }
+
+        echo '<label class="ilifautpl-label" for="_ilifautpl_slider_has_dots">Navigation unter Slider anzeigen?</label>';
+        echo '<select name="_ilifautpl_slider_has_dots" id="_ilifautpl_slider_has_dots">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$slider_has_dots ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+
+        $slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true);
+        if( ! isset( $slider_has_arrows ) ) { $slider_has_arrows = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_has_arrows">Pfeilnavigation im Slider anzeigen?</label>';
+        echo '<select name="_ilifautpl_slider_has_arrows" id="_ilifautpl_slider_has_arrows">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$slider_has_arrows ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+
+        $slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true);
+        if( ! isset( $slider_fade ) ) { $slider_fade = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_fade">Animationstyp?</label>';
+        echo '<select name="_ilifautpl_slider_fade" id="_ilifautpl_slider_fade">';
+            foreach( array(
+                0 => 'slide',
+                1 => 'fade',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$slider_fade ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+    }
     
     // Refresh slide preview image
     function ilifautpl_get_slide_image() {
@@ -182,8 +237,15 @@ class Meta {
             $topic_boxes[$key] = (int)$topic_box;
         }
 
+        $slider_has_dots = (int)$_POST['_ilifautpl_slider_has_dots'];
+        $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
+        $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
+
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
         update_post_meta( $post_id, '_ilifautpl_topic_boxes', $topic_boxes );
+        update_post_meta( $post_id, '_ilifautpl_slider_has_dots', $slider_has_dots );
+        update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
+        update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
     }
 }

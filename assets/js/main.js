@@ -8,9 +8,9 @@ jQuery(document).ready(function($) {
         infinite: true,
         focusOnSelect: false,
         adaptiveHeight: false,
-        fade: true,
-        dots: true,
-        arrows: true,
+        fade: ilifautpl_slider_fade === '1' || false,
+        dots: ilifautpl_slider_has_dots === '1' || false,
+        arrows: ilifautpl_slider_has_arrows === '1' || false,
         prevArrow: $('.ilifautpl-arrow.prev'),
         nextArrow: $('.ilifautpl-arrow.next'),
     });
