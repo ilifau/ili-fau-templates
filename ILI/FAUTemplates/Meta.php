@@ -79,7 +79,7 @@ class Meta {
         }
 
         echo '<a class="button ilifautpl-add-slide">' . __('Slide hinzufügen', 'ili-fau-templates') . '</a>';
-        echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="Änderungen speichern">';
+        echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
     
     // Topic Boxes
@@ -127,6 +127,8 @@ class Meta {
 
     // Slider has navigation dots callback
     public function landing_page_slider_options_callback() {
+
+        // Navigation Dots
         $slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
         if( $slider_has_dots === null || $slider_has_dots === '' ) { $slider_has_dots = 1; }
 
@@ -141,7 +143,8 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
-
+        
+        // Navigation Arrows
         $slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true);
         if( $slider_has_arrows === null || $slider_has_arrows === '' ) { $slider_has_arrows = 1; }
 
@@ -156,7 +159,8 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
-
+        
+        // Fade
         $slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true);
         if( $slider_fade === null || $slider_fade === '' ) { $slider_fade = 1; }
 
@@ -171,6 +175,24 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
+        
+        // Skew
+        $slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true);
+        if( $slider_skew === null || $slider_skew === '' ) { $slider_skew = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_skew">Slider mit Schräge anzeigen?</label>';
+        echo '<select name="_ilifautpl_slider_skew" id="_ilifautpl_slider_skew">';
+            foreach( array(
+                0 => 'Nein, kein Schräge',
+                1 => 'Ja, mit Schräge',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$slider_skew ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+
+        echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
     
     // Refresh slide preview image
@@ -240,6 +262,7 @@ class Meta {
         $slider_has_dots = (int)$_POST['_ilifautpl_slider_has_dots'];
         $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
+        $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -247,5 +270,6 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_has_dots', $slider_has_dots );
         update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
+        update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
     }
 }

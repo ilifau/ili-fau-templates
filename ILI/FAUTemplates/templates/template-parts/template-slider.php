@@ -6,6 +6,11 @@
 
 $ilifautpl_meta = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
 
+$ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
+if(  (int)$ilifautpl_slider_skew === 0 ) {
+    echo '<style>#ilifautpl-hero::after { transform: none }</style>';
+}
+
 if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
     echo '<h2 class="screen-reader-text">' . __('Slider', 'ilifautpl') . '</h2>';
     echo '<div class="slick-slider">';

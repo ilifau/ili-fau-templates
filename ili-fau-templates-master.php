@@ -144,10 +144,12 @@ function register_scripts_and_styles() {
     $ilifautpl_slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
     $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true);
     $ilifautpl_slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true);
-    
+    $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true);
+
     wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_dots', $ilifautpl_slider_has_dots);
     wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_arrows', $ilifautpl_slider_has_arrows);
     wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_fade', $ilifautpl_slider_fade);
+    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_skew', $ilifautpl_slider_skew);
 
     // Nur Landing Page (Slick Slider)
     if( $is_ilifautpl_landing_page ) {
