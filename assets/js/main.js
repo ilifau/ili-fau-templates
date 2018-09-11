@@ -1,4 +1,5 @@
 jQuery(document).ready(function($) {
+    console.log(ilifautpl_slider_fade);
     $('.slick-slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -8,9 +9,9 @@ jQuery(document).ready(function($) {
         infinite: true,
         focusOnSelect: false,
         adaptiveHeight: false,
-        fade: ilifautpl_slider_fade === '1' || false,
-        dots: ilifautpl_slider_has_dots === '1' || false,
-        arrows: ilifautpl_slider_has_arrows === '1' || false,
+        fade: ilifautpl_slider_fade == 1 || false,
+        dots: ilifautpl_slider_has_dots == 1 || false,
+        arrows: ilifautpl_slider_has_arrows == 1 || false,
         prevArrow: $('.ilifautpl-arrow.prev'),
         nextArrow: $('.ilifautpl-arrow.next'),
     });
