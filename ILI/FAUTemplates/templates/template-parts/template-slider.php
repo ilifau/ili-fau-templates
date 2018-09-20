@@ -18,7 +18,7 @@ if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
             $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
             $ilifautpl_headline = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['headline'] . '</a>' : $ilifautpl_meta[$key]['headline'];
             
-            echo '<div class="slick-slide" style="background:url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
+            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
                 echo '<div class="container">';
                     echo '<div class="row">';
                         echo '<div class="ilifautpl-slider-content">';
