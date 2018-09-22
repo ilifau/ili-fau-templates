@@ -10,7 +10,7 @@
 get_header();
 ?>
     <!-- Template Part "Slider" -->
-    <section id="ilifautpl-hero">
+    <section id="ilifautpl-hero" aria-label="">
         <div class="ilifautpl-hero-inner">
             <?php include 'template-parts/template-slider.php'; ?>
         </div>
@@ -24,7 +24,7 @@ get_header();
 			<div class="row">
 
 				<!-- Template Part "Topic Boxes" -->
-				<section id="ilifautpl-topic-boxes">
+				<section id="ilifautpl-topic-boxes" aria-label="">
 					<?php include 'template-parts/template-topic-boxes.php'; ?>
 				</section>
 				<!-- End Template Part "Topic Boxes" -->
