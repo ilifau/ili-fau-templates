@@ -42,8 +42,7 @@ class CustomPostTypes {
         add_meta_box(
             'ilifautpl-topic-box-target-id',
             esc_html__( 'Verknüpfte Post-ID', 'ilifautpl' ),
-            array($this, 'ilifautpl_topic_box_target_id_callback'),
-            $screen
+            array($this, 'ilifautpl_topic_box_target_id_callback')
         );
     }
     

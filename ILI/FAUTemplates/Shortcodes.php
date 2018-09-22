@@ -41,7 +41,7 @@ class Shortcodes {
 
         $topic_box_excerpt_length = 150;
 
-        $html .= '<div class="ilifautpl-topic-boxes">';
+        $html = '<div class="ilifautpl-topic-boxes">';
             foreach( $topic_boxes as $box ) {
                 $target_id = get_post_meta( $box->ID, '_ilifautpl_topic_box_target_id', true );
 
