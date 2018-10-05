@@ -14,7 +14,7 @@ class Shortcodes {
     function ilifautpl_shortcode_topic_boxes( $atts ) {
         extract( shortcode_atts( array (
             'ids' => '',
-            'length' => '',
+            'text_length' => '',
         ), $atts ) );
 
         if( ! $ids )
@@ -25,8 +25,8 @@ class Shortcodes {
         
         $options = get_option('ili_fau_templates');
         
-        if( $length ) {
-            $topic_box_excerpt_length = absint($length);
+        if( $text_length ) {
+            $topic_box_excerpt_length = absint($text_length);
         } else {
             $topic_box_excerpt_length = $options['ili_fau_templates_topic_box_excerpt_length'] ? $options['ili_fau_templates_topic_box_excerpt_length'] : 10;
         }
