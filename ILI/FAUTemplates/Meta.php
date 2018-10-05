@@ -58,7 +58,7 @@ class Meta {
         
         if( empty( $slides ) ) {
             $slides = array();
-            $slides[0] = '';
+            substr($slides, 1);
         }
 
         foreach( $slides as $key => $slide ) {
