@@ -66,7 +66,7 @@ class Settings {
         add_settings_section('ili_fau_options_section_1', FALSE, '__return_false', 'ili_fau_templates_options');
         
         add_settings_field('ili_fau_templates_max_num_slides', __('Max. Anzahl Slides pro Seite', 'ili-fau-templates'), [$this, 'ili_fau_templates_max_num_slides'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
-        add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        // add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
     }
 
     /*
