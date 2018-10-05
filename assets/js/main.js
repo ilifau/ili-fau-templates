@@ -1,5 +1,4 @@
 jQuery(document).ready(function($) {
-    console.log(ilifautpl_slider_fade);
     $('.slick-slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -8,6 +7,7 @@ jQuery(document).ready(function($) {
         speed: 1000,
         infinite: true,
         focusOnSelect: false,
+        accessibility: true,
         adaptiveHeight: false,
         fade: ilifautpl_slider_fade == 1 || false,
         dots: ilifautpl_slider_has_dots == 1 || false,

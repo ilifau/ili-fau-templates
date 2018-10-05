@@ -110,7 +110,10 @@
     right: 25px;
 }
 
-.ilifautpl-arrow:hover {
+.ilifautpl-arrow:hover,
+.ilifautpl-arrow:focus {
+    color: #fff;
+    outline: none;
     opacity: .9;
 }
 
