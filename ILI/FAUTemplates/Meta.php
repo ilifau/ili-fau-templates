@@ -57,8 +57,7 @@ class Meta {
         $slides = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
         
         if( empty( $slides ) ) {
-            $slides = array();
-            substr($slides, 1);
+            $slides = array('');
         }
 
         foreach( $slides as $key => $slide ) {

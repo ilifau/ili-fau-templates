@@ -54,9 +54,9 @@ class CustomPostTypes {
         $post_id = get_post_meta($post->ID, '_ilifautpl_topic_box_target_id', true);
         
         if( ! $post_id )
-            echo '<p>' . __('Themenboxen müssen mit einer gültigen Post-ID verknüpft sein.', 'ilifautpl') . '</p>';
+            echo '<p>' . __('Themenboxen müssen mit einem existierenden Inhalt verknüpft sein.', 'ilifautpl') . '</p>';
         
-        echo '<input type="text" name="_ilifautpl_topic_box_target_id" value="' . $post_id  . '" class="widefat" placeholder="' . __('Gültige Post-ID', 'ilifautpl') . '&hellip;"/>';
+        echo '<input type="text" name="_ilifautpl_topic_box_target_id" value="' . $post_id  . '" class="widefat" placeholder="' . __('Verknüpfter Inhalt (ID)', 'ilifautpl') . '&hellip;"/>';
     }
     
     /**

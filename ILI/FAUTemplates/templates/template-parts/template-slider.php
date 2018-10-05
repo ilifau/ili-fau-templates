@@ -33,8 +33,8 @@ if( is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) ):
 
     $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true );
     if( (int)$ilifautpl_slider_has_arrows === 1 ) {
-        echo '<span class="ilifautpl-arrow prev"><em class="fa fa-angle-left"></em></span>';
-        echo '<span class="ilifautpl-arrow next"><em class="fa fa-angle-right"></em></span>';
+        echo '<a href="#" class="ilifautpl-arrow prev"><em class="fa fa-angle-left"></em></a>';
+        echo '<a href="#" class="ilifautpl-arrow next"><em class="fa fa-angle-right"></em></a>';
     }
 endif;
 
