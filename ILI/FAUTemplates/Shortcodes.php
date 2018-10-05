@@ -14,6 +14,7 @@ class Shortcodes {
     function ilifautpl_shortcode_topic_boxes( $atts ) {
         extract( shortcode_atts( array (
             'ids' => '',
+            'length' => '',
         ), $atts ) );
 
         if( ! $ids )
@@ -21,6 +22,7 @@ class Shortcodes {
         
         $ids = str_replace(' ', '', $ids);
         $ids = explode(',', $ids);
+        $topic_box_excerpt_length = $length ? (int)$length : 150;
 
         foreach( $ids as $key => $id ) {
             $ids[$key] = (int)$id;
@@ -38,8 +40,6 @@ class Shortcodes {
 
         if( empty( $topic_boxes ) )
             return;
-
-        $topic_box_excerpt_length = 150;
 
         $html = '<div class="ilifautpl-topic-boxes">';
             foreach( $topic_boxes as $box ) {

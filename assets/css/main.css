@@ -100,14 +100,25 @@
     color: #fff;
     opacity: .45;
     transition: opacity .2s ease-in;
+    background: transparent;
+    border: 0;
+    font-family: 'FontAwesome';
 }
 
 .ilifautpl-arrow.prev {
     left: 25px;
 }
 
+.ilifautpl-arrow.prev::before {
+    content: '\f104';
+}
+
 .ilifautpl-arrow.next {
     right: 25px;
+}
+
+.ilifautpl-arrow.next::before {
+    content: '\f105';
 }
 
 .ilifautpl-arrow:hover,
