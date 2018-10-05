@@ -99,7 +99,7 @@ class Settings {
      */
     public function ili_fau_templates_max_num_slides() {
         ?>
-        <input type='text' name="<?php printf('%s[ili_fau_templates_max_num_slides]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_max_num_slides; ?>">
+        <input type='text' name="<?php printf('%s[ili_fau_templates_max_num_slides]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_max_num_slides; ?>" placeholder="3">
         <?php
     }
     
@@ -109,7 +109,7 @@ class Settings {
      */
     public function ili_fau_templates_topic_box_excerpt_length() {
         ?>
-        <input type='text' name="<?php printf('%s[ili_fau_templates_topic_box_excerpt_length]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_topic_box_excerpt_length; ?>">
+        <input type="text" name="<?php printf('%s[ili_fau_templates_topic_box_excerpt_length]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_topic_box_excerpt_length; ?>" placeholder="150">
         <?php
     }
     
