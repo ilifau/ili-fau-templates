@@ -26,6 +26,7 @@ class Settings {
         $this->main = $main;
         $this->option_name = $this->main->options->get_option_name();
         $this->options = $this->main->options->get_options();
+        $this->options->ili_fau_templates_topic_box_excerpt_length_default = 10;
         $this->screen = 'settings_page_ili-fau-templates';
     }
     
@@ -66,6 +67,7 @@ class Settings {
         add_settings_section('ili_fau_options_section_1', FALSE, '__return_false', 'ili_fau_templates_options');
         
         add_settings_field('ili_fau_templates_max_num_slides', __('Max. Anzahl Slides pro Seite', 'ili-fau-templates'), [$this, 'ili_fau_templates_max_num_slides'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_topic_box_excerpt_length', __('Länge des Anreißertextes der Themenboxen (mind. 10 Zeichen)', 'ili-fau-templates'), [$this, 'ili_fau_templates_topic_box_excerpt_length'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
         // add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
     }
 
@@ -76,9 +78,14 @@ class Settings {
      */
     public function options_validate($input) {
         $input['ili_fau_templates_max_num_slides'] = absint( $input['ili_fau_templates_max_num_slides'] );
+        $input['ili_fau_templates_topic_box_excerpt_length'] = absint( $input['ili_fau_templates_topic_box_excerpt_length'] );
         
         if( $input['ili_fau_templates_max_num_slides'] < 1 ) {
             $input['ili_fau_templates_max_num_slides'] = 1;
+        }
+        
+        if( $input['ili_fau_templates_topic_box_excerpt_length'] < 10 ) {
+            $input['ili_fau_templates_topic_box_excerpt_length'] = 10;
         }
         
         $input['ili_fau_templates_number'] = ! empty( $input['ili_fau_templates_field_role'] ) ? absint( $input['ili_fau_templates_field_role'] ) : '0';
@@ -87,7 +94,7 @@ class Settings {
     }
 
     /*
-     * Erstes Feld der Optionsseite
+     * Option maximale Anzahl der Slides pro Seite
      * @return void
      */
     public function ili_fau_templates_max_num_slides() {
@@ -97,7 +104,17 @@ class Settings {
     }
     
     /*
-     * Zweites Feld der Optionsseite (Checkbox)
+     * Option Länge des Anreißertextes der Thememboxen
+     * @return void
+     */
+    public function ili_fau_templates_topic_box_excerpt_length() {
+        ?>
+        <input type='text' name="<?php printf('%s[ili_fau_templates_topic_box_excerpt_length]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_topic_box_excerpt_length; ?>">
+        <?php
+    }
+    
+    /*
+     * Option für rollenbasierten Zugriff auf das Plugin (inaktiv)
      * @return void
      */
     public function ili_fau_templates_field_role() {
