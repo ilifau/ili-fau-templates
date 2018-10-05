@@ -65,7 +65,7 @@
 
 .ilifautpl-slider-content h3,
 .ilifautpl-slider-content p {
-    display: inline-block;
+    display: table;
     color: #fff;
     background: rgba(0, 51, 102, .875);
     margin-right: 25px;
