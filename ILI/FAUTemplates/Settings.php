@@ -26,6 +26,7 @@ class Settings {
         $this->main = $main;
         $this->option_name = $this->main->options->get_option_name();
         $this->options = $this->main->options->get_options();
+        $this->screen = 'settings_page_ili-fau-templates';
     }
     
     /*
@@ -132,7 +133,7 @@ class Settings {
 
         $screen = get_current_screen();
 
-        if ($screen->id != $this->admin_settings_pageates_field_1) {
+        if ($screen->id !== $this->screen) {
             return;
         }
 
