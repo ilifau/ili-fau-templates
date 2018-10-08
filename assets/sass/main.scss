@@ -83,10 +83,12 @@ $font_family_1: 'FontAwesome';
 		// background: rgba(0, 51, 102, .875);
 		margin-right: 25px;
 		font-size: 28px;
-		font-weight: 400;
 		// padding: 6px 12px;
 		line-height: 1.5;
-        text-shadow: 1px 1px 2px black;
+        text-shadow: 1px 1px 1px black;
+        a {
+            font-weight: 400 !important;
+        }
 	}
 }
 .ilifautpl-arrow {
