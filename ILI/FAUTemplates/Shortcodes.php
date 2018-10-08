@@ -36,10 +36,10 @@ class Shortcodes {
             $ids[$key] = (int)$id;
         }
         
-        $show_read_more = true;
-        $show_read_more = get_post_meta( get_the_ID(), '_ilifautpl_show_topic_boxes_read_more', true ) === '1' ?: false;
-        if( $read_more !== '' ) {
-            $show_read_more = filter_var( $read_more, FILTER_VALIDATE_BOOLEAN );
+        if( is_page_template( 'templates/template-landing-page.php' ) ) {
+            $show_read_more = get_post_meta( get_the_ID(), '_ilifautpl_show_topic_boxes_read_more', true ) === '1' ?: false;
+        } else {
+            $show_read_more = $read_more !== '' ? filter_var( $read_more, FILTER_VALIDATE_BOOLEAN ) : true;
         }
         
         $args = array(
