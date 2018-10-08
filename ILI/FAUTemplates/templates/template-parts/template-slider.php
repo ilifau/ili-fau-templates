@@ -37,11 +37,11 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
             echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
                 echo '<div class="container">';
                     echo '<div class="row">';
-                        echo '<a href="' . $ilifautpl_meta[$key]['link'] . '" class="container ilifautpl-slider-content">';
-                            echo '<h3>' . $ilifautpl_headline . '</h3>';
+                        echo '<div class="container ilifautpl-slider-content">';
+                            echo '<h3><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_headline . '</a></h3>';
+                            echo '<p><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['subtitle'] . '</a></p>';
                             // echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
-                            echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '</p>';
-                        echo '</a>';
+                        echo '</div>';
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
