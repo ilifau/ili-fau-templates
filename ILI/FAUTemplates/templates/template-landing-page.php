@@ -20,8 +20,19 @@ get_header();
 		<div class="container">
 			<?php  echo fau_get_ad('werbebanner_seitlich',false);  ?>
             
-            <?php // Template part "Topic Boxes"
-                include 'template-parts/template-topic-boxes.php'; ?>
+            <?php
+            
+                // Template part "Topic Boxes"
+                include 'template-parts/template-topic-boxes.php';
+                
+                // The Content
+                while ( have_posts() ) : the_post();
+                    echo '<div class="ilifautpl-landing-page-content">';
+                        the_content();
+                    echo '</div>';
+                endwhile;
+            
+            ?>
 			
 			<div class="row">
 				
