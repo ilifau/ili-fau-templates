@@ -63,7 +63,12 @@ class Shortcodes {
                     continue;
                     
                 $topic_box_url = esc_url( get_permalink( $target_id ) );
-                $topic_box_excerpt = preg_replace('/\s+?(\S+)?$/', '', substr($box->post_content, 0, $topic_box_excerpt_length)) . '&hellip;';
+                
+                if( strlen( $box->post_content ) > $topic_box_excerpt_length ) {
+                    $topic_box_excerpt = preg_replace('/\s+?(\S+)?$/', '', substr($box->post_content, 0, $topic_box_excerpt_length)) . '&hellip;';
+                } else {
+                    $topic_box_excerpt = $box->post_content;
+                }
                 
                 $html .= '<div class="ilifautpl-topic-box">';
                     $html .= '<div aria-hidden="true" role="presentation" tabindex="-1" class="passpartout" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">';
