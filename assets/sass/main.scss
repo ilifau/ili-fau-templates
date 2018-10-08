@@ -60,17 +60,28 @@ $font_family_1: 'FontAwesome';
 	position: absolute;
 	bottom: 52px;
 	margin-bottom: 16px;
+    &:hover,
+    &:focus,
+    &:active {
+        text-decoration: none;
+    }
 	h3 {
 		display: table;
 		color: $color_1;
-		background: rgba(0, 51, 102, .875);
-		margin-right: 25px;
-		font-size: 37px;
+		// background: rgba(0, 51, 102, .875);
+		font-size: 56px;
 		font-weight: 600;
 		letter-spacing: 1px;
-		margin-bottom: 8px;
-		padding: 4px 12px 8px;
+		// margin-bottom: 8px;
+		// padding: 4px 12px 8px;
+        margin-left: 0;
 		line-height: 1.25;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+        // &:hover,
+        // &:focus,
+        // &:active {
+        //     text-decoration: underline;
+        // }
 		a {
 			&:hover {
 				text-decoration: none;
@@ -83,12 +94,13 @@ $font_family_1: 'FontAwesome';
 	p {
 		display: table;
 		color: $color_1;
-		background: rgba(0, 51, 102, .875);
+		// background: rgba(0, 51, 102, .875);
 		margin-right: 25px;
-		font-size: 15px;
+		font-size: 28px;
 		font-weight: 400;
-		padding: 6px 12px;
+		// padding: 6px 12px;
 		line-height: 1.5;
+        text-shadow: 1px 1px 2px black;
 	}
 }
 .ilifautpl-arrow {
@@ -190,6 +202,14 @@ $font_family_1: 'FontAwesome';
 			transform: skewY(-2deg);
 		}
 	}
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 46px;
+		}
+		p {
+			font-size: 23px;
+		}
+	}
     .ilifautpl-slider-fallback {
         margin-top: 1.5em;
     }
@@ -211,9 +231,6 @@ $font_family_1: 'FontAwesome';
     .ilifautpl-slider-fallback {
 		padding-top: 9em;
 	}
-	.ilifautpl-slider-content {
-		padding: 0 15px;
-	}
 }
 @media screen and (max-width: 767px) {
 	#ilifautpl-hero {
@@ -228,14 +245,22 @@ $font_family_1: 'FontAwesome';
 	}
 	.ilifautpl-slider-content {
 		h3 {
-			font-size: 23px;
+			font-size: 40px;
 		}
 		p {
-			font-size: 13px;
+			font-size: 20px;
 		}
 	}
 }
 @media screen and (max-width: 640px) {
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 35px;
+		}
+		p {
+			font-size: 18px;
+		}
+	}
 	.ilifautpl-arrow {
 		em {
 			display: none;
@@ -243,6 +268,14 @@ $font_family_1: 'FontAwesome';
 	}
 }
 @media screen and (max-width: 639px) {
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 32px;
+		}
+		p {
+			font-size: 16px;
+		}
+	}
 	.ilifautpl-topic-box {
 		width: 100%;
 		margin: 0 0 1em;
@@ -257,5 +290,25 @@ $font_family_1: 'FontAwesome';
 		width: 100%;
 		grid-gap: 1.5em 0;
 		grid-template-columns: repeat(1, 100%);
+	}
+}
+@media screen and (max-width: 360px) {
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 27px;
+		}
+		p {
+			font-size: 16px;
+		}
+	}
+}
+@media screen and (max-width: 360px) {
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 26px;
+		}
+		p {
+			font-size: 15px;
+		}
 	}
 }

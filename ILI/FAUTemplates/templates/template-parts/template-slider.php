@@ -37,21 +37,15 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
             echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $ilifautpl_meta[$key]['url'] . ') center center;">';
                 echo '<div class="container">';
                     echo '<div class="row">';
-                        echo '<div class="ilifautpl-slider-content">';
-                            echo '<h3><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_headline . '</a></h3>';
+                        echo '<a href="' . $ilifautpl_meta[$key]['link'] . '" class="container ilifautpl-slider-content">';
+                            echo '<h3>' . $ilifautpl_headline . '</h3>';
                             // echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
                             echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '</p>';
-                        echo '</div>';
+                        echo '</a>';
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
         endforeach;
-
-        $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true );
-        if( (int)$ilifautpl_slider_has_arrows === 1 ) {
-            echo '<button class="ilifautpl-arrow prev"></button>';
-            echo '<button class="ilifautpl-arrow next"></button>';
-        }
     
     // No slides available, show thumbnail instead
     } else {
@@ -64,5 +58,13 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
 }
 
 echo '</div>'; // Slick Slider
+
+// Arrow Nav
+$ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true );
+if( (int)$ilifautpl_slider_has_arrows === 1 ) {
+    echo '<button class="ilifautpl-arrow prev"></button>';
+    echo '<button class="ilifautpl-arrow next"></button>';
+}
+
 echo '</div>'; // Hero Inner
 echo '</section>'; // Hero Section
