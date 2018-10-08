@@ -28,7 +28,7 @@ class Shortcodes {
         if( $text_length ) {
             $topic_box_excerpt_length = absint($text_length);
         } else {
-            $topic_box_excerpt_length = $options['ili_fau_templates_topic_box_excerpt_length'] ? $options['ili_fau_templates_topic_box_excerpt_length'] : 150;
+            $topic_box_excerpt_length = $options['ili_fau_templates_topic_box_excerpt_length_default'] ? $options['ili_fau_templates_topic_box_excerpt_length_default'] : 150;
         }
 
         foreach( $ids as $key => $id ) {

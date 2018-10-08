@@ -9,25 +9,21 @@
 
 get_header();
 ?>
-    <!-- Template Part "Slider" -->
-    <section id="ilifautpl-hero" aria-label="">
-        <div class="ilifautpl-hero-inner">
-            <?php include 'template-parts/template-slider.php'; ?>
-        </div>
-	</section>
-    <!-- End Template Part "Slider" -->
+    <?php // Template part "Slider"
+        if( get_post_meta($post->ID, '_ilifautpl_show_slider', true ) === '1' ) {
+            include 'template-parts/template-slider.php';
+        } else {
+            echo '<div class="ilifautpl-slider-fallback"></div>';
+        } ?>
     
 	<div id="content">
 		<div class="container">
-			<?php  echo fau_get_ad('werbebanner_seitlich',false); ?>
+			<?php  echo fau_get_ad('werbebanner_seitlich',false);  ?>
+            
+            <?php // Template part "Topic Boxes"
+                include 'template-parts/template-topic-boxes.php'; ?>
 			
 			<div class="row">
-
-				<!-- Template Part "Topic Boxes" -->
-				<section id="ilifautpl-topic-boxes" aria-label="">
-					<?php include 'template-parts/template-topic-boxes.php'; ?>
-				</section>
-				<!-- End Template Part "Topic Boxes" -->
 				
 				<div class="startpage-blogroll">
 				    <main<?php echo fau_get_page_langcode($post->ID);?>>

@@ -1,6 +1,11 @@
 $color_1: #fff;
 $font_family_1: 'FontAwesome';
 
+.ilifautpl-slider-fallback {
+    display: block;
+    overflow: hidden;
+}
+
 #ilifautpl-hero {
 	position: relative;
 	background: #fff;
@@ -182,6 +187,9 @@ $font_family_1: 'FontAwesome';
 			transform: skewY(-2deg);
 		}
 	}
+    .ilifautpl-slider-fallback {
+        margin-top: 1.5em;
+    }
 	.ilifautpl-arrow {
 		font-size: 100px;
 		top: calc(50% - 50px);
@@ -190,8 +198,14 @@ $font_family_1: 'FontAwesome';
 		grid-template-columns: repeat(2, 48.25%);
 	}
 }
+@media screen and (max-width: 768px) {
+    .ilifautpl-slider-fallback {
+        margin-top: 0;
+    }
+}
 @media screen and (min-width: 768px) {
-	#ilifautpl-hero {
+	#ilifautpl-hero,
+    .ilifautpl-slider-fallback {
 		padding-top: 9em;
 	}
 	.ilifautpl-slider-content {

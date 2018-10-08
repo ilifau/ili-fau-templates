@@ -41,11 +41,11 @@ jQuery(document).ready(function($) {
     // Select media button
     $(document).on('click', '.ilifautpl-input-slide-media', function(e) {
         e.preventDefault();
-        
+
         var image_frame;
         var id = $(this).data('id');
         var _this = $(this).closest('.ilifautpl-input-slide-wrapper').find('.ilifautpl-input-slide');
-        
+
         if(image_frame) {
             image_frame.open();
         }
@@ -62,16 +62,16 @@ jQuery(document).ready(function($) {
             var selection =  image_frame.state().get('selection');
             var gallery_ids = new Array();
             var index = 0;
-            
+
             selection.each(function(attachment) {
                 gallery_ids[index] = attachment.attributes.url;
                 index++;
             });
-            
+
             var ids = gallery_ids.join(',');
-            
+
             _this.val(ids);
-            
+
             // refreshImage(ids);
         });
 
@@ -90,11 +90,6 @@ jQuery(document).ready(function($) {
 
         image_frame.open();
     });
-    
-    // $('.button-ilifautpl-save').on('click', function(e) {
-    //     // e.preventDefault();
-    //     // return;
-    // });
 
     // Multiselect
     $('.ilifautpl-multi-select').multiSelect({

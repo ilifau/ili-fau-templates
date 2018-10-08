@@ -127,11 +127,27 @@ class Meta {
     // Slider has navigation dots callback
     public function landing_page_slider_options_callback() {
 
+        // Slider on/off
+        $show_slider = get_post_meta( get_the_ID(), '_ilifautpl_show_slider', true);
+        if( empty( $show_slider ) || $show_slider === null || $show_slider === '' ) { $show_slider = 1; }
+
+        echo '<label class="ilifautpl-label" for="_ilifautpl_show_slider">Slider anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_slider" id="_ilifautpl_show_slider">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$show_slider ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
         // Navigation Dots
         $slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
         if( $slider_has_dots === null || $slider_has_dots === '' ) { $slider_has_dots = 1; }
 
-        echo '<label class="ilifautpl-label" for="_ilifautpl_slider_has_dots">Navigation unter Slider anzeigen?</label>';
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_has_dots">Navigation unter Slider anzeigen?</label>';
         echo '<select name="_ilifautpl_slider_has_dots" id="_ilifautpl_slider_has_dots">';
             foreach( array(
                 0 => 'Verbergen',
@@ -258,6 +274,7 @@ class Meta {
             $topic_boxes[$key] = (int)$topic_box;
         }
 
+        $show_slider = (int)$_POST['_ilifautpl_show_slider'];
         $slider_has_dots = (int)$_POST['_ilifautpl_slider_has_dots'];
         $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
@@ -266,6 +283,7 @@ class Meta {
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
         update_post_meta( $post_id, '_ilifautpl_topic_boxes', $topic_boxes );
+        update_post_meta( $post_id, '_ilifautpl_show_slider', $show_slider );
         update_post_meta( $post_id, '_ilifautpl_slider_has_dots', $slider_has_dots );
         update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
