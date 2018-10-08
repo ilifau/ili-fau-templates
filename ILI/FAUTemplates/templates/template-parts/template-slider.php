@@ -3,6 +3,7 @@
 /**
  * Template Part "Slick Slider"
  */
+
 $options = get_option('ili_fau_templates');
 
 echo '<section id="ilifautpl-hero" aria-label="">';
@@ -58,9 +59,9 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
 
 // Neither slides not thumbnail => fallback
 } else {
-    echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $options['ili_fau_templates_slide_default'] . ') center center;"></div>';
+    echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $options['ili_fau_templates_slide_default'] . ') center center"></div>';
 }
 
 echo '</div>'; // Slick Slider
 echo '</div>'; // Hero Inner
-echo '</div>'; // Hero Section
+echo '</section>'; // Hero Section
