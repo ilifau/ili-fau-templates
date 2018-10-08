@@ -43,7 +43,7 @@ class Meta {
 
                 add_meta_box(
                     'ilifautpl-slider-options',
-                    esc_html__( 'Slider-Einstellungen', 'ilifautpl' ),
+                    esc_html__( 'Slider- und Themenboxen', 'ilifautpl' ),
                     array($this, 'landing_page_slider_options_callback'),
                     $screen
                 );
@@ -208,6 +208,24 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
+        
+        // Topic boxes read more
+        $read_more = get_post_meta( get_the_ID(), '_ilifautpl_show_topic_boxes_read_more', true);
+        if( $read_more === null || $read_more === '' ) {
+            $read_more = 1;
+        }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_show_topic_boxes_read_more">Link "Weiterlesen" in Themenboxen anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_topic_boxes_read_more" id="_ilifautpl_show_topic_boxes_read_more">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$read_more ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
 
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
@@ -281,6 +299,7 @@ class Meta {
         $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
+        $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -290,5 +309,6 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
+        update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
     }
 }

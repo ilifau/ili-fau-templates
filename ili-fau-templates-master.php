@@ -129,7 +129,7 @@ function autoload() {
  */
 function register_scripts_and_styles() {
     $is_ilifautpl_landing_page = ilifautpl_is_landing_page('frontend');
-    $has_ilifautpl_topic_box_shortcode = has_shortcode(get_post_field('post_content', get_the_ID()), 'ilifautpl_topic_boxes');
+    $has_ilifautpl_topic_box_shortcode = has_shortcode(get_post_field('post_content', get_the_ID()), 'ilifautpl_topic_boxes') || has_shortcode(get_post_field('post_content', get_the_ID()), 'themenboxen');
 
     if( ! $is_ilifautpl_landing_page && ! $has_ilifautpl_topic_box_shortcode )
         return;

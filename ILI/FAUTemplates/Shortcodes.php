@@ -15,6 +15,7 @@ class Shortcodes {
         extract( shortcode_atts( array (
             'ids' => '',
             'text_length' => '',
+            'read_more' => '',
         ), $atts ) );
 
         if( ! $ids )
@@ -34,7 +35,13 @@ class Shortcodes {
         foreach( $ids as $key => $id ) {
             $ids[$key] = (int)$id;
         }
-
+        
+        $show_read_more = true;
+        $show_read_more = get_post_meta( get_the_ID(), '_ilifautpl_show_topic_boxes_read_more', true ) === '1' ?: false;
+        if( $read_more !== '' ) {
+            $show_read_more = filter_var( $read_more, FILTER_VALIDATE_BOOLEAN );
+        }
+        
         $args = array(
             'post_type' => 'ilifautpl_topic_box',
             'include' => $ids,
@@ -73,7 +80,13 @@ class Shortcodes {
                         $html .= '</a>';
                     $html .= '</div>';
                     $html .= '<h3 itemprop="title"><a href="' . $topic_box_url . '">' . $box->post_title . '</a></h3>';
-                    $html .= '<p itemprop="description">' . $topic_box_excerpt . ' <a aria-hidden="true" tabindex="-1" href="' . $topic_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a><span class="screen-reader-text">' . __('Weiterlesen', 'ilifautpl') . '</span></p>';
+                    $html .= '<p itemprop="description">' . $topic_box_excerpt;
+
+                    if( $show_read_more ) {
+                        $html .= ' <a aria-hidden="true" tabindex="-1" href="' . $topic_box_url . '">' . __('Weiterlesen', 'ilifautpl') . '</a><span class="screen-reader-text">' . __('Weiterlesen', 'ilifautpl') . '</span>';
+                    }
+                    
+                    $html .= '</p>';
                 $html .= '</div>';
             }
         $html .= '</div>';
