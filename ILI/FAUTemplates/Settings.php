@@ -123,7 +123,10 @@ class Settings {
      */
     public function ili_fau_templates_slide_default() {
         ?>
-        <input type="url" class="ilifautpl-input" name="<?php printf('%s[ili_fau_templates_slide_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_slide_default; ?>" placeholder="https://...">
+        <div class="ilifautpl-input-select-wrapper">
+            <input type="url" class="ilifautpl-input ilifautpl-input-select" name="<?php printf('%s[ili_fau_templates_slide_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_slide_default; ?>" placeholder="https://...">
+            <a class="button ilifautpl-input-select-media"><?php _e('Bild auswählen', 'ili-fau-templates'); ?></a>
+        </div>
         <?php
     }
     

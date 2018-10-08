@@ -151,8 +151,10 @@ function register_scripts_and_styles() {
     wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_fade', array( $ilifautpl_slider_fade ) );
     wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_skew', array( $ilifautpl_slider_skew ) );
 
-    // Nur Landing Page (Slick Slider)
-    if( $is_ilifautpl_landing_page ) {
+    // Slick Slider
+    $ilifautpl_show_slider = get_post_meta(get_the_ID(), '_ilifautpl_show_slider', true ) === '1';
+    
+    if( $is_ilifautpl_landing_page && $ilifautpl_show_slider ) {
         wp_register_style( 'ili-fau-templates-slick', plugins_url('inc/slick/slick.css', __FILE__ ) );
         wp_enqueue_style( 'ili-fau-templates-slick' );
         

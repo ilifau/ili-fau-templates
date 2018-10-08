@@ -67,10 +67,10 @@ class Meta {
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
-            echo '<div class="ilifautpl-input-slide-wrapper" id="ilifautpl-input-slide-wrapper-' . $id . '" data-id="' . $id . '">';
+            echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" id="ilifautpl-input-media-wrapper-' . $id . '" data-id="' . $id . '">';
             echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $id . '</label>';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
-            echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
+            echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="text" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
@@ -129,7 +129,9 @@ class Meta {
 
         // Slider on/off
         $show_slider = get_post_meta( get_the_ID(), '_ilifautpl_show_slider', true);
-        if( empty( $show_slider ) || $show_slider === null || $show_slider === '' ) { $show_slider = 1; }
+        if( $show_slider === null || $show_slider === '' ) {
+            $show_slider = 1;
+        }
 
         echo '<label class="ilifautpl-label" for="_ilifautpl_show_slider">Slider anzeigen?</label>';
         echo '<select name="_ilifautpl_show_slider" id="_ilifautpl_show_slider">';

@@ -39,12 +39,12 @@ jQuery(document).ready(function($) {
     });
     
     // Select media button
-    $(document).on('click', '.ilifautpl-input-slide-media', function(e) {
+    $(document).on('click', '.ilifautpl-input-select-media', function(e) {
         e.preventDefault();
 
         var image_frame;
         var id = $(this).data('id');
-        var _this = $(this).closest('.ilifautpl-input-slide-wrapper').find('.ilifautpl-input-slide');
+        var _this = $(this).closest('.ilifautpl-input-select-wrapper').find('.ilifautpl-input-select');
 
         if(image_frame) {
             image_frame.open();
