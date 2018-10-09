@@ -59,7 +59,7 @@ $font_family_1: 'FontAwesome';
         display: block;
         right: 0;
         padding: .5em 1em;
-        background: rgba(255,255,255,.8);
+        background: rgba(255,255,255,.9);
         font-size: 12px;
         width: auto;
         &::before {
@@ -75,7 +75,7 @@ $font_family_1: 'FontAwesome';
 	margin-bottom: 16px;
     a {
         text-decoration: none !important;
-        transition: all .2s linear;
+        transition: all .3s linear;
     }
 	h3 {
 		// display: table;
@@ -83,7 +83,6 @@ $font_family_1: 'FontAwesome';
 		color: $color_1;
 		// background: rgba(0, 51, 102, .875);
 		font-size: 56px;
-		font-weight: 600;
 		letter-spacing: 1px;
 		// margin-bottom: 8px;
 		// padding: 4px 12px 8px;
