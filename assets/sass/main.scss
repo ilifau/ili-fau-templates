@@ -89,8 +89,19 @@ $font_family_1: 'FontAwesome';
         margin-left: 0;
 		line-height: 1.25;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-        a:hover, a:focus {
-            border-bottom: 3px solid white;
+        &:after {
+          content: '';
+          position: relative;
+          top: -3px;
+          width: 0;
+          height: 3px;
+          display: block;
+          background: white;
+          transition: 300ms;
+        }
+
+        &:hover:after {
+          width: 100%;
         }
 	}
 	p {
@@ -251,8 +262,9 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-slider-content {
 		h3 {
 			font-size: 40px;
-            a:hover, a:focus {
-                border-bottom: 2px solid white;
+            &:after {
+              top: -2px;
+              height: 2px;
             }
 		}
 		p {
