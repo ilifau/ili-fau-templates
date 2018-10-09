@@ -53,6 +53,20 @@ $font_family_1: 'FontAwesome';
 			font-weight: 600;
 		}
 	}
+    .ilifautpl-slide-credits {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        right: 0;
+        padding: .5em 1em;
+        background: rgba(255,255,255,.8);
+        font-size: 12px;
+        width: auto;
+        &::before {
+            content: '©';
+            margin-right: .25em;
+        }
+    }
 }
 .ilifautpl-slider-content {
 	box-sizing: border-box;
