@@ -44,7 +44,9 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
-                echo '<div class="ilifautpl-slide-credits">' . $ilifautpl_meta[$key]['credits'] . '</div>';
+                if( ! empty( $ilifautpl_meta[$key]['credits'] ) ) {
+                    echo '<div class="ilifautpl-slide-credits">' . $ilifautpl_meta[$key]['credits'] . '</div>';
+                }
             echo '</div>';
         endforeach;
     
