@@ -75,7 +75,6 @@ $font_family_1: 'FontAwesome';
 	margin-bottom: 16px;
     a {
         text-decoration: none !important;
-        transition: all .2s ease-in;
     }
 	h3 {
 		// display: table;
@@ -92,9 +91,9 @@ $font_family_1: 'FontAwesome';
         &:after {
           content: '';
           position: relative;
-          top: -3px;
+          top: -2px;
           width: 0;
-          height: 3px;
+          height: 2px;
           display: block;
           background: white;
           transition: .2s ease-out;
