@@ -26,7 +26,6 @@ class Settings {
         $this->main = $main;
         $this->option_name = $this->main->options->get_option_name();
         $this->options = $this->main->options->get_options();
-        $this->options->ili_fau_templates_topic_box_excerpt_length_default = 10;
         $this->screen = 'settings_page_ili-fau-templates';
     }
     
@@ -67,7 +66,8 @@ class Settings {
         add_settings_section('ili_fau_options_section_1', FALSE, '__return_false', 'ili_fau_templates_options');
         
         add_settings_field('ili_fau_templates_max_num_slides', __('Max. Anzahl Slides pro Seite', 'ili-fau-templates'), [$this, 'ili_fau_templates_max_num_slides'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
-        add_settings_field('ili_fau_templates_topic_box_excerpt_length', __('Länge des Anreißertextes der Themenboxen (mind. 10 Zeichen)', 'ili-fau-templates'), [$this, 'ili_fau_templates_topic_box_excerpt_length'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_topic_box_excerpt_length_default', __('Länge des Anreißertextes der Themenboxen (mind. 10 Zeichen)', 'ili-fau-templates'), [$this, 'ili_fau_templates_topic_box_excerpt_length_default'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_slide_default', __('Default Slide URL', 'ili-fau-templates'), [$this, 'ili_fau_templates_slide_default'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
         // add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
     }
 
@@ -78,14 +78,18 @@ class Settings {
      */
     public function options_validate($input) {
         $input['ili_fau_templates_max_num_slides'] = absint( $input['ili_fau_templates_max_num_slides'] );
-        $input['ili_fau_templates_topic_box_excerpt_length'] = absint( $input['ili_fau_templates_topic_box_excerpt_length'] );
+        $input['ili_fau_templates_topic_box_excerpt_length_default'] = absint( $input['ili_fau_templates_topic_box_excerpt_length_default'] );
         
         if( $input['ili_fau_templates_max_num_slides'] < 1 ) {
             $input['ili_fau_templates_max_num_slides'] = 1;
         }
         
-        if( $input['ili_fau_templates_topic_box_excerpt_length'] < 10 ) {
-            $input['ili_fau_templates_topic_box_excerpt_length'] = 10;
+        if( $input['ili_fau_templates_topic_box_excerpt_length_default'] < 10 ) {
+            $input['ili_fau_templates_topic_box_excerpt_length_default'] = 10;
+        }
+        
+        if( ! filter_var( $input['ili_fau_templates_slide_default'], FILTER_VALIDATE_URL ) ) {
+            $input['ili_fau_templates_slide_default'] = $this->options->ili_fau_templates_slide_default;
         }
         
         $input['ili_fau_templates_number'] = ! empty( $input['ili_fau_templates_field_role'] ) ? absint( $input['ili_fau_templates_field_role'] ) : '0';
@@ -99,7 +103,7 @@ class Settings {
      */
     public function ili_fau_templates_max_num_slides() {
         ?>
-        <input type='text' name="<?php printf('%s[ili_fau_templates_max_num_slides]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_max_num_slides; ?>" placeholder="3">
+        <input type="text" class="ilifautpl-input"  name="<?php printf('%s[ili_fau_templates_max_num_slides]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_max_num_slides; ?>" placeholder="3">
         <?php
     }
     
@@ -107,9 +111,22 @@ class Settings {
      * Option Länge des Anreißertextes der Thememboxen
      * @return void
      */
-    public function ili_fau_templates_topic_box_excerpt_length() {
+    public function ili_fau_templates_topic_box_excerpt_length_default() {
         ?>
-        <input type="text" name="<?php printf('%s[ili_fau_templates_topic_box_excerpt_length]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_topic_box_excerpt_length; ?>" placeholder="150">
+        <input type="number" class="ilifautpl-input" min="10" max="999999" step="1" name="<?php printf('%s[ili_fau_templates_topic_box_excerpt_length_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_topic_box_excerpt_length_default; ?>" placeholder="150">
+        <?php
+    }
+    
+    /*
+     * Option default slide
+     * @return void
+     */
+    public function ili_fau_templates_slide_default() {
+        ?>
+        <div class="ilifautpl-input-select-wrapper">
+            <input type="url" class="ilifautpl-input ilifautpl-input-select" name="<?php printf('%s[ili_fau_templates_slide_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_slide_default; ?>" placeholder="https://...">
+            <a class="button ilifautpl-input-select-media"><?php _e('Bild auswählen', 'ili-fau-templates'); ?></a>
+        </div>
         <?php
     }
     

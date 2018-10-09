@@ -43,7 +43,7 @@ class Meta {
 
                 add_meta_box(
                     'ilifautpl-slider-options',
-                    esc_html__( 'Slider-Einstellungen', 'ilifautpl' ),
+                    esc_html__( 'Slider- und Themenboxen', 'ilifautpl' ),
                     array($this, 'landing_page_slider_options_callback'),
                     $screen
                 );
@@ -67,10 +67,10 @@ class Meta {
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
-            echo '<div class="ilifautpl-input-slide-wrapper" id="ilifautpl-input-slide-wrapper-' . $id . '" data-id="' . $id . '">';
+            echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" id="ilifautpl-input-media-wrapper-' . $id . '" data-id="' . $id . '">';
             echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $id . '</label>';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
-            echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
+            echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="text" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
@@ -127,11 +127,29 @@ class Meta {
     // Slider has navigation dots callback
     public function landing_page_slider_options_callback() {
 
+        // Slider on/off
+        $show_slider = get_post_meta( get_the_ID(), '_ilifautpl_show_slider', true);
+        if( $show_slider === null || $show_slider === '' ) {
+            $show_slider = 1;
+        }
+
+        echo '<label class="ilifautpl-label" for="_ilifautpl_show_slider">Slider anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_slider" id="_ilifautpl_show_slider">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$show_slider ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
         // Navigation Dots
         $slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
         if( $slider_has_dots === null || $slider_has_dots === '' ) { $slider_has_dots = 1; }
 
-        echo '<label class="ilifautpl-label" for="_ilifautpl_slider_has_dots">Navigation unter Slider anzeigen?</label>';
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_has_dots">Navigation unter Slider anzeigen?</label>';
         echo '<select name="_ilifautpl_slider_has_dots" id="_ilifautpl_slider_has_dots">';
             foreach( array(
                 0 => 'Verbergen',
@@ -187,6 +205,24 @@ class Meta {
             ) as $key => $val ) {
                 ?><option value="<?php echo $key; ?>"<?php
                     if( $key === (int)$slider_skew ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Topic boxes read more
+        $read_more = get_post_meta( get_the_ID(), '_ilifautpl_show_topic_boxes_read_more', true);
+        if( $read_more === null || $read_more === '' ) {
+            $read_more = 1;
+        }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_show_topic_boxes_read_more">Link "Weiterlesen" in Themenboxen anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_topic_boxes_read_more" id="_ilifautpl_show_topic_boxes_read_more">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$read_more ) echo ' selected="selected"';
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
@@ -258,17 +294,21 @@ class Meta {
             $topic_boxes[$key] = (int)$topic_box;
         }
 
+        $show_slider = (int)$_POST['_ilifautpl_show_slider'];
         $slider_has_dots = (int)$_POST['_ilifautpl_slider_has_dots'];
         $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
+        $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
         update_post_meta( $post_id, '_ilifautpl_topic_boxes', $topic_boxes );
+        update_post_meta( $post_id, '_ilifautpl_show_slider', $show_slider );
         update_post_meta( $post_id, '_ilifautpl_slider_has_dots', $slider_has_dots );
         update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
+        update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
     }
 }

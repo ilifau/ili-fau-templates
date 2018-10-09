@@ -129,7 +129,7 @@ function autoload() {
  */
 function register_scripts_and_styles() {
     $is_ilifautpl_landing_page = ilifautpl_is_landing_page('frontend');
-    $has_ilifautpl_topic_box_shortcode = has_shortcode(get_post_field('post_content', get_the_ID()), 'ilifautpl_topic_boxes');
+    $has_ilifautpl_topic_box_shortcode = has_shortcode(get_post_field('post_content', get_the_ID()), 'ilifautpl_topic_boxes') || has_shortcode(get_post_field('post_content', get_the_ID()), 'themenboxen');
 
     if( ! $is_ilifautpl_landing_page && ! $has_ilifautpl_topic_box_shortcode )
         return;
@@ -141,18 +141,20 @@ function register_scripts_and_styles() {
     wp_enqueue_script( 'ili-fau-templates-main' );
 
     // Localize scripts
-    $ilifautpl_slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true);
-    $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true);
-    $ilifautpl_slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true);
-    $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true);
+    $ilifautpl_slider_has_dots = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_dots', true) ?: true;
+    $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true) ?: true;
+    $ilifautpl_slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true) ?: true;
+    $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true) ?: true;
 
-    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_dots', $ilifautpl_slider_has_dots);
-    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_arrows', $ilifautpl_slider_has_arrows);
-    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_fade', $ilifautpl_slider_fade);
-    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_skew', $ilifautpl_slider_skew);
+    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_dots', array( $ilifautpl_slider_has_dots ) );
+    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_has_arrows', array( $ilifautpl_slider_has_arrows ) );
+    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_fade', array( $ilifautpl_slider_fade ) );
+    wp_localize_script( 'ili-fau-templates-main', 'ilifautpl_slider_skew', array( $ilifautpl_slider_skew ) );
 
-    // Nur Landing Page (Slick Slider)
-    if( $is_ilifautpl_landing_page ) {
+    // Slick Slider
+    $ilifautpl_show_slider = get_post_meta(get_the_ID(), '_ilifautpl_show_slider', true ) === '1';
+    
+    if( $is_ilifautpl_landing_page && $ilifautpl_show_slider ) {
         wp_register_style( 'ili-fau-templates-slick', plugins_url('inc/slick/slick.css', __FILE__ ) );
         wp_enqueue_style( 'ili-fau-templates-slick' );
         
@@ -206,14 +208,16 @@ function ilifautpl_is_landing_page( $context = 'frontend' ) {
 
     if( $context === 'frontend' )
         return in_array( get_page_template_slug( $post_id ), $allowed_templates ); 
-  
+
     // Backend
     $screen = function_exists('get_current_screen') ? get_current_screen( $post_id ) : '';
     $allowed_post_types = array('post', 'page');
     $allowed_templates = array('templates/template-landing-page.php');
 
     $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && ( in_array( get_page_template_slug( $post_id ), $allowed_templates ) );
-    
-    return $is_ili_fau_template;
-}
+    $is_ili_fau_settings = $screen->base === 'settings_page_ili-fau-templates';
 
+    $ilifautpl_is_landing_page = $is_ili_fau_template || $is_ili_fau_settings;
+    
+    return $ilifautpl_is_landing_page;
+}
