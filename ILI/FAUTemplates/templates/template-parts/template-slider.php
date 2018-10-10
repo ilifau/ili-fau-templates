@@ -33,16 +33,23 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
     if( $ilifautpl_has_slides ) {
         foreach( $ilifautpl_meta as $key => $slide ):
             $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
-            $ilifautpl_headline = ! empty( $ilifautpl_meta[$key]['link'] ) ? '<a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['headline'] . '</a>' : $ilifautpl_meta[$key]['headline'];
+            $ilifautpl_headline = $ilifautpl_meta[$key]['headline'];
             $ilifautpl_slide_atts = fau_get_image_attributs( $ilifautpl_meta[$key]['id'] );
             
             echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') center center;">';
+                
                 echo '<div class="container">';
                     echo '<div class="row">';
                         echo '<div class="container ilifautpl-slider-content">';
-                            echo '<h3><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_headline . '</a></h3>';
-                            echo '<p><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['subtitle'] . '</a></p>';
+                            echo '<a href="' . $ilifautpl_meta[$key]['link'] . '">';
+                                if( ! empty( $ilifautpl_headline ) )
+                                    echo '<h3>' . $ilifautpl_headline . '</h3>';
+                                
+                                if( ! empty( $ilifautpl_meta[$key]['subtitle'] ) )
+                                    echo '<p><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['subtitle'] . '</a></p>';
+                            
                             // echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
+                            echo '</a>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
