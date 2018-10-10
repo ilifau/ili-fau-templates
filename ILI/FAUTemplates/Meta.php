@@ -64,6 +64,7 @@ class Meta {
             $id = (int)$key + 1;
             $url = isset( $slide['url'] ) ? $slide['url'] : '';
             $link = isset( $slide['link'] ) ? $slide['link'] : '';
+            $credits = isset( $slide['credits'] ) ? $slide['credits'] : '';
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
@@ -71,7 +72,8 @@ class Meta {
             echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $id . '</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
             echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="text" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="url" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide-credits" type="text" id="ilifautpl-input-slide-credits" name="ilifautpl-input-slide-credits[]" value="' . $credits . '" placeholder="Credits&hellip;">';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
             echo '</div>';
@@ -274,6 +276,7 @@ class Meta {
         // Sanitize user input.
         $urls = $_POST['ilifautpl-input-slide-urls'];
         $links = $_POST['ilifautpl-input-slide-links'];
+        $credits = $_POST['ilifautpl-input-slide-credits'];
         $headlines = $_POST['ilifautpl-input-slide-headlines'];
         $subtitles = $_POST['ilifautpl-input-slide-subtitles'];
         
@@ -283,6 +286,7 @@ class Meta {
             array_push( $slides, array(
                 'url' => filter_var( $url, FILTER_VALIDATE_URL ) ? $url : '',
                 'link' => isset( $links[$key] ) && filter_var( $links[$key], FILTER_VALIDATE_URL ) ? $links[$key] : '',
+                'credits' => isset( $credits[$key] ) ? sanitize_text_field( $credits[$key] ) : '',
                 'headline' => isset( $headlines[$key] ) ? sanitize_text_field( $headlines[$key] ) : '',
                 'subtitle' => isset( $subtitles[$key] ) ? sanitize_text_field( $subtitles[$key] ) : '',
             ) );

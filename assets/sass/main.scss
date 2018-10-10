@@ -53,6 +53,20 @@ $font_family_1: 'FontAwesome';
 			font-weight: 600;
 		}
 	}
+    .ilifautpl-slide-credits {
+        position: absolute;
+        bottom: 0;
+        display: block;
+        right: 0;
+        padding: .5em 1em;
+        background: rgba(255,255,255,.9);
+        font-size: 12px;
+        width: auto;
+        &::before {
+            content: '©';
+            margin-right: .25em;
+        }
+    }
 }
 .ilifautpl-slider-content {
 	box-sizing: border-box;
@@ -61,7 +75,6 @@ $font_family_1: 'FontAwesome';
 	margin-bottom: 16px;
     a {
         text-decoration: none !important;
-        transition: all .2s linear;
     }
 	h3 {
 		// display: table;
@@ -69,15 +82,26 @@ $font_family_1: 'FontAwesome';
 		color: $color_1;
 		// background: rgba(0, 51, 102, .875);
 		font-size: 56px;
-		font-weight: 600;
 		letter-spacing: 1px;
 		// margin-bottom: 8px;
 		// padding: 4px 12px 8px;
         margin-left: 0;
 		line-height: 1.25;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-        a:hover, a:focus {
-            border-bottom: 3px solid white;
+        &:after {
+          content: '';
+          position: relative;
+          top: -3px;
+          width: 0;
+          height: 3px;
+          display: block;
+          background: white;
+          transition: .2s ease-out;
+          box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+        }
+
+        &:hover:after {
+          width: 100%;
         }
 	}
 	p {
@@ -238,8 +262,9 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-slider-content {
 		h3 {
 			font-size: 40px;
-            a:hover, a:focus {
-                border-bottom: 2px solid white;
+            &:after {
+              top: -2px;
+              height: 2px;
             }
 		}
 		p {
@@ -279,6 +304,11 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-topic-box-image {
 		top: 16px;
 	}
+    .slick-slide {
+        .ilifautpl-slide-credits {
+            font-size: 10px;
+        }
+    }
 }
 @media screen and (max-width: 480px) {
 	.ilifautpl-topic-boxes {
