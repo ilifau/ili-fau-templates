@@ -53,7 +53,8 @@ class Meta {
     
     public function landing_page_slides_callback() {
         wp_nonce_field( 'ilifautpl_meta_boxes_nonce', 'ilifautpl_meta_boxes_nonce' );
-
+        
+        $upload_dir = wp_upload_dir();
         $slides = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
         
         if( empty( $slides ) ) {
@@ -61,25 +62,38 @@ class Meta {
         }
 
         foreach( $slides as $key => $slide ) {
-            $id = (int)$key + 1;
-            $url = isset( $slide['url'] ) ? $slide['url'] : '';
+            $slide_id = (int)$key + 1;
+
+            $id = ! empty( $slide['id'] ) ? $slide['id'] : '';
+            $atts = fau_get_image_attributs( $id );
+            $url = $upload_dir['baseurl'] . '/' . $atts['attachment_file'];
             $link = isset( $slide['link'] ) ? $slide['link'] : '';
-            $credits = isset( $slide['credits'] ) ? $slide['credits'] : '';
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
-            echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" id="ilifautpl-input-media-wrapper-' . $id . '" data-id="' . $id . '">';
-            echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $id . '</label>';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-urls" name="ilifautpl-input-slide-urls[]" value="' . $url . '" placeholder="URL&hellip;">';
-            echo '<div class="ilifautpl-input-slide-url-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media">' . __('Media', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide">' . __('Löschen', 'ilifautpl') . '</a></div>';
+            // print_r( fau_get_image_attributs( $id ) );
+            
+            echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" data-id="' . $slide_id . '">';
+            echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $slide_id . '</label>';
+            
+            $basename = basename( plugin_dir_path(  dirname( __FILE__ , 2 ) ) );
+            $placeholder = esc_url( plugins_url() . '/' . $basename . '/assets/img/slide-preview.png' );
+            
+            if( ! empty( $url ) && ! empty( $id ) ) {
+                echo '<img class="ilifautpl-slide-preview" src="' . $url . '" alt="" />';
+            } else {
+                echo '<img class="ilifautpl-slide-preview" src="' . $placeholder . '" alt="" />';
+            }
+            
+            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-ids" name="ilifautpl-input-slide-ids[]" value="' . $id . '" placeholder="ID&hellip;">';
+            echo '<div class="ilifautpl-input-slide-id-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media" data-id="' . $slide_id . '">' . __('Bild auswählen', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide" data-placeholder="' . $placeholder . '">' . __('Löschen', 'ilifautpl') . '</a></div>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="url" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide-credits" type="text" id="ilifautpl-input-slide-credits" name="ilifautpl-input-slide-credits[]" value="' . $credits . '" placeholder="Credits&hellip;">';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
             echo '</div>';
         }
 
-        echo '<a class="button ilifautpl-add-slide">' . __('Slide hinzufügen', 'ili-fau-templates') . '</a>';
+        echo '<a class="button ilifautpl-add-slide" data-placeholder="' . $placeholder . '">' . __('Slide hinzufügen', 'ili-fau-templates') . '</a>';
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
     
@@ -274,19 +288,21 @@ class Meta {
         }
         
         // Sanitize user input.
-        $urls = $_POST['ilifautpl-input-slide-urls'];
+        $ids = $_POST['ilifautpl-input-slide-ids'];
         $links = $_POST['ilifautpl-input-slide-links'];
-        $credits = $_POST['ilifautpl-input-slide-credits'];
         $headlines = $_POST['ilifautpl-input-slide-headlines'];
         $subtitles = $_POST['ilifautpl-input-slide-subtitles'];
         
         $slides = array();
+        $upload_dir = wp_upload_dir();
         
-        foreach( $urls as $key => $url ) {
+        foreach( $ids as $key => $id ) {
+            $atts = fau_get_image_attributs( $id );
+            
             array_push( $slides, array(
-                'url' => filter_var( $url, FILTER_VALIDATE_URL ) ? $url : '',
+                'id' => absint($id),
+                'url' => esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ),
                 'link' => isset( $links[$key] ) && filter_var( $links[$key], FILTER_VALIDATE_URL ) ? $links[$key] : '',
-                'credits' => isset( $credits[$key] ) ? sanitize_text_field( $credits[$key] ) : '',
                 'headline' => isset( $headlines[$key] ) ? sanitize_text_field( $headlines[$key] ) : '',
                 'subtitle' => isset( $subtitles[$key] ) ? sanitize_text_field( $subtitles[$key] ) : '',
             ) );
