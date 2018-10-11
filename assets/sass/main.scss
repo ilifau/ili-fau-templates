@@ -237,6 +237,16 @@ $font_family_1: 'FontAwesome';
 		grid-template-columns: repeat(2, 48.25%);
 	}
 }
+@media screen and (min-width: 1920px) {
+    .ilifautpl-slider-content {
+		h3 {
+			font-size: 60px;
+		}
+		p {
+			font-size: 32px;
+		}
+	}
+}
 @media screen and (max-width: 768px) {
     .ilifautpl-slider-fallback {
         margin-top: 0;
