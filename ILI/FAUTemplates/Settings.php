@@ -67,7 +67,7 @@ class Settings {
         
         add_settings_field('ili_fau_templates_max_num_slides', __('Max. Anzahl Slides pro Seite', 'ili-fau-templates'), [$this, 'ili_fau_templates_max_num_slides'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
         add_settings_field('ili_fau_templates_topic_box_excerpt_length_default', __('Länge des Anreißertextes der Themenboxen (mind. 10 Zeichen)', 'ili-fau-templates'), [$this, 'ili_fau_templates_topic_box_excerpt_length_default'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
-        add_settings_field('ili_fau_templates_slide_default', __('Default Slide URL', 'ili-fau-templates'), [$this, 'ili_fau_templates_slide_default'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
+        add_settings_field('ili_fau_templates_slide_default', __('Default Slide (ID)', 'ili-fau-templates'), [$this, 'ili_fau_templates_slide_default'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
         // add_settings_field('ili_fau_templates_field_role', __('Rolle mindestens', 'ili-fau-templates'), [$this, 'ili_fau_templates_field_role'], 'ili_fau_templates_options', 'ili_fau_options_section_1');
     }
 
@@ -88,10 +88,7 @@ class Settings {
             $input['ili_fau_templates_topic_box_excerpt_length_default'] = 10;
         }
         
-        if( ! filter_var( $input['ili_fau_templates_slide_default'], FILTER_VALIDATE_URL ) ) {
-            $input['ili_fau_templates_slide_default'] = $this->options->ili_fau_templates_slide_default;
-        }
-        
+        $input['ili_fau_templates_slide_default'] = ! empty( $input['ili_fau_templates_slide_default'] ) ? absint( $input['ili_fau_templates_slide_default'] ) : '0';
         $input['ili_fau_templates_number'] = ! empty( $input['ili_fau_templates_field_role'] ) ? absint( $input['ili_fau_templates_field_role'] ) : '0';
 
         return $input;
@@ -123,10 +120,23 @@ class Settings {
      */
     public function ili_fau_templates_slide_default() {
         ?>
-        <div class="ilifautpl-input-select-wrapper">
-            <input type="url" class="ilifautpl-input ilifautpl-input-select" name="<?php printf('%s[ili_fau_templates_slide_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_slide_default; ?>" placeholder="https://...">
-            <a class="button ilifautpl-input-select-media"><?php _e('Bild auswählen', 'ili-fau-templates'); ?></a>
-        </div>
+        <div class="ilifautpl-input-select-wrapper"><?php
+            $basename = basename( plugin_dir_path(  dirname( __FILE__ , 2 ) ) );
+            $placeholder = esc_url( plugins_url() . '/' . $basename . '/assets/img/slide-default.jpg' );
+            $upload_dir = Wp_upload_dir();
+            
+            echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" data-id="1">';
+            
+                if( empty( $this->options->ili_fau_templates_slide_default ) ) {
+                    echo '<img class="ilifautpl-slide-preview" src="' . $placeholder . '" alt="" />';
+                } else {
+                    $atts = fau_get_image_attributs( $this->options->ili_fau_templates_slide_default );
+                    echo '<img class="ilifautpl-slide-preview" src="' . esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ) . '" alt="" />';
+                } ?>
+                
+                <input type="text" class="ilifautpl-input ilifautpl-input-select" name="<?php printf('%s[ili_fau_templates_slide_default]', $this->option_name); ?>" value="<?php echo $this->options->ili_fau_templates_slide_default; ?>" placeholder="ID&hellip;">
+                <a class="button ilifautpl-input-select-media" data-id="1" data-placeholder="<?php echo $placeholder; ?>"><?php _e('Bild auswählen', 'ili-fau-templates'); ?></a>
+            </div>
         <?php
     }
     

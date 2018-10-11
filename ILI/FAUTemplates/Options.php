@@ -17,11 +17,10 @@ class Options {
      * @return array
      */
     public function default_options() {
-        $basename = basename( plugin_dir_path(  dirname( __FILE__ , 2 ) ) );
         $options = [
             'ili_fau_templates_max_num_slides' => '3',
             'ili_fau_templates_topic_box_excerpt_length_default' => '128',
-            'ili_fau_templates_slide_default' => plugins_url() . '/' . $basename . '/assets/img/slide-default.jpg',
+            'ili_fau_templates_slide_default' => null,
             'ili_fau_templates_field_role' => 'Administrator',
             // Hier können weitere Felder ('key' => 'value') angelegt werden.
         ];

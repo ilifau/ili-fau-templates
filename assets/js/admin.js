@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
     var options = ilifautpl_options_admin;
-    
+
     // Add slides button
     $('.ilifautpl-add-slide').on('click', function() {
         if( $('.ilifautpl-input-slide-wrapper').length >= ilifautpl_options_admin.max_num_slides ) {
@@ -15,7 +15,9 @@ jQuery(document).ready(function($) {
             new_wrapper.attr('data-id', new_id);
             new_wrapper.find('.ilifautpl-label').text('Slide ' + new_id);
             new_wrapper.find('input').val('');
+            new_wrapper.find('.ilifautpl-input-select-media').attr('data-id', new_id);
             new_wrapper.find('textarea').val('');
+            new_wrapper.find('img').attr('src', $(this).attr('data-placeholder'));
         }
     });
     
@@ -25,7 +27,9 @@ jQuery(document).ready(function($) {
             return;
         
         if( $('.ilifautpl-input-slide-wrapper').length < 2 ) {
-            $('.ilifautpl-input-slide').val('');
+            $('.ilifautpl-input-slide-wrapper input').val('');
+            $('.ilifautpl-input-slide-wrapper textarea').val('');
+            $('.ilifautpl-input-slide-wrapper img').attr('src', $(this).attr('data-placeholder'));
             return;
         }
 
@@ -44,7 +48,8 @@ jQuery(document).ready(function($) {
 
         var image_frame;
         var id = $(this).data('id');
-        var _this = $(this).closest('.ilifautpl-input-select-wrapper').find('.ilifautpl-input-select');
+        console.log(id);
+        var that = $(this).closest('.ilifautpl-input-select-wrapper').find('.ilifautpl-input-select');
 
         if(image_frame) {
             image_frame.open();
@@ -59,18 +64,19 @@ jQuery(document).ready(function($) {
         });
 
         image_frame.on('close',function() {
-            var selection =  image_frame.state().get('selection');
+            var selection = image_frame.state().get('selection');
             var gallery_ids = new Array();
             var index = 0;
 
             selection.each(function(attachment) {
-                gallery_ids[index] = attachment.attributes.url;
+                gallery_ids[index] = attachment.attributes.id;
+                $('.ilifautpl-input-slide-wrapper[data-id="' + id + '"] .ilifautpl-slide-preview').attr('src', attachment.attributes.url);
                 index++;
             });
 
             var ids = gallery_ids.join(',');
 
-            _this.val(ids);
+            that.val(ids);
 
             // refreshImage(ids);
         });
@@ -78,7 +84,7 @@ jQuery(document).ready(function($) {
         image_frame.on('open', function() {
             var selection =  image_frame.state().get('selection');
             
-            ids = _this.val().split(',');
+            ids = that.val().split(',');
             
             ids.forEach(function(id) {
                 attachment = wp.media.attachment(id);
@@ -96,4 +102,35 @@ jQuery(document).ready(function($) {
         keepOrder: true,
         sortable: true,
     });
+    
+    // Post/Page multiple select with AJAX search
+	$('.ilifautpl-select-posts').select2({
+        language: 'de',
+  		ajax: {
+			url: ajaxurl,
+			dataType: 'json',
+			delay: 250,
+			data: function(params) {
+                console.log(params);
+  				return {
+    				q: params.term,
+    				action: 'ilifautpl_get_posts'
+  				};
+			},
+			processResults: function(data) {
+                console.log(data);
+				var posts = [];
+				if(data) {
+                    $.each(data, function(index, value) {
+						posts.push({ id: value[0], text: value[1] });
+					});
+				}
+				return {
+					results: posts
+				};
+			},
+			cache: false
+		},
+		minimumInputLength: 3
+	});
 });

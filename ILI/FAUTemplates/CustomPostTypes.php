@@ -7,10 +7,10 @@ defined('ABSPATH') || exit;
 class CustomPostTypes {
     
     public function __construct() {
-        add_action( 'init', array($this, 'create_cpt_ilifautpl_topic_box') );
-        add_action( 'save_post', array($this, 'ilifautpl_save_topic_box_meta_boxes') );
+        add_action('init', array($this, 'create_cpt_ilifautpl_topic_box'));
+        add_action('save_post', array($this, 'ilifautpl_save_topic_box_meta_boxes'));
     }
-    
+
     public function create_cpt_ilifautpl_topic_box()
     {
         register_post_type( 'ilifautpl_topic_box',
@@ -46,17 +46,21 @@ class CustomPostTypes {
         );
     }
     
-    function ilifautpl_topic_box_target_id_callback() {
+    function ilifautpl_topic_box_target_id_callback()
+    {
         global $post;
         
         wp_nonce_field( 'ilifautpl_topic_box_meta_boxes_nonce', 'ilifautpl_topic_box_meta_boxes_nonce' );
 
         $post_id = get_post_meta($post->ID, '_ilifautpl_topic_box_target_id', true);
+        $post = get_post( $post_id );
+        $post_title = ! empty( $post ) ? $post->post_title : 'Inhalt nicht gefunden';
         
         if( ! $post_id )
             echo '<p>' . __('Themenboxen müssen mit einem existierenden Inhalt verknüpft sein.', 'ilifautpl') . '</p>';
         
-        echo '<input type="text" name="_ilifautpl_topic_box_target_id" value="' . $post_id  . '" class="widefat" placeholder="' . __('Verknüpfter Inhalt (ID)', 'ilifautpl') . '&hellip;"/>';
+        echo '<select name="_ilifautpl_topic_box_target_id" class="widefat ilifautpl-select-posts" /><option selected="selected">' . $post->post_title . '</option></select>';
+        // echo '<input type="submit" name="submit" id="submit" class="button button-primary ilifautpl-button-submit" value="Änderungen speichern">';
     }
     
     /**
