@@ -27,6 +27,38 @@ register_deactivation_hook(__FILE__, 'ILI\FAUTemplates\deactivation');
 
 add_action('plugins_loaded', 'ILI\FAUTemplates\loaded');
 
+// AJAX
+add_action('admin_init', 'ILI\FAUTemplates\ilifautpl_add_ajax_actions');
+
+function ilifautpl_add_ajax_actions()
+{
+    add_action('wp_ajax_ilifautpl_get_posts', 'ILI\FAUTemplates\ilifautpl_get_posts_ajax_callback');
+    add_action('wp_ajax_nopriv_ilifautpl_get_posts', 'ILI\FAUTemplates\ilifautpl_get_posts_ajax_callback');
+}
+
+function ilifautpl_get_posts_ajax_callback()
+{
+    $return = array();
+     
+    $search_results = new \WP_Query( array( 
+		's' => $_GET['q'],
+        'post_type' => array('post', 'page'),
+		'post_status' => 'publish',
+		'posts_per_page' => 50,
+	) );
+    
+	if( $search_results->have_posts() ) :
+		while( $search_results->have_posts() ) : $search_results->the_post();	
+			// shorten the title a little
+			$title = ( mb_strlen( $search_results->post->post_title ) > 50 ) ? mb_substr( $search_results->post->post_title, 0, 49 ) . '...' : $search_results->post->post_title;
+			$return[] = array( $search_results->post->ID, $title ); // array( Post ID, Post Title )
+		endwhile;
+	endif;
+    
+    echo json_encode( $return );
+    die;
+}
+
 // CSS und JS einbinden.
 add_action('wp_enqueue_scripts', 'ILI\FAUTemplates\register_scripts_and_styles', 99, 1);
 add_action('admin_enqueue_scripts', 'ILI\FAUTemplates\register_admin_scripts_and_styles', 99, 1);
@@ -175,6 +207,18 @@ function register_admin_scripts_and_styles()
     if( ! ilifautpl_is_landing_page('admin') )
         return;
 
+    // Multi Select
+    wp_register_script( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/js/jquery.multi-select.js', __FILE__), array('jquery'), '0.9.12', true );
+    wp_enqueue_script( 'ili-fau-templates-multiselect' );
+    
+    wp_register_style( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/css/multi-select.dist.css', __FILE__ ) );
+    wp_enqueue_style( 'ili-fau-templates-multiselect' );
+
+    // Select2
+    wp_enqueue_style('ili-fau-templates-select2', plugins_url('assets/js/select2/select2.min.css', __FILE__ ) );
+    wp_enqueue_script('ili-fau-templates-select2', plugins_url('assets/js/select2/select2.full.min.js', __FILE__ ), array('jquery') );
+    wp_enqueue_script('ili-fau-templates-select2-de', plugins_url('assets/js/select2/de.js', __FILE__ ), array('jquery') );
+
     $options = get_option('ili_fau_templates');
     $max_num_slides = $options['ili_fau_templates_max_num_slides'] ? $options['ili_fau_templates_max_num_slides'] : 3;
     
@@ -186,13 +230,6 @@ function register_admin_scripts_and_styles()
         'max_num_slides' => $max_num_slides
     ) );
     wp_enqueue_style( 'ili-fau-templates-admin' );
-    
-    // Multi Select
-    wp_register_script( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/js/jquery.multi-select.js', __FILE__), array('jquery'), '0.9.12', true );
-    wp_enqueue_script( 'ili-fau-templates-multiselect' );
-    
-    wp_register_style( 'ili-fau-templates-multiselect', plugins_url('inc/lou-multi-select-e052211/css/multi-select.dist.css', __FILE__ ) );
-    wp_enqueue_style( 'ili-fau-templates-multiselect' );
 }
 
 /*
@@ -212,12 +249,13 @@ function ilifautpl_is_landing_page( $context = 'frontend' ) {
     // Backend
     $screen = function_exists('get_current_screen') ? get_current_screen( $post_id ) : '';
     $allowed_post_types = array('post', 'page');
-    $allowed_templates = array('templates/template-landing-page.php');
+    $allowed_templates = array('ilifautpl_topic_box', 'templates/template-landing-page.php');
 
     $is_ili_fau_template = in_array( $screen->post_type, $allowed_post_types ) && ( in_array( get_page_template_slug( $post_id ), $allowed_templates ) );
     $is_ili_fau_settings = $screen->base === 'settings_page_ili-fau-templates';
-
-    $ilifautpl_is_landing_page = $is_ili_fau_template || $is_ili_fau_settings;
+    $is_ili_fau_topic_box = $screen->id === 'ilifautpl_topic_box';
+    
+    $ilifautpl_is_landing_page = $is_ili_fau_template || $is_ili_fau_topic_box|| $is_ili_fau_settings;
     
     return $ilifautpl_is_landing_page;
 }

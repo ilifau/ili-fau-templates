@@ -102,4 +102,35 @@ jQuery(document).ready(function($) {
         keepOrder: true,
         sortable: true,
     });
+    
+    // Post/Page multiple select with AJAX search
+	$('.ilifautpl-select-posts').select2({
+        language: 'de',
+  		ajax: {
+			url: ajaxurl,
+			dataType: 'json',
+			delay: 250,
+			data: function(params) {
+                console.log(params);
+  				return {
+    				q: params.term,
+    				action: 'ilifautpl_get_posts'
+  				};
+			},
+			processResults: function(data) {
+                console.log(data);
+				var posts = [];
+				if(data) {
+                    $.each(data, function(index, value) {
+						posts.push({ id: value[0], text: value[1] });
+					});
+				}
+				return {
+					results: posts
+				};
+			},
+			cache: false
+		},
+		minimumInputLength: 3
+	});
 });
