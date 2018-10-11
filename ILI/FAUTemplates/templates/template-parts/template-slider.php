@@ -32,30 +32,29 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
     // Post/Page has slides
     if( $ilifautpl_has_slides ) {
         foreach( $ilifautpl_meta as $key => $slide ):
-            $link_html = ! empty( $ilifautpl_meta[$key]['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
-            $ilifautpl_headline = $ilifautpl_meta[$key]['headline'];
-            $ilifautpl_slide_atts = fau_get_image_attributs( $ilifautpl_meta[$key]['id'] );
-            
-            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') center center;">';
-                
+            $link_html = ! empty( $slide['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
+            $ilifautpl_headline = $slide['headline'];
+            $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
+
+            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') center center;">';    
                 echo '<div class="container">';
                     echo '<div class="row">';
                         echo '<div class="container ilifautpl-slider-content">';
-                            echo '<a href="' . $ilifautpl_meta[$key]['link'] . '">';
+                            echo '<a href="' . $slide['link'] . '">';
                                 if( ! empty( $ilifautpl_headline ) )
                                     echo '<h3>' . $ilifautpl_headline . '</h3>';
                                 
-                                if( ! empty( $ilifautpl_meta[$key]['subtitle'] ) )
-                                    echo '<p><a href="' . $ilifautpl_meta[$key]['link'] . '">' . $ilifautpl_meta[$key]['subtitle'] . '</a></p>';
+                                if( ! empty( $slide['subtitle'] ) )
+                                    echo '<p><a href="' . $slide['link'] . '">' . $slide['subtitle'] . '</a></p>';
                             
-                            // echo '<p>' . $ilifautpl_meta[$key]['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
+                            // echo '<p>' . $slide['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
                             echo '</a>';
                         echo '</div>';
                     echo '</div>';
                 echo '</div>';
                 
-                if( ! empty( $ilifautpl_slide_atts['credit'] ) ) {
-                    echo '<div class="ilifautpl-slide-credits">' . $ilifautpl_meta[$key]['credits'] . '</div>';
+                if( ! empty( $ilifautpl_slide_atts['credits'] ) ) {
+                    echo '<div class="ilifautpl-slide-credits">' . $ilifautpl_slide_atts['credits'] . '</div>';
                 }
             echo '</div>';
         endforeach;

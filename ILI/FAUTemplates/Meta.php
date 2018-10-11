@@ -71,7 +71,7 @@ class Meta {
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
             $subtitle = isset( $slide['subtitle'] ) ? $slide['subtitle'] : '';
             
-            // print_r( fau_get_image_attributs( $id ) );
+            print_r( fau_get_image_attributs( $id ) );
             
             echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" data-id="' . $slide_id . '">';
             echo '<label class="ilifautpl-label" for="ilifautpl-landing-page-slides">Slide ' . $slide_id . '</label>';
