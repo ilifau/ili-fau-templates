@@ -41,7 +41,7 @@ class CustomPostTypes {
     public function add_topic_box_metaboxes() {
         add_meta_box(
             'ilifautpl-topic-box-target-id',
-            esc_html__( 'Vernküpfter Inhalt (ID)', 'ilifautpl' ),
+            esc_html__( 'Vernküpfter Inhalt (Titel)', 'ilifautpl' ),
             array($this, 'ilifautpl_topic_box_target_id_callback')
         );
     }
