@@ -123,11 +123,11 @@ class Settings {
         <div class="ilifautpl-input-select-wrapper"><?php
             $basename = basename( plugin_dir_path(  dirname( __FILE__ , 2 ) ) );
             $placeholder = esc_url( plugins_url() . '/' . $basename . '/assets/img/slide-default.jpg' );
-            $upload_dir = Wp_upload_dir();
+            $upload_dir = wp_upload_dir();
             
             echo '<div class="ilifautpl-input-slide-wrapper ilifautpl-input-select-wrapper" data-id="1">';
             
-                if( empty( $this->options->ili_fau_templates_slide_default ) ) {
+                if( $this->options->ili_fau_templates_slide_default === '0' || empty( $this->options->ili_fau_templates_slide_default ) ) {
                     echo '<img class="ilifautpl-slide-preview" src="' . $placeholder . '" alt="" />';
                 } else {
                     $atts = fau_get_image_attributs( $this->options->ili_fau_templates_slide_default );

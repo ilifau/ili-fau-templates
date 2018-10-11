@@ -88,7 +88,7 @@ $font_family_1: 'FontAwesome';
         margin-left: 0;
 		line-height: 1.25;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-        &:after {
+        &:not(.ilifautpl-no-border):after {
           content: '';
           position: relative;
           top: -3px;

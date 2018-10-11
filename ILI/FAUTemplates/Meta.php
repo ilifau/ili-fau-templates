@@ -142,6 +142,8 @@ class Meta {
 
     // Slider has navigation dots callback
     public function landing_page_slider_options_callback() {
+        
+        // TODO: DRY options
 
         // Slider on/off
         $show_slider = get_post_meta( get_the_ID(), '_ilifautpl_show_slider', true);
@@ -242,7 +244,26 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
-
+        
+        // Show fallback title
+        $show_title = get_post_meta( get_the_ID(), '_ilifautpl_show_fallback_title', true);
+        if( $show_title === null || $show_title === '' ) {
+            $show_title = 1;
+        }
+        
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_show_fallback_title">Titel bei Fallback auf Beitrags- oder Default-Bild anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_fallback_title" id="_ilifautpl_show_fallback_title">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$show_title ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Submit
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
     
@@ -320,6 +341,7 @@ class Meta {
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
         $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
+        $fallback_title = (int)$_POST['_ilifautpl_show_fallback_title'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -330,5 +352,6 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
         update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
+        update_post_meta( $post_id, '_ilifautpl_show_fallback_title', $fallback_title );
     }
 }
