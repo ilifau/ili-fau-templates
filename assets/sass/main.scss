@@ -88,21 +88,6 @@ $font_family_1: 'FontAwesome';
         margin-left: 0;
 		line-height: 1.25;
         text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-        &:not(.ilifautpl-no-border):after {
-          content: '';
-          position: relative;
-          top: -3px;
-          width: 0;
-          height: 3px;
-          display: block;
-          background: white;
-          transition: .2s ease-out;
-          box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
-        }
-
-        &:hover:after {
-          width: 100%;
-        }
 	}
 	p {
         // display: table;
@@ -226,6 +211,27 @@ $font_family_1: 'FontAwesome';
 		height: 640px !important;
 		position: relative;
 	}
+}
+@media screen and (min-width: 1200px) {
+    .ilifautpl-slider-content {
+    	h3 {
+            &:not(.ilifautpl-no-border):after {
+              content: '';
+              position: relative;
+              top: -3px;
+              width: 0;
+              height: 3px;
+              display: block;
+              background: white;
+              transition: .2s ease-out;
+              box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+            }
+
+            &:hover:after {
+              width: 100%;
+            }
+    	}
+    }
 }
 @media screen and (max-width: 991px) {
 	#ilifautpl-hero {
