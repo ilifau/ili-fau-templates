@@ -16,6 +16,7 @@ class Shortcodes {
             'ids' => '',
             'text_length' => '',
             'read_more' => '',
+            'remove_skew' => '',
         ), $atts ) );
 
         if( ! $ids )
@@ -55,8 +56,12 @@ class Shortcodes {
         if( empty( $topic_boxes ) )
             return;
 
+        if( filter_var( $remove_skew, FILTER_VALIDATE_BOOLEAN ) ) {
+            echo '<style>.ilifautpl-topic-box::after{display:none}</style>';
+        }
+
         $html = '<div class="ilifautpl-topic-boxes">';
-            foreach( $topic_boxes as $box ) {
+            foreach( $topic_boxes as $key => $box ) {
                 $target_id = get_post_meta( $box->ID, '_ilifautpl_topic_box_target_id', true );
 
                 if( ! $target_id )
@@ -70,7 +75,7 @@ class Shortcodes {
                     $topic_box_excerpt = $box->post_content;
                 }
                 
-                $html .= '<div class="ilifautpl-topic-box">';
+                $html .= '<div class="ilifautpl-topic-box" id="ilifautpl-topic-box-' . $key  . '">';
                     $html .= '<div aria-hidden="true" role="presentation" tabindex="-1" class="passpartout" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">';
                         $html .= '<meta itemprop="url" content="' . get_the_post_thumbnail_url( $box->ID ) . '">';
                         $html .= '<a href="' . $topic_box_url . '">';
