@@ -141,13 +141,17 @@ $font_family_1: 'FontAwesome';
 	}
 }
 .ilifautpl-arrow.prev {
+    position: absolute;
 	left: 25px;
+    padding: 0 0;
 	&::before {
 		content: '\f104';
 	}
 }
 .ilifautpl-arrow.next {
+    position: absolute;
 	right: 25px;
+    padding: 0 0;
 	&::before {
 		content: '\f105';
 	}
