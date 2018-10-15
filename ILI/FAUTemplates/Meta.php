@@ -43,7 +43,7 @@ class Meta {
 
                 add_meta_box(
                     'ilifautpl-slider-options',
-                    esc_html__( 'Slider- und Themenboxen', 'ilifautpl' ),
+                    esc_html__( 'Landing Page Optionen', 'ilifautpl' ),
                     array($this, 'landing_page_slider_options_callback'),
                     $screen
                 );
@@ -263,6 +263,22 @@ class Meta {
             }
         echo '</select>';
         
+        // Toggle Blogroll
+        $has_blogroll = get_post_meta( get_the_ID(), '_ilifautpl_has_blogroll', true);
+        if( $has_blogroll === null || $has_blogroll === '' ) { $has_blogroll = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_has_blogroll">Blogroll anzeigen?</label>';
+        echo '<select name="_ilifautpl_has_blogroll" id="_ilifautpl_has_blogroll">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$has_blogroll ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
         // Submit
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
@@ -342,6 +358,7 @@ class Meta {
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
         $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
         $fallback_title = (int)$_POST['_ilifautpl_show_fallback_title'];
+        $has_blogroll = (int)$_POST['_ilifautpl_has_blogroll'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -353,5 +370,6 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
         update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
         update_post_meta( $post_id, '_ilifautpl_show_fallback_title', $fallback_title );
+        update_post_meta( $post_id, '_ilifautpl_has_blogroll', $has_blogroll );
     }
 }
