@@ -189,6 +189,19 @@ $font_family_1: 'FontAwesome';
 	a {
 		font-weight: 600;
 	}
+    &::after {
+		content: '';
+		width: calc(100% + 8px);
+		height: 32px;
+		position: absolute;
+        left: -4px;
+		top: -24px;
+		background: #fff;
+		transform-origin: right top;
+		transform: skewY(-1.75deg);
+		display: block;
+		overflow: hidden;
+	}
 }
 .ilifautpl-topic-box-image {
 	transition: opacity .2s linear;

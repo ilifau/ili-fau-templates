@@ -38,7 +38,7 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
         $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
         
         if( (int)$ilifautpl_slider_skew === 0 ) {
-            echo '<style>#ilifautpl-hero::after { transform: none }</style>';
+            echo '<style>#ilifautpl-hero::after {transform:none}</style>';
         }
     }
     

@@ -218,7 +218,7 @@ class Meta {
         echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_skew">Slider mit Schräge anzeigen?</label>';
         echo '<select name="_ilifautpl_slider_skew" id="_ilifautpl_slider_skew">';
             foreach( array(
-                0 => 'Nein, kein Schräge',
+                0 => 'Nein, keine Schräge',
                 1 => 'Ja, mit Schräge',
             ) as $key => $val ) {
                 ?><option value="<?php echo $key; ?>"<?php
@@ -241,6 +241,22 @@ class Meta {
             ) as $key => $val ) {
                 ?><option value="<?php echo $key; ?>"<?php
                     if( $key === (int)$read_more ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Topic Boxes Skew
+        $topic_boxes_skew = get_post_meta( get_the_ID(), '_ilifautpl_topic_boxes_skew', true);
+        if( $topic_boxes_skew === null || $topic_boxes_skew === '' ) { $topic_boxes_skew = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_topic_boxes_skew">Themenboxen mit Schräge anzeigen?</label>';
+        echo '<select name="_ilifautpl_topic_boxes_skew" id="_ilifautpl_topic_boxes_skew">';
+            foreach( array(
+                0 => 'Nein, keine Schräge',
+                1 => 'Ja, mit Schräge',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$topic_boxes_skew ) echo ' selected="selected"';
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
@@ -359,6 +375,7 @@ class Meta {
         $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
         $fallback_title = (int)$_POST['_ilifautpl_show_fallback_title'];
         $has_blogroll = (int)$_POST['_ilifautpl_has_blogroll'];
+        $topic_boxes_skew = (int)$_POST['_ilifautpl_topic_boxes_skew'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -371,5 +388,6 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
         update_post_meta( $post_id, '_ilifautpl_show_fallback_title', $fallback_title );
         update_post_meta( $post_id, '_ilifautpl_has_blogroll', $has_blogroll );
+        update_post_meta( $post_id, '_ilifautpl_topic_boxes_skew', $topic_boxes_skew );
     }
 }
