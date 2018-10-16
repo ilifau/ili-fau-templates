@@ -23,6 +23,11 @@ $font_family_1: 'FontAwesome';
 		overflow: hidden;
 	}
 }
+#ilifautpl-hero.ilifautpl-dont-skew {
+    &:after {
+        display: none !important;
+    }
+}
 .ilifautpl-hero-inner {
 	position: relative;
 	display: block;

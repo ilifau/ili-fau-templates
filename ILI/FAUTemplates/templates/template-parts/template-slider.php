@@ -8,12 +8,9 @@ $options = get_option('ili_fau_templates');
 $upload_dir = wp_upload_dir();
 
 $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
+$ilifautpl_slider_classes = $ilifautpl_slider_skew === '0' ? 'ilifautpl-dont-skew' : '';
 
-if( $ilifautpl_slider_skew === '0' ) {
-    echo '<style type="text/css">#ilifautpl-hero::after {transform:none}</style>';
-}
-
-echo '<section id="ilifautpl-hero" aria-label="">';
+echo '<section id="ilifautpl-hero" class="' . $ilifautpl_slider_classes . '" aria-label="">';
 echo '<div class="ilifautpl-hero-inner">';
 echo '<h2 class="screen-reader-text">' . __('Slider', 'ilifautpl') . '</h2>';
 echo '<div class="slick-slider">';
