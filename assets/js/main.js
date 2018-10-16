@@ -9,9 +9,9 @@ jQuery(document).ready(function($) {
         focusOnSelect: false,
         accessibility: true,
         adaptiveHeight: false,
-        fade: ilifautpl_slider_fade == 1 || false,
-        dots: ilifautpl_slider_has_dots == 1 || false,
-        arrows: ilifautpl_slider_has_arrows == 1 || false,
+        fade: ilifautpl_slider_fade[0] === '1' || false,
+        dots: ilifautpl_slider_has_dots[0] === '1' || false,
+        arrows: ilifautpl_slider_has_arrows[0] === '1' || false,
         prevArrow: $('.ilifautpl-arrow.prev'),
         nextArrow: $('.ilifautpl-arrow.next'),
     });
