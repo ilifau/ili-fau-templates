@@ -77,19 +77,19 @@ class Shortcodes {
                 
                 $html .= '<div class="ilifautpl-topic-box" id="ilifautpl-topic-box-' . $key  . '">';
                     $html .= '<div aria-hidden="true" role="presentation" tabindex="-1" class="passpartout" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">';
-                        $html .= '<meta itemprop="url" content="' . get_the_post_thumbnail_url( $box->ID ) . '">';
-                        $html .= '<a href="' . $topic_box_url . '">';
-                            $html .= get_the_post_thumbnail(
-                                $box->ID,
-                                'ilifautpl-topic-box',
-                                array(
-                                    'class' => 'ilifautpl-topic-box-image',
-                                    'itemprop' => 'thumbnailUrl',
-                                )
-                            );
+                        $html .= '<meta itemprop="url" content="' . get_the_post_thumbnail_url( $box->ID, 'ilifautpl-topic-box' ) . '">';
+                        $html .= '<a class="ilifautpl-topic-box-image" href="' . $topic_box_url . '" style="background:url(' . get_the_post_thumbnail_url( $box->ID, 'ilifautpl-topic-box') . ')">';
+                            $html .= '<h3 itemprop="title"><div class="ilifautpl-h3-layer"></div><span>' . $box->post_title . '</span></h3>';
+                            // $html .= get_the_post_thumbnail(
+                            //     $box->ID,
+                            //     'ilifautpl-topic-box',
+                            //     array(
+                            //         'class' => 'ilifautpl-topic-box-image',
+                            //         'itemprop' => 'thumbnailUrl',
+                            //     )
+                            // );
                         $html .= '</a>';
                     $html .= '</div>';
-                    $html .= '<h3 itemprop="title"><a href="' . $topic_box_url . '">' . $box->post_title . '</a></h3>';
                     $html .= '<p itemprop="description">' . $topic_box_excerpt;
 
                     if( $show_read_more ) {
