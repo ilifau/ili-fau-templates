@@ -7,6 +7,12 @@
 $options = get_option('ili_fau_templates');
 $upload_dir = wp_upload_dir();
 
+$ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
+
+if( $ilifautpl_slider_skew === '0' ) {
+    echo '<style type="text/css">#ilifautpl-hero::after {transform:none}</style>';
+}
+
 echo '<section id="ilifautpl-hero" aria-label="">';
 echo '<div class="ilifautpl-hero-inner">';
 echo '<h2 class="screen-reader-text">' . __('Slider', 'ilifautpl') . '</h2>';
@@ -32,15 +38,6 @@ $ilifautpl_has_slides = is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta 
 
 // Show slider only if post/page has thumbnail or slides attached
 if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
-    
-    // Load slides section css only if slides attached
-    if( $ilifautpl_has_slides ) {
-        $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
-        
-        if( (int)$ilifautpl_slider_skew === 0 ) {
-            echo '<style>#ilifautpl-hero::after {transform:none}</style>';
-        }
-    }
     
     // Post/Page has slides
     if( $ilifautpl_has_slides ) {
