@@ -91,7 +91,7 @@ class Templates {
         
         global $post;
 
-		if( is_search() || ! $post ) {
+		if( ! is_page() || ! $post ) {
 			return $template;
 		}
         
