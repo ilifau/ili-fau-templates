@@ -88,17 +88,15 @@ class Templates {
 	 * Checks if the template is assigned to the page
 	 */
 	public function view_project_template( $template ) {
-		
-		// Get global post
-		global $post;
+        
+        global $post;
 
-		// Return template if post is empty
-		if ( ! $post ) {
+		if( is_search() || ! $post ) {
 			return $template;
 		}
-
+        
 		// Return default template if we don't have a custom one defined
-		if ( ! isset( $this->templates[get_post_meta( 
+		if( ! isset( $this->templates[get_post_meta( 
 			$post->ID, '_wp_page_template', true 
 		)] ) ) {
 			return $template;
@@ -109,7 +107,7 @@ class Templates {
 		);
 
 		// Just to be safe, we check if the file exist first
-		if ( file_exists( $file ) ) {
+		if( file_exists( $file ) ) {
 			return $file;
 		} else {
 			echo $file;
