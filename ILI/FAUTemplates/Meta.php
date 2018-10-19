@@ -43,7 +43,7 @@ class Meta {
 
                 add_meta_box(
                     'ilifautpl-slider-options',
-                    esc_html__( 'Slider- und Themenboxen', 'ilifautpl' ),
+                    esc_html__( 'Landing Page Optionen', 'ilifautpl' ),
                     array($this, 'landing_page_slider_options_callback'),
                     $screen
                 );
@@ -142,6 +142,8 @@ class Meta {
 
     // Slider has navigation dots callback
     public function landing_page_slider_options_callback() {
+        
+        // TODO: DRY options
 
         // Slider on/off
         $show_slider = get_post_meta( get_the_ID(), '_ilifautpl_show_slider', true);
@@ -216,7 +218,7 @@ class Meta {
         echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_skew">Slider mit Schräge anzeigen?</label>';
         echo '<select name="_ilifautpl_slider_skew" id="_ilifautpl_slider_skew">';
             foreach( array(
-                0 => 'Nein, kein Schräge',
+                0 => 'Nein, keine Schräge',
                 1 => 'Ja, mit Schräge',
             ) as $key => $val ) {
                 ?><option value="<?php echo $key; ?>"<?php
@@ -242,7 +244,58 @@ class Meta {
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
+        
+        // Topic Boxes Skew
+        $topic_boxes_skew = get_post_meta( get_the_ID(), '_ilifautpl_topic_boxes_skew', true);
+        if( $topic_boxes_skew === null || $topic_boxes_skew === '' ) { $topic_boxes_skew = 1; }
 
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_topic_boxes_skew">Themenboxen mit Schräge anzeigen?</label>';
+        echo '<select name="_ilifautpl_topic_boxes_skew" id="_ilifautpl_topic_boxes_skew">';
+            foreach( array(
+                0 => 'Nein, keine Schräge',
+                1 => 'Ja, mit Schräge',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$topic_boxes_skew ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Show fallback title
+        $show_title = get_post_meta( get_the_ID(), '_ilifautpl_show_fallback_title', true);
+        if( $show_title === null || $show_title === '' ) {
+            $show_title = 1;
+        }
+        
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_show_fallback_title">Titel bei Fallback auf Beitrags- oder Default-Bild anzeigen?</label>';
+        echo '<select name="_ilifautpl_show_fallback_title" id="_ilifautpl_show_fallback_title">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$show_title ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Toggle Blogroll
+        $has_blogroll = get_post_meta( get_the_ID(), '_ilifautpl_has_blogroll', true);
+        if( $has_blogroll === null || $has_blogroll === '' ) { $has_blogroll = 1; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_has_blogroll">Blogroll anzeigen?</label>';
+        echo '<select name="_ilifautpl_has_blogroll" id="_ilifautpl_has_blogroll">';
+            foreach( array(
+                0 => 'Verbergen',
+                1 => 'Anzeigen',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === (int)$has_blogroll ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+        
+        // Submit
         echo '<br><br><input type="submit" name="submit" id="submit" class="button button-primary button-ilifautpl-save" value="' . __('Änderungen speichern', 'ilifautpl' ) . '">';
     }
     
@@ -320,6 +373,9 @@ class Meta {
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
         $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
+        $fallback_title = (int)$_POST['_ilifautpl_show_fallback_title'];
+        $has_blogroll = (int)$_POST['_ilifautpl_has_blogroll'];
+        $topic_boxes_skew = (int)$_POST['_ilifautpl_topic_boxes_skew'];
 
         // Save
         update_post_meta( $post_id, '_ilifautpl_slides', $slides );
@@ -330,5 +386,8 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
         update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
+        update_post_meta( $post_id, '_ilifautpl_show_fallback_title', $fallback_title );
+        update_post_meta( $post_id, '_ilifautpl_has_blogroll', $has_blogroll );
+        update_post_meta( $post_id, '_ilifautpl_topic_boxes_skew', $topic_boxes_skew );
     }
 }

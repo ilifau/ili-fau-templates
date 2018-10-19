@@ -25,8 +25,9 @@ Das Plugin stellt einen neuen Beitragstyp "Themenbox" zur Verfügung. Themenboxe
 
 Für die Einbettung von Themenboxen in beliebige Beiträge und Seiten steht ein Shortcode zur Verfügung. Beispiel:
 
-**[themenboxen ids="12,26,48" text_length="128" read_more="0"]**
+**[themenboxen ids="12,26,48" text_length="128" read_more="0" remove_skew="1"]**
 
 - **ids** bezieht sich auf die Beitrags-IDs der anzuzeigenden Themenboxen
 - **text_length** gibt die Länge der Anreißertexte in den Themenboxen vor
 - **read_more** legt fest, ob der Link "Weiterlesen" im Anreißertext angezeigt wird
+- **remove_skew** ermöglicht die Entfernung der "Schräge"
