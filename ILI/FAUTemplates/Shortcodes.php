@@ -63,11 +63,16 @@ class Shortcodes {
         $html = '<div class="ilifautpl-topic-boxes">';
             foreach( $topic_boxes as $key => $box ) {
                 $target_id = get_post_meta( $box->ID, '_ilifautpl_topic_box_target_id', true );
+                $target_url = get_post_meta( $box->ID, '_ilifautpl_topic_box_target_url', true );
 
-                if( ! $target_id )
+                if( ! $target_id && ! $target_url )
                     continue;
                     
-                $topic_box_url = esc_url( get_permalink( $target_id ) );
+                if( $target_id && ! $target_url ) {
+                    $topic_box_url = esc_url( get_permalink( $target_id ) );
+                } else {
+                    $topic_box_url = esc_url( $target_url );
+                }
                 
                 if( strlen( $box->post_content ) > $topic_box_excerpt_length ) {
                     $topic_box_excerpt = preg_replace('/\s+?(\S+)?$/', '', substr($box->post_content, 0, $topic_box_excerpt_length)) . '&hellip;';

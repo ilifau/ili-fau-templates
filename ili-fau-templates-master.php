@@ -19,7 +19,7 @@ use ILI\FAUTemplates\Main;
 
 defined('ABSPATH') || exit;
 
-const RRZE_PHP_VERSION = '7.1';
+const RRZE_PHP_VERSION = '7.0';
 const RRZE_WP_VERSION = '4.9';
 
 register_activation_hook(__FILE__, 'ILI\FAUTemplates\activation');
