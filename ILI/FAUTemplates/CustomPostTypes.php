@@ -44,6 +44,12 @@ class CustomPostTypes {
             esc_html__( 'Vernküpfter Inhalt (Titel)', 'ilifautpl' ),
             array($this, 'ilifautpl_topic_box_target_id_callback')
         );
+        
+        add_meta_box(
+            'ilifautpl-topic-box-target-url',
+            esc_html__( 'Vernküpfte URL', 'ilifautpl' ),
+            array($this, 'ilifautpl_topic_box_target_url_callback')
+        );
     }
     
     function ilifautpl_topic_box_target_id_callback()
@@ -53,14 +59,26 @@ class CustomPostTypes {
         wp_nonce_field( 'ilifautpl_topic_box_meta_boxes_nonce', 'ilifautpl_topic_box_meta_boxes_nonce' );
 
         $post_id = get_post_meta($post->ID, '_ilifautpl_topic_box_target_id', true);
-        $post = get_post( $post_id );
-        $post_title = ! empty( $post ) ? $post->post_title : 'Inhalt nicht gefunden';
+        $this_post = get_post( $post_id );
+        $post_title = ! empty( $this_post ) ? $this_post->post_title : 'Inhalt nicht gefunden';
         
         if( ! $post_id )
             echo '<p>' . __('Themenboxen müssen mit einem existierenden Inhalt verknüpft sein.', 'ilifautpl') . '</p>';
         
-        echo '<select name="_ilifautpl_topic_box_target_id" class="widefat ilifautpl-select-posts" /><option selected="selected">' . $post->post_title . '</option></select>';
-        // echo '<input type="submit" name="submit" id="submit" class="button button-primary ilifautpl-button-submit" value="Änderungen speichern">';
+        echo '<select name="_ilifautpl_topic_box_target_id" class="widefat ilifautpl-select-posts" />';
+        echo '<option value="">Bitte wählen&hellip;</option>';
+        echo '<option value="' . $post_id . '" selected="selected">' . $this_post->post_title . '</option>';
+        echo '</select>';
+    }
+    
+    function ilifautpl_topic_box_target_url_callback()
+    {
+        global $post;
+        
+        $url = get_post_meta($post->ID, '_ilifautpl_topic_box_target_url', true);
+
+        echo '<p><b>Achtung:</b> Dieses Feld überschreibt das vorangehende Feld "Verknüpfter Inhalt".</p>';
+        echo '<input type="text" name="_ilifautpl_topic_box_target_url" id="_ilifautpl_topic_box_target_url" class="widefat" value="' . $url . '"/>';
     }
     
     /**
@@ -91,11 +109,13 @@ class CustomPostTypes {
         
         // Sanitize user input.
         $target_id = (int)$_POST['_ilifautpl_topic_box_target_id'];
+        $target_url = sanitize_url( $_POST['_ilifautpl_topic_box_target_url'] );
         
         if( ! get_post_status( $target_id ) )
             $target_id = null;
         
         // Save
         update_post_meta( $post_id, '_ilifautpl_topic_box_target_id', $target_id );
+        update_post_meta( $post_id, '_ilifautpl_topic_box_target_url', $target_url );
     }
 }
