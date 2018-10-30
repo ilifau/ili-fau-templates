@@ -151,18 +151,20 @@ $font_family_1: 'FontAwesome';
 }
 .ilifautpl-topic-boxes {
 	width: 100%;
-	display: grid;
-	grid-gap: 1.5em 3.5%;
-	grid-template-columns: repeat(3, 31%);
+	display: block;
+	overflow: hidden;
+	margin-bottom: 1em;
 }
 .ilifautpl-topic-box {
 	display: block;
+	overflow: hidden;
+	float: left;
 	position: relative;
-    transition: all .3s ease-out;
-	&:nth-child(3n) {
-		margin-right: 0;
-	}
+	transition: all .3s ease-out;
+	margin-bottom: 1em;
 	h3.ilifautpl-topic-box-title {
+		box-sizing: border-box;
+		margin: 0;
 		// background: #003366;
 		color: $color_1;
 		font-weight: 400;
@@ -292,9 +294,6 @@ $font_family_1: 'FontAwesome';
 		font-size: 100px;
 		top: calc(50% - 50px);
 	}
-	.ilifautpl-topic-boxes {
-		grid-template-columns: repeat(2, 48.25%);
-	}
 }
 @media screen and (min-width: 1920px) {
     .ilifautpl-slider-content {
@@ -365,29 +364,9 @@ $font_family_1: 'FontAwesome';
 			font-size: 16px;
 		}
 	}
-	.ilifautpl-topic-box {
-		width: 100%;
-		margin: 0 0 1em;
-		float: none;
-	}
-	// .ilifautpl-topic-box-image {
-	// 	top: 16px;
-	// }
     .slick-slide {
         .ilifautpl-slide-credits {
             font-size: 10px;
-        }
-    }
-}
-@media screen and (max-width: 480px) {
-	.ilifautpl-topic-boxes {
-		width: 100%;
-		grid-gap: 1.5em 0;
-		grid-template-columns: repeat(1, 100%);
-	}
-    .ilifautpl-topic-box {
-        a.ilifautpl-topic-box-image {
-            padding-bottom: 100%;
         }
     }
 }
@@ -408,6 +387,47 @@ $font_family_1: 'FontAwesome';
 		}
 		p {
 			font-size: 15px;
+		}
+	}
+}
+/* Topic Boxes Responsive */
+@media screen and (min-width: 992px) {
+	.ilifautpl-topic-box {
+		width: 31%;
+		margin-right: 3.333%;
+	}
+	.ilifautpl-topic-box:nth-child(3n) {
+		margin-right: 0;
+	}
+	.ilifautpl-topic-box:nth-child(3n+1) {
+		clear: left;
+	}
+}
+@media screen and (min-width: 481px) and (max-width: 991px) {
+	.ilifautpl-topic-box {
+		width: 48%;
+		margin-right: 4%
+	}
+	.ilifautpl-topic-box:nth-child(2n) {
+		margin-right: 0;
+	}
+	.ilifautpl-topic-box:nth-child(2n+1) {
+		clear: left;
+	}
+}
+@media screen and (max-width: 480px) {
+	.ilifautpl-topic-boxes {
+		margin-bottom: 0;
+	}
+	.ilifautpl-topic-box {
+		width: 100%;
+		margin-right: 0;
+		float: auto;
+		a.ilifautpl-topic-box-image {
+            padding-bottom: 100%;
+		}
+		&:last-of-type {
+			margin-bottom: 0;
 		}
 	}
 }
