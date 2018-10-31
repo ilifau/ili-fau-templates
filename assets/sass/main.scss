@@ -22,132 +22,126 @@ $font_family_1: 'FontAwesome';
 		display: block;
 		overflow: hidden;
 	}
-}
-#ilifautpl-hero.ilifautpl-dont-skew {
-    &:after {
-        display: none !important;
-    }
-}
-.ilifautpl-hero-inner {
-	position: relative;
-	display: block;
-	max-width: 1920px;
-	margin: 0 auto;
-}
-.slick-slider {
-	position: relative;
-}
-.slick-slide {
-	height: calc(75vh - 10em) !important;
-	min-height: 480px !important;
-	position: relative;
-	overflow: hidden;
-	a {
+	&.ilifautpl-dont-skew {
+		&:after {
+			display: none;
+		}
+	}
+	.ilifautpl-hero-inner {
+		position: relative;
+		display: block;
+		max-width: 1920px;
+		margin: 0 auto;
+	}
+	.slick-slider {
+		position: relative;
+	}
+	.slick-slide {
+		height: calc(75vh - 10em);
+		min-height: 480px;
+		position: relative;
+		overflow: hidden;
+		a {
+			color: $color_1;
+			font-weight: 600;
+			&:hover {
+				color: $color_1;
+				font-weight: 600;
+			}
+			&:active {
+				color: $color_1;
+				font-weight: 600;
+			}
+			&:visited {
+				color: $color_1;
+				font-weight: 600;
+			}
+		}
+		.ilifautpl-slide-credits {
+			position: absolute;
+			bottom: 0;
+			display: block;
+			right: 0;
+			padding: .5em 1em;
+			background: rgba(255,255,255,.9);
+			font-size: 12px;
+			width: auto;
+			&::before {
+				content: '©';
+				margin-right: .25em;
+			}
+		}
+	}
+	.ilifautpl-slider-content {
+		box-sizing: border-box;
+		position: absolute;
+		bottom: 52px;
+		margin-bottom: 16px;
+		a,
+		a:hover,
+		a:active,
+		a:focus {
+			text-decoration: none;
+			font-weight: 400;
+		}
+		h3 {
+			display: block;
+			color: $color_1;
+			font-size: 56px;
+			letter-spacing: 1px;
+			margin-left: 0;
+			line-height: 1.25;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+		}
+		p {
+			display: block;
+			color: $color_1;
+			margin-right: 25px;
+			font-size: 28px;
+			line-height: 1.5;
+			text-shadow: 1px 1px 1px black;
+		}
+	}
+	.ilifautpl-arrow {
+		position: absolute;
+		font-size: 192px;
+		top: calc(50% - 96px);
 		color: $color_1;
-		font-weight: 600;
+		opacity: .45;
+		transition: opacity .2s ease-in;
+		background: transparent;
+		border: 0;
+		font-family: $font_family_1;
 		&:hover {
 			color: $color_1;
-			font-weight: 600;
+			outline: none;
+			opacity: .9;
 		}
-		&:active {
+		&:focus {
 			color: $color_1;
-			font-weight: 600;
-		}
-		&:visited {
-			color: $color_1;
-			font-weight: 600;
+			outline: none;
+			opacity: .9;
 		}
 	}
-    .ilifautpl-slide-credits {
-        position: absolute;
-        bottom: 0;
-        display: block;
-        right: 0;
-        padding: .5em 1em;
-        background: rgba(255,255,255,.9);
-        font-size: 12px;
-        width: auto;
-        &::before {
-            content: '©';
-            margin-right: .25em;
-        }
-    }
-}
-.ilifautpl-slider-content {
-	box-sizing: border-box;
-	position: absolute;
-	bottom: 52px;
-	margin-bottom: 16px;
-    a {
-        text-decoration: none !important;
-    }
-	h3 {
-		// display: table;
-		display: block;
-		color: $color_1;
-		// background: rgba(0, 51, 102, .875);
-		font-size: 56px;
-		letter-spacing: 1px;
-		// margin-bottom: 8px;
-		// padding: 4px 12px 8px;
-        margin-left: 0;
-		line-height: 1.25;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+	.ilifautpl-arrow.prev {
+		position: absolute;
+		left: 25px;
+		padding: 0 0;
+		&::before {
+			content: '\f104';
+		}
 	}
-	p {
-        // display: table;
-		display: block;
-		color: $color_1;
-		// background: rgba(0, 51, 102, .875);
-		margin-right: 25px;
-		font-size: 28px;
-		// padding: 6px 12px;
-		line-height: 1.5;
-        text-shadow: 1px 1px 1px black;
-        a {
-            font-weight: 400 !important;
-        }
+	.ilifautpl-arrow.next {
+		position: absolute;
+		right: 25px;
+		padding: 0 0;
+		&::before {
+			content: '\f105';
+		}
 	}
-}
-.ilifautpl-arrow {
-	position: absolute;
-	font-size: 192px;
-	top: calc(50% - 96px);
-	color: $color_1;
-	opacity: .45;
-	transition: opacity .2s ease-in;
-	background: transparent;
-	border: 0;
-	font-family: $font_family_1;
-	&:hover {
-		color: $color_1;
-		outline: none;
-		opacity: .9;
+	.slick-dots {
+		margin-bottom: .5em;
 	}
-	&:focus {
-		color: $color_1;
-		outline: none;
-		opacity: .9;
-	}
-}
-.ilifautpl-arrow.prev {
-    position: absolute;
-	left: 25px;
-    padding: 0 0;
-	&::before {
-		content: '\f104';
-	}
-}
-.ilifautpl-arrow.next {
-    position: absolute;
-	right: 25px;
-    padding: 0 0;
-	&::before {
-		content: '\f105';
-	}
-}
-.slick-dots {
-	margin-bottom: .5em !important;
 }
 .ilifautpl-topic-boxes {
 	width: 100%;
@@ -165,17 +159,12 @@ $font_family_1: 'FontAwesome';
 	h3.ilifautpl-topic-box-title {
 		box-sizing: border-box;
 		margin: 0;
-		// background: #003366;
 		color: $color_1;
 		font-weight: 400;
-		// font-weight: 400;
 		font-size: 1.375em;
-		// font-size: 1.06125em;
-		// text-align: center;
         letter-spacing: 1px;
         text-align: left;
 		padding: 10px 12px;
-		// padding: 6px 12px;
 		position: absolute;
         bottom: 0;
 		z-index: 2;
@@ -202,9 +191,6 @@ $font_family_1: 'FontAwesome';
         background-size: cover !important;
         background-position: top center !important;
         transition: all .4s ease;
-        // &:hover {
-    	// 	opacity: .9;
-    	// }
 	}
     &::after {
 		content: '';
@@ -239,15 +225,16 @@ $font_family_1: 'FontAwesome';
 .ilifautpl-landing-page-content {
     padding-bottom: 1.5em;
 }
+/* More Responsive Stuff */
 @media screen and (min-width: 1921px) {
 	#ilifautpl-hero {
 		&::after {
 			transform: skewY(-1deg);
 		}
-	}
-	.slick-slide {
-		height: 640px !important;
-		position: relative;
+		.slick-slide {
+			height: 640px;
+			position: relative;
+		}
 	}
 }
 @media screen and (min-width: 1200px) {
@@ -278,6 +265,10 @@ $font_family_1: 'FontAwesome';
 			margin-top: 2.5em;
 			transform: skewY(-2deg);
 		}
+		.ilifautpl-arrow {
+			font-size: 100px;
+			top: calc(50% - 50px);
+		}
 	}
     .ilifautpl-slider-content {
 		h3 {
@@ -290,10 +281,6 @@ $font_family_1: 'FontAwesome';
     .ilifautpl-slider-fallback {
         margin-top: 1.5em;
     }
-	.ilifautpl-arrow {
-		font-size: 100px;
-		top: calc(50% - 50px);
-	}
 }
 @media screen and (min-width: 1920px) {
     .ilifautpl-slider-content {
@@ -322,21 +309,21 @@ $font_family_1: 'FontAwesome';
 		&::after {
 			display: none;
 		}
-	}
-	.slick-slide {
-		height: 50vh !important;
-		min-height: 240px !important;
-	}
-	.ilifautpl-slider-content {
-		h3 {
-			font-size: 40px;
-            &:after {
-              top: -2px;
-              height: 2px;
-            }
+		.slick-slide {
+			height: 50vh;
+			min-height: 240px;
 		}
-		p {
-			font-size: 20px;
+		.ilifautpl-slider-content {
+			h3 {
+				font-size: 40px;
+				&:after {
+				  top: -2px;
+				  height: 2px;
+				}
+			}
+			p {
+				font-size: 20px;
+			}
 		}
 	}
 }
