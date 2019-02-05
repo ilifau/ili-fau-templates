@@ -15,6 +15,7 @@ jQuery(document).ready(function($) {
             new_wrapper.attr('data-id', new_id);
             new_wrapper.find('.ilifautpl-label').text('Slide ' + new_id);
             new_wrapper.find('input').val('');
+            new_wrapper.find('select#ilifautpl-input-slide-positions').val('center center');
             new_wrapper.find('.ilifautpl-input-select-media').attr('data-id', new_id);
             new_wrapper.find('textarea').val('');
             new_wrapper.find('img').attr('src', $(this).attr('data-placeholder'));

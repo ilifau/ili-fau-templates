@@ -66,6 +66,7 @@ class Meta {
 
             $id = ! empty( $slide['id'] ) ? $slide['id'] : '';
             $atts = fau_get_image_attributs( $id );
+            $position = isset( $slide['position'] ) ? $slide['position'] : 'center center';
             $url = $upload_dir['baseurl'] . '/' . $atts['attachment_file'];
             $link = isset( $slide['link'] ) ? $slide['link'] : '';
             $headline = isset( $slide['headline'] ) ? $slide['headline'] : '';
@@ -87,6 +88,25 @@ class Meta {
             
             echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-ids" name="ilifautpl-input-slide-ids[]" value="' . $id . '" placeholder="ID&hellip;">';
             echo '<div class="ilifautpl-input-slide-id-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media" data-id="' . $slide_id . '">' . __('Bild auswählen', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide" data-placeholder="' . $placeholder . '">' . __('Löschen', 'ilifautpl') . '</a></div>';
+            echo '<select class="ilifautpl-input-slide-positions" id="ilifautpl-input-slide-positions" name="ilifautpl-input-slide-positions[]">';
+            
+            foreach( array(
+                0 => 'left top',
+                1 => 'center top',
+                2 => 'right top',
+                3 => 'left center',
+                4 => 'center center',
+                5 => 'right center',
+                6 => 'left bottom',
+                7 => 'center bottom',
+                8 => 'right bottom',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $val; ?>"<?php
+                    if( $val === $position ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+                
+            echo '</select>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="url" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
@@ -342,6 +362,7 @@ class Meta {
         
         // Sanitize user input.
         $ids = $_POST['ilifautpl-input-slide-ids'];
+        $positions = $_POST['ilifautpl-input-slide-positions'];
         $links = $_POST['ilifautpl-input-slide-links'];
         $headlines = $_POST['ilifautpl-input-slide-headlines'];
         $subtitles = $_POST['ilifautpl-input-slide-subtitles'];
@@ -353,7 +374,8 @@ class Meta {
             $atts = fau_get_image_attributs( $id );
             
             array_push( $slides, array(
-                'id' => absint($id),
+                'id' => absint( $id ),
+                'position' => isset( $positions[$key] ) ? sanitize_text_field( $positions[$key] ) : 'center center',
                 'url' => esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ),
                 'link' => isset( $links[$key] ) && filter_var( $links[$key], FILTER_VALIDATE_URL ) ? $links[$key] : '',
                 'headline' => isset( $headlines[$key] ) ? sanitize_text_field( $headlines[$key] ) : '',

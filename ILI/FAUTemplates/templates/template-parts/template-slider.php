@@ -43,7 +43,7 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
             $ilifautpl_headline = $slide['headline'];
             $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
 
-            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') center center;">';    
+            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';    
                 echo '<div class="container">';
                     echo '<div class="row">';
                         echo '<div class="container ilifautpl-slider-content">';
@@ -68,7 +68,7 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
     
     // No slides available, show attachment image instead
     } else {
-        echo '<div class="slick-slide" style="background: #f1f1f1 url(' . get_the_post_thumbnail_url( get_the_ID(), 'full' ) . ') center center;">';
+        echo '<div class="slick-slide" style="background: #f1f1f1 url(' . get_the_post_thumbnail_url( get_the_ID(), 'full' ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';
             echo ilifautpl_show_fallback_title();
         echo '</div>';
     }
@@ -84,7 +84,7 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
         $ilifautpl_default_image = esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] );
     }
     
-    echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $ilifautpl_default_image . ') center center">';
+    echo '<div class="slick-slide" style="background: #f1f1f1 url(' . $ilifautpl_default_image . ') ' . $ilifautpl_meta[$key]['position'] . '">';
         echo ilifautpl_show_fallback_title();
     echo '</div>';
 }
