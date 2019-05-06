@@ -249,13 +249,13 @@ $font_family_1: 'FontAwesome';
             &:not(.ilifautpl-no-border):after {
               content: '';
               position: relative;
-              top: -.1875em;
+              top: -3px;
               width: 0;
-              height: -.1875em;
+              height: 3px;
               display: block;
               background: white;
               transition: .2s ease-out;
-              box-shadow: .0625em .0625em .125em rgba(0, 0, 0, .5);
+              box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
             }
 
             &:hover:after {
