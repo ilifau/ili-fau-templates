@@ -13,7 +13,7 @@ $font_family_1: 'FontAwesome';
 	&::after {
 		content: '';
 		width: 100%;
-		height: 120px;
+		height: 7.875em;
 		position: absolute;
 		top: 2em;
 		background: #fff;
@@ -39,6 +39,7 @@ $font_family_1: 'FontAwesome';
 	.slick-slide {
 		height: calc(75vh - 10em);
 		min-height: 480px;
+		max-height: 40em;
 		position: relative;
 		overflow: hidden;
 		a {
@@ -64,7 +65,7 @@ $font_family_1: 'FontAwesome';
 			right: 0;
 			padding: .5em 1em;
 			background: rgba(255,255,255,.9);
-			font-size: 12px;
+			font-size: .75em;
 			width: auto;
 			&::before {
 				content: '©';
@@ -75,8 +76,8 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-slider-content {
 		box-sizing: border-box;
 		position: absolute;
-		bottom: 52px;
-		margin-bottom: 16px;
+		bottom: 3.25em;
+		margin-bottom: 1em;
 		a,
 		a:hover,
 		a:active,
@@ -87,25 +88,25 @@ $font_family_1: 'FontAwesome';
 		h3 {
 			display: block;
 			color: $color_1;
-			font-size: 56px;
-			letter-spacing: 1px;
+			font-size: 3.375em;
+			letter-spacing: .0625em;
 			margin-left: 0;
 			line-height: 1.25;
-			text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+			text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
 		}
 		p {
 			display: block;
 			color: $color_1;
-			margin-right: 25px;
-			font-size: 28px;
+			margin-right: 1.5625em;
+			font-size: 1.75em;
 			line-height: 1.5;
-			text-shadow: 1px 1px 1px black;
+			text-shadow: 1px 1px 2px black;
 		}
 	}
 	.ilifautpl-arrow {
 		position: absolute;
-		font-size: 192px;
-		top: calc(50% - 96px);
+		font-size: 16em;
+		top: calc(50% - .6125em);
 		color: $color_1;
 		opacity: .45;
 		transition: opacity .2s ease-in;
@@ -125,7 +126,7 @@ $font_family_1: 'FontAwesome';
 	}
 	.ilifautpl-arrow.prev {
 		position: absolute;
-		left: 25px;
+		left: .125em;
 		padding: 0 0;
 		&::before {
 			content: '\f104';
@@ -133,7 +134,7 @@ $font_family_1: 'FontAwesome';
 	}
 	.ilifautpl-arrow.next {
 		position: absolute;
-		right: 25px;
+		right: .125em;
 		padding: 0 0;
 		&::before {
 			content: '\f105';
@@ -144,18 +145,23 @@ $font_family_1: 'FontAwesome';
 	}
 }
 .ilifautpl-topic-boxes {
-	width: 100%;
-	display: block;
-	overflow: hidden;
-	margin-bottom: 1em;
+	display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+	display: -ms-flexbox;  /* TWEENER - IE 10 */
+	display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+	display: flex;         /* NEW, Spec - Firefox, Chrome, Opera */
+	-webkit-flex-wrap: wrap;
+	-moz-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	-o-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-left: -1em;
+	margin-right: -1em;
 }
 .ilifautpl-topic-box {
-	display: block;
-	overflow: hidden;
-	float: left;
-	position: relative;
 	transition: all .3s ease-out;
 	margin-bottom: 1em;
+	padding: 1em;
+	position: relative;
 	h3.ilifautpl-topic-box-title {
 		box-sizing: border-box;
 		margin: 0;
@@ -164,11 +170,11 @@ $font_family_1: 'FontAwesome';
 		font-size: 1.375em;
         letter-spacing: 1px;
         text-align: left;
-		padding: 10px 12px;
+		padding: .625em .75em;
 		position: absolute;
         bottom: 0;
 		z-index: 2;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
         text-transform: uppercase;
         width: 100%;
         background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.7) 100%);
@@ -178,7 +184,7 @@ $font_family_1: 'FontAwesome';
         }
 	}
 	p {
-		padding: 8px 0;
+		padding: .5em 0;
 	}
 	a {
 		font-weight: 600;
@@ -194,11 +200,11 @@ $font_family_1: 'FontAwesome';
 	}
     &::after {
 		content: '';
-		width: calc(100% + 16px);
-		height: 32px;
+		width: calc(100% + 1em);
+		height: 2em;
 		position: absolute;
-        left: -8px;
-		top: -24px;
+        left: -.5em;
+		top: 0;
 		background: #fff;
 		transform-origin: right top;
 		transform: skewY(-1.75deg);
@@ -232,7 +238,7 @@ $font_family_1: 'FontAwesome';
 			transform: skewY(-1deg);
 		}
 		.slick-slide {
-			height: 640px;
+			height: 40em;
 			position: relative;
 		}
 	}
@@ -243,13 +249,13 @@ $font_family_1: 'FontAwesome';
             &:not(.ilifautpl-no-border):after {
               content: '';
               position: relative;
-              top: -3px;
+              top: -.1875em;
               width: 0;
-              height: 3px;
+              height: -.1875em;
               display: block;
               background: white;
               transition: .2s ease-out;
-              box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+              box-shadow: .0625em .0625em .125em rgba(0, 0, 0, .5);
             }
 
             &:hover:after {
@@ -261,21 +267,21 @@ $font_family_1: 'FontAwesome';
 @media screen and (max-width: 991px) {
 	#ilifautpl-hero {
 		&::after {
-			height: 120px;
+			height: 7.5em;
 			margin-top: 2.5em;
 			transform: skewY(-2deg);
 		}
 		.ilifautpl-arrow {
-			font-size: 100px;
-			top: calc(50% - 50px);
+			font-size: 6.25em;
+			top: calc(50% - .5em);
 		}
 	}
     .ilifautpl-slider-content {
 		h3 {
-			font-size: 46px;
+			font-size: 2.875em;
 		}
 		p {
-			font-size: 23px;
+			font-size: 1.4375em;
 		}
 	}
     .ilifautpl-slider-fallback {
@@ -285,10 +291,10 @@ $font_family_1: 'FontAwesome';
 @media screen and (min-width: 1920px) {
     .ilifautpl-slider-content {
 		h3 {
-			font-size: 60px;
+			font-size: 3.75em;
 		}
 		p {
-			font-size: 32px;
+			font-size: 2em;
 		}
 	}
 }
@@ -311,18 +317,18 @@ $font_family_1: 'FontAwesome';
 		}
 		.slick-slide {
 			height: 50vh;
-			min-height: 240px;
+			min-height: 15em;
 		}
 		.ilifautpl-slider-content {
 			h3 {
-				font-size: 40px;
+				font-size: 2.5em;
 				&:after {
-				  top: -2px;
-				  height: 2px;
+				  top: -0.125em;
+				  height: -0.125em;
 				}
 			}
 			p {
-				font-size: 20px;
+				font-size: 1.25em;
 			}
 		}
 	}
@@ -330,10 +336,10 @@ $font_family_1: 'FontAwesome';
 @media screen and (max-width: 640px) {
     .ilifautpl-slider-content {
 		h3 {
-			font-size: 35px;
+			font-size: 1.5625em;
 		}
 		p {
-			font-size: 18px;
+			font-size: 1.125em;
 		}
 	}
 	.ilifautpl-arrow {
@@ -345,76 +351,56 @@ $font_family_1: 'FontAwesome';
 @media screen and (max-width: 639px) {
     .ilifautpl-slider-content {
 		h3 {
-			font-size: 32px;
+			font-size: 2em;
 		}
 		p {
-			font-size: 16px;
+			font-size: 1em;
 		}
 	}
     .slick-slide {
         .ilifautpl-slide-credits {
-            font-size: 10px;
+            font-size: 0.625em;
         }
     }
 }
 @media screen and (max-width: 360px) {
     .ilifautpl-slider-content {
 		h3 {
-			font-size: 27px;
+			font-size: 1.625em;
 		}
 		p {
-			font-size: 16px;
-		}
-	}
-}
-@media screen and (max-width: 360px) {
-    .ilifautpl-slider-content {
-		h3 {
-			font-size: 26px;
-		}
-		p {
-			font-size: 15px;
+			font-size: .9375em;
 		}
 	}
 }
 /* Topic Boxes Responsive */
 @media screen and (min-width: 992px) {
 	.ilifautpl-topic-box {
-		width: 31%;
-		margin-right: 3.333%;
-	}
-	.ilifautpl-topic-box:nth-child(3n) {
-		margin-right: 0;
-	}
-	.ilifautpl-topic-box:nth-child(3n+1) {
-		clear: left;
+		-webkit-box-flex: 0 1 33.33%; /* OLD - iOS 6-, Safari 3.1-6 */
+		width: 33.33%;                /* For old syntax, otherwise collapses. */
+		-webkit-flex: 0 1 33.33%;     /* Safari 6.1+. iOS 7.1+, BB10 */
+		-ms-flex: 0 1 33.33%;         /* IE 10 */
+		flex: 0 1 33.33%;
+		max-width: 33.33%;
 	}
 }
 @media screen and (min-width: 481px) and (max-width: 991px) {
 	.ilifautpl-topic-box {
-		width: 48%;
-		margin-right: 4%
-	}
-	.ilifautpl-topic-box:nth-child(2n) {
-		margin-right: 0;
-	}
-	.ilifautpl-topic-box:nth-child(2n+1) {
-		clear: left;
+		-webkit-box-flex: 0 1 50%; /* OLD - iOS 6-, Safari 3.1-6 */
+		width: 50%;                /* For old syntax, otherwise collapses. */
+		-webkit-flex: 0 1 50%;     /* Safari 6.1+. iOS 7.1+, BB10 */
+		-ms-flex: 0 1 50%;         /* IE 10 */
+		flex: 0 1 50%;
+		max-width: 50%;
 	}
 }
 @media screen and (max-width: 480px) {
-	.ilifautpl-topic-boxes {
-		margin-bottom: 0;
-	}
 	.ilifautpl-topic-box {
-		width: 100%;
-		margin-right: 0;
-		float: auto;
-		a.ilifautpl-topic-box-image {
-            padding-bottom: 100%;
-		}
-		&:last-of-type {
-			margin-bottom: 0;
-		}
+		-webkit-box-flex: 0 1 100%; /* OLD - iOS 6-, Safari 3.1-6 */
+		width: 100%;                /* For old syntax, otherwise collapses. */
+		-webkit-flex: 0 1 100%;     /* Safari 6.1+. iOS 7.1+, BB10 */
+		-ms-flex: 0 1 100%;         /* IE 10 */
+		flex: 0 1 100%;
+		max-width: 100%;
 	}
 }
