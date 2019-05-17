@@ -4,7 +4,7 @@
  * Plugin Name:     ILI FAU Templates
  * Plugin URI:      https://ili.fau.de
  * Description:     Erweiterung der FAU-Website um zusätzliche Templates
- * Version:         0.0.4
+ * Version:         0.0.5
  * Author:          Sebastian Honert
  * Author URI:      https://www.ili.fau.de/team/sebastian-honert/
  * License:         GNU General Public License v2
@@ -41,7 +41,7 @@ function ilifautpl_get_posts_ajax_callback()
     $return = array();
      
     $search_results = new \WP_Query( array( 
-		's' => $_GET['q'],
+		's' => sanitize_text_field( $_GET['q'] ),
         'post_type' => array('post', 'page'),
 		'post_status' => 'publish',
 		'posts_per_page' => 50,
