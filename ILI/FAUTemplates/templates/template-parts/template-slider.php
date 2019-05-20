@@ -10,9 +10,8 @@ $upload_dir = wp_upload_dir();
 $ilifautpl_slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true );
 $ilifautpl_slider_classes = $ilifautpl_slider_skew === '0' ? 'ilifautpl-dont-skew' : '';
 
-echo '<section id="ilifautpl-hero" class="' . $ilifautpl_slider_classes . '" aria-label="">';
+echo '<section id="ilifautpl-hero" class="' . $ilifautpl_slider_classes . '" aria-label="' . __('Slider', 'ilifautpl') . '">';
 echo '<div class="ilifautpl-hero-inner">';
-echo '<h2 class="screen-reader-text">' . __('Slider', 'ilifautpl') . '</h2>';
 echo '<div class="slick-slider">';
 
 $ilifautpl_meta = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
@@ -94,8 +93,8 @@ echo '</div>'; // Slick Slider
 // Arrow Nav
 $ilifautpl_slider_has_arrows = get_post_meta( get_the_ID(), '_ilifautpl_slider_has_arrows', true );
 if( (int)$ilifautpl_slider_has_arrows === 1 ) {
-    echo '<button class="ilifautpl-arrow prev"></button>';
-    echo '<button class="ilifautpl-arrow next"></button>';
+    echo '<button class="ilifautpl-arrow prev" aria-label="' . __('Previous') . '"></button>';
+    echo '<button class="ilifautpl-arrow next" aria-label="' . __('Next') . '"></button>';
 }
 
 echo '</div>'; // Hero Inner
