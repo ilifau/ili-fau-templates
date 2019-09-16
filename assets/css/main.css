@@ -27,6 +27,13 @@
     margin: 0 auto; }
   #ilifautpl-hero .slick-slider {
     position: relative; }
+    #ilifautpl-hero .slick-slider .slick-dots {
+      bottom: -30px; }
+      #ilifautpl-hero .slick-slider .slick-dots li {
+        width: 16px;
+        height: 16px; }
+      #ilifautpl-hero .slick-slider .slick-dots li button:before {
+        font-size: 10px; }
   #ilifautpl-hero .slick-slide {
     height: calc(75vh - 10em);
     min-height: 480px;
@@ -74,18 +81,21 @@
       font-size: 3.375em;
       letter-spacing: 1px;
       margin-left: 0;
-      line-height: 1.25;
-      text-shadow: 1px 1px 2px black; }
+      line-height: 1.1;
+      text-shadow: 1px 1px 2px black;
+      padding: 0 0; }
+      #ilifautpl-hero .ilifautpl-slider-content h3::after {
+        margin: .06125em 0; }
     #ilifautpl-hero .ilifautpl-slider-content p {
       display: block;
       color: #fff;
       margin-right: 1.5625em;
       font-size: 1.75em;
-      line-height: 1.5;
+      line-height: 1.33;
       text-shadow: 1px 1px 2px black; }
   #ilifautpl-hero .ilifautpl-arrow {
     position: absolute;
-    font-size: 16em;
+    font-size: 11em;
     top: calc(50% - .6125em);
     color: #fff;
     opacity: .45;
@@ -113,8 +123,6 @@
     padding: 0 0; }
     #ilifautpl-hero .ilifautpl-arrow.next::before {
       content: '\f105'; }
-  #ilifautpl-hero .slick-dots {
-    margin-bottom: .5em; }
 
 .ilifautpl-topic-boxes {
   display: -webkit-box;
@@ -209,17 +217,17 @@
     height: 40em;
     position: relative; } }
 @media screen and (min-width: 1200px) {
-  .ilifautpl-slider-content h3:not(.ilifautpl-no-border):after {
+  .ilifautpl-slider-content h3:not(.ilifautpl-no-border)::after {
     content: '';
     position: relative;
-    top: -3px;
+    top: 0;
     width: 0;
     height: 3px;
     display: block;
     background: white;
     transition: .2s ease-out;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
-  .ilifautpl-slider-content h3:hover:after {
+  .ilifautpl-slider-content h3:hover::after {
     width: 100%; } }
 @media screen and (max-width: 991px) {
   #ilifautpl-hero::after {
