@@ -103,10 +103,7 @@ $font_family_1: 'FontAwesome';
 			margin-left: 0;
 			line-height: 1.125;
 			text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
-			padding: 0 0;
-			&::after {
-				margin: .06125em 0;
-			}
+			padding: 0 0 .125em;
 		}
 		p {
 			display: block;
@@ -257,21 +254,22 @@ $font_family_1: 'FontAwesome';
 @media screen and (min-width: 1200px) {
     .ilifautpl-slider-content {
     	h3 {
-            &:not(.ilifautpl-no-border)::after {
-              content: '';
-              position: relative;
-              top: 0;
-              width: 0;
-              height: 3px;
-              display: block;
-              background: white;
-              transition: .2s ease-out;
-              box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
-            }
+				padding: 0 0;
+				&:not(.ilifautpl-no-border)::after {
+					content: '';
+					position: relative;
+					top: 0;
+					width: 0;
+					height: 3px;
+					display: block;
+					background: white;
+					transition: .2s ease-out;
+					box-shadow: 1px 1px 2px rgba(0, 0, 0, .5);
+				}
 
-            &:hover::after {
-              width: 100%;
-            }
+				&:hover::after {
+					width: 100%;
+				}
     	}
     }
 }
