@@ -27,6 +27,17 @@
     margin: 0 auto; }
   #ilifautpl-hero .slick-slider {
     position: relative; }
+    #ilifautpl-hero .slick-slider .ilifautpl-slide-overlay {
+      position: absolute;
+      z-index: 0;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%; }
+    #ilifautpl-hero .slick-slider .ilifautpl-slide-overlay--blue {
+      background: rgba(0, 51, 102, 0.3); }
+    #ilifautpl-hero .slick-slider .ilifautpl-slide-overlay--black {
+      background: rgba(0, 0, 0, 0.3); }
     #ilifautpl-hero .slick-slider .slick-dots {
       bottom: -30px; }
       #ilifautpl-hero .slick-slider .slick-dots li {

@@ -15,6 +15,8 @@ echo '<div class="ilifautpl-hero-inner">';
 echo '<div class="slick-slider">';
 
 $ilifautpl_meta = get_post_meta( get_the_ID(), '_ilifautpl_slides', true );
+$ilifautpl_order = array_column($ilifautpl_meta, 'order');
+array_multisort($ilifautpl_order, SORT_ASC, $ilifautpl_meta);
 
 function ilifautpl_show_fallback_title() {
     $ilifautpl_show_title = get_post_meta( get_the_ID(), '_ilifautpl_show_fallback_title', true );
@@ -42,7 +44,10 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
             $ilifautpl_headline = $slide['headline'];
             $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
 
-            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';    
+            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';
+                $ilifautpl_slider_overlay = get_post_meta( get_the_ID(), '_ilifautpl_slider_overlay', true );  
+                echo ( ! empty( $ilifautpl_slider_overlay ) && $ilifautpl_slider_overlay !== 'none' ) ? '<div class="ilifautpl-slide-overlay ilifautpl-slide-overlay--' . $ilifautpl_slider_overlay . '"></div>' : '';
+
                 echo '<div class="container">';
                     echo '<div class="row">';
                         echo '<div class="container ilifautpl-slider-content">';

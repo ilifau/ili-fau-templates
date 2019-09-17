@@ -13,8 +13,9 @@ jQuery(document).ready(function($) {
             var new_id = $('.ilifautpl-input-slide-wrapper:last').data('id') + 1;
 
             new_wrapper.attr('data-id', new_id);
-            new_wrapper.find('.ilifautpl-label').text('Slide ' + new_id);
+            new_wrapper.find('.ilifautpl-label').first().text('Slide ' + new_id);
             new_wrapper.find('input').val('');
+            new_wrapper.find('#ilifautpl-input-slide-orders').val(0);
             new_wrapper.find('select#ilifautpl-input-slide-positions').val('center center');
             new_wrapper.find('.ilifautpl-input-select-media').attr('data-id', new_id);
             new_wrapper.find('textarea').val('');
@@ -49,7 +50,6 @@ jQuery(document).ready(function($) {
 
         var image_frame;
         var id = $(this).data('id');
-        console.log(id);
         var that = $(this).closest('.ilifautpl-input-select-wrapper').find('.ilifautpl-input-select');
 
         if(image_frame) {
@@ -112,14 +112,12 @@ jQuery(document).ready(function($) {
 			dataType: 'json',
 			delay: 250,
 			data: function(params) {
-                console.log(params);
   				return {
     				q: params.term,
     				action: 'ilifautpl_get_posts'
   				};
 			},
 			processResults: function(data) {
-                console.log(data);
 				var posts = [];
 				if(data) {
                     $.each(data, function(index, value) {

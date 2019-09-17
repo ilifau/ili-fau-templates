@@ -66,6 +66,7 @@ class Meta {
 
             $id = ! empty( $slide['id'] ) ? $slide['id'] : '';
             $atts = fau_get_image_attributs( $id );
+            $order = isset( $slide['order'] ) ? $slide['order'] : 0;
             $position = isset( $slide['position'] ) ? $slide['position'] : 'center center';
             $url = $upload_dir['baseurl'] . '/' . $atts['attachment_file'];
             $link = isset( $slide['link'] ) ? $slide['link'] : '';
@@ -86,9 +87,12 @@ class Meta {
                 echo '<img class="ilifautpl-slide-preview" src="' . $placeholder . '" alt="" />';
             }
             
-            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="text" id="ilifautpl-input-slide-ids" name="ilifautpl-input-slide-ids[]" value="' . $id . '" placeholder="ID&hellip;">';
-            echo '<div class="ilifautpl-input-slide-id-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media" data-id="' . $slide_id . '">' . __('Bild auswählen', 'ili-fau-templates') . '</a><a class="button ilifautpl-remove-slide" data-placeholder="' . $placeholder . '">' . __('Löschen', 'ilifautpl') . '</a></div>';
-            echo '<select class="ilifautpl-input-slide-positions" id="ilifautpl-input-slide-positions" name="ilifautpl-input-slide-positions[]">';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide ilifautpl-input-select" type="hidden" id="ilifautpl-input-slide-ids" name="ilifautpl-input-slide-ids[]" value="' . $id . '" placeholder="ID&hellip;">';
+            echo '<div class="ilifautpl-input-slide-id-buttons"><a class="button ilifautpl-input-slide-media ilifautpl-input-select-media" data-id="' . $slide_id . '">' . __('Bild auswählen', 'ili-fau-templates') . '</a> <a class="button ilifautpl-remove-slide" data-placeholder="' . $placeholder . '">' . __('Löschen', 'ilifautpl') . '</a></div>';
+            echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-orders">Reihenfolge</label>';
+            echo '<input class="ilifautpl-input ilifautpl-input-order" type="text" id="ilifautpl-input-slide-orders" name="ilifautpl-input-slide-orders[]" value="' . $order . '" placeholder="0-9999&hellip;">';
+            echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-positions">Position (Layout)</label>';
+            echo '<select class="ilifautpl-input ilifautpl-input-slide-positions" id="ilifautpl-input-slide-positions" name="ilifautpl-input-slide-positions[]">';
             
             foreach( array(
                 0 => 'left top',
@@ -107,9 +111,12 @@ class Meta {
             }
                 
             echo '</select>';
+            echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-links">URL</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="url" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
+            echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-headlines">Überschrift</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
-            echo '<textarea class="ilifautpl-input ilifautpl-input-slide-subtitle[]" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" placeholder="Schlagzeile&hellip;" maxlength="256">' . $subtitle . '</textarea>';
+            echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-subtitle">Beschreibung</label>';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide-subtitle" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" value="' . $subtitle . '" placeholder="Schlagzeile&hellip;" maxlength="256">';
             echo '</div>';
         }
 
@@ -217,7 +224,7 @@ class Meta {
         
         // Fade
         $slider_fade = get_post_meta( get_the_ID(), '_ilifautpl_slider_fade', true);
-        if( $slider_fade === null || $slider_fade === '' ) { $slider_fade = 1; }
+        if( $slider_fade === null || $slider_fade === '' ) { $slider_fade = 0; }
 
         echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_fade">Animationstyp?</label>';
         echo '<select name="_ilifautpl_slider_fade" id="_ilifautpl_slider_fade">';
@@ -233,7 +240,7 @@ class Meta {
         
         // Skew
         $slider_skew = get_post_meta( get_the_ID(), '_ilifautpl_slider_skew', true);
-        if( $slider_skew === null || $slider_skew === '' ) { $slider_skew = 1; }
+        if( $slider_skew === null || $slider_skew === '' ) { $slider_skew = 0; }
 
         echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_skew">Slider mit Schräge anzeigen?</label>';
         echo '<select name="_ilifautpl_slider_skew" id="_ilifautpl_slider_skew">';
@@ -243,6 +250,23 @@ class Meta {
             ) as $key => $val ) {
                 ?><option value="<?php echo $key; ?>"<?php
                     if( $key === (int)$slider_skew ) echo ' selected="selected"';
+                ?>><?php echo $val; ?></option><?php
+            }
+        echo '</select>';
+
+        // Overlay
+        $slider_overlay = get_post_meta( get_the_ID(), '_ilifautpl_slider_overlay', true);
+        if( ! $slider_overlay || $slider_overlay === null || $slider_overlay === '' ) { $slider_overlay = 'none'; }
+
+        echo '<br><br><label class="ilifautpl-label" for="_ilifautpl_slider_overlay">Overlay anzeigen (bessere Lesbarkeit)?</label>';
+        echo '<select name="_ilifautpl_slider_overlay" id="_ilifautpl_slider_overlay">';
+            foreach( array(
+                'none' => 'Nein, kein Overlay.',
+                'blue' => 'Blaues Overlay',
+                'black' => 'Schwarzes Overlay',
+            ) as $key => $val ) {
+                ?><option value="<?php echo $key; ?>"<?php
+                    if( $key === $slider_overlay ) echo ' selected="selected"';
                 ?>><?php echo $val; ?></option><?php
             }
         echo '</select>';
@@ -363,6 +387,7 @@ class Meta {
         // Sanitize user input.
         $ids = $_POST['ilifautpl-input-slide-ids'];
         $positions = $_POST['ilifautpl-input-slide-positions'];
+        $orders = $_POST['ilifautpl-input-slide-orders'];
         $links = $_POST['ilifautpl-input-slide-links'];
         $headlines = $_POST['ilifautpl-input-slide-headlines'];
         $subtitles = $_POST['ilifautpl-input-slide-subtitles'];
@@ -375,6 +400,7 @@ class Meta {
             
             array_push( $slides, array(
                 'id' => absint( $id ),
+                'order' => isset( $orders[$key] ) ? absint( $orders[$key] ) : 0,
                 'position' => isset( $positions[$key] ) ? sanitize_text_field( $positions[$key] ) : 'center center',
                 'url' => esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ),
                 'link' => isset( $links[$key] ) && filter_var( $links[$key], FILTER_VALIDATE_URL ) ? $links[$key] : '',
@@ -394,6 +420,7 @@ class Meta {
         $slider_has_arrows = (int)$_POST['_ilifautpl_slider_has_arrows'];
         $slider_fade = (int)$_POST['_ilifautpl_slider_fade'];
         $slider_skew = (int)$_POST['_ilifautpl_slider_skew'];
+        $slider_overlay = sanitize_text_field( $_POST['_ilifautpl_slider_overlay'] );
         $read_more = (int)$_POST['_ilifautpl_show_topic_boxes_read_more'];
         $fallback_title = (int)$_POST['_ilifautpl_show_fallback_title'];
         $has_blogroll = (int)$_POST['_ilifautpl_has_blogroll'];
@@ -407,6 +434,7 @@ class Meta {
         update_post_meta( $post_id, '_ilifautpl_slider_has_arrows', $slider_has_arrows );
         update_post_meta( $post_id, '_ilifautpl_slider_fade', $slider_fade );
         update_post_meta( $post_id, '_ilifautpl_slider_skew', $slider_skew );
+        update_post_meta( $post_id, '_ilifautpl_slider_overlay', $slider_overlay );
         update_post_meta( $post_id, '_ilifautpl_show_topic_boxes_read_more', $read_more );
         update_post_meta( $post_id, '_ilifautpl_show_fallback_title', $fallback_title );
         update_post_meta( $post_id, '_ilifautpl_has_blogroll', $has_blogroll );

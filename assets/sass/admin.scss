@@ -3,12 +3,12 @@ p.submit {
 }
 .ilifautpl-label {
 	display: block;
-	margin-bottom: .5em;
+	margin-bottom: .25em;
 }
 .ilifautpl-input {
 	display: block;
 	width: 100%;
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 	padding: 5px !important;
 	position: relative;
 	top: -1px;
@@ -20,6 +20,7 @@ p.submit {
 	display: inline-block;
 	vertical-align: middle;
 }
+.ilifautpl-input-slide-id-buttons,
 .ilifautpl-input-slide-url-buttons {
 	display: block;
 	margin-bottom: 1em;
@@ -28,12 +29,6 @@ p.submit {
 	display: inline-block;
 	vertical-align: middle;
 }
-.ilifautpl-input-slide-id-buttons {
-    margin-bottom: 1em;
-}
-.ilifautpl-input-slide-position {
-	margin-bottom: 1em;
-}
 .ilifautpl-remove-slide {
 	display: inline-block;
 	vertical-align: middle;
@@ -41,7 +36,7 @@ p.submit {
 .ilifautpl-slide-preview {
     height: 80px;
     max-width: 240px;
-    margin-bottom: .25em;
+    margin-bottom: .75em;
 }
 .ms-container {
 	width: 100% !important;
