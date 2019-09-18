@@ -356,21 +356,24 @@ $font_family_1: 'FontAwesome';
 	}
 }
 @media screen and (max-width: 640px) {
-    .ilifautpl-slider-content {
-		h3 {
-			font-size: 1.5625em;
+	#ilifautpl-hero {
+		.ilifautpl-slider-content {
+			h3 {
+				font-size: 1.5625em;
+			}
+			p {
+				font-size: 1.125em;
+			}
 		}
-		p {
-			font-size: 1.125em;
-		}
-	}
-	.ilifautpl-arrow {
-		em {
-			display: none;
+		.ilifautpl-arrow {
+			em {
+				display: none;
+			}
 		}
 	}
 }
 @media screen and (max-width: 639px) {
+	#ilifautpl-hero {
     .ilifautpl-slider-content {
 		h3 {
 			font-size: 2em;
@@ -383,15 +386,18 @@ $font_family_1: 'FontAwesome';
         .ilifautpl-slide-credits {
             font-size: 0.625em;
         }
-    }
+		}
+	}
 }
 @media screen and (max-width: 360px) {
+	#ilifautpl-hero {
     .ilifautpl-slider-content {
-		h3 {
-			font-size: 1.625em;
-		}
-		p {
-			font-size: .9375em;
+			h3 {
+				font-size: 1.625em;
+			}
+			p {
+				font-size: .9375em;
+			}
 		}
 	}
 }
