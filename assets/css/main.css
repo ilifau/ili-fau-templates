@@ -276,12 +276,15 @@
     #ilifautpl-hero .slick-slide {
       height: 50vh;
       min-height: 15em; }
-    #ilifautpl-hero .ilifautpl-slider-content h3 {
-      font-size: 2.5em; }
-      #ilifautpl-hero .ilifautpl-slider-content h3:after {
-        top: -0.125em; }
-    #ilifautpl-hero .ilifautpl-slider-content p {
-      font-size: 1.25em; } }
+    #ilifautpl-hero .ilifautpl-slider-content {
+      width: 100%;
+      text-align: center; }
+      #ilifautpl-hero .ilifautpl-slider-content h3 {
+        font-size: 2.5em; }
+        #ilifautpl-hero .ilifautpl-slider-content h3:after {
+          top: -0.125em; }
+      #ilifautpl-hero .ilifautpl-slider-content p {
+        font-size: 1.25em; } }
 @media screen and (max-width: 640px) {
   #ilifautpl-hero .ilifautpl-slider-content h3 {
     font-size: 1.5625em; }
