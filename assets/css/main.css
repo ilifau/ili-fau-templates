@@ -280,10 +280,12 @@
       width: 100%;
       text-align: center; }
       #ilifautpl-hero .ilifautpl-slider-content h3 {
-        font-size: 2.5em; }
+        font-size: 2.5em;
+        margin-right: 0; }
         #ilifautpl-hero .ilifautpl-slider-content h3:after {
           top: -0.125em; }
       #ilifautpl-hero .ilifautpl-slider-content p {
+        margin-right: 0;
         font-size: 1.25em; } }
 @media screen and (max-width: 640px) {
   #ilifautpl-hero .ilifautpl-slider-content h3 {
