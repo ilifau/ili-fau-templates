@@ -47,6 +47,17 @@ class Meta {
                     array($this, 'landing_page_slider_options_callback'),
                     $screen
                 );
+
+                if (get_theme_mod('advanced_topevent') == true) {
+                    add_meta_box(
+                        'fau_metabox_post_topevent', 
+                        esc_html__('Top-Event', 'fau'), 
+                        'fau_do_metabox_post_topevent', 
+                        $screens,
+                        'normal',
+                        'high'
+                    );
+                }
             }
         }
     }
