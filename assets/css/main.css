@@ -115,11 +115,11 @@
     #ilifautpl-hero .ilifautpl-arrow:hover {
       color: #fff;
       outline: none;
-      opacity: .9; }
-    #ilifautpl-hero .ilifautpl-arrow:focus {
+      opacity: .45; }
+    #ilifautpl-hero .ilifautpl-arrow:focus, #ilifautpl-hero .ilifautpl-arrow:active, #ilifautpl-hero .ilifautpl-arrow:visited {
       color: #fff;
       outline: none;
-      opacity: .9; }
+      opacity: .45; }
   #ilifautpl-hero .ilifautpl-arrow.prev {
     position: absolute;
     left: .125em;
@@ -132,6 +132,11 @@
     padding: 0 0; }
     #ilifautpl-hero .ilifautpl-arrow.next::before {
       content: '\f105'; }
+
+#ilifautpl-hero.no-touch .ilifautpl-arrow {
+  display: none; }
+  #ilifautpl-hero.no-touch .ilifautpl-arrow:hover {
+    opacity: .9; }
 
 .ilifautpl-topic-boxes {
   display: -webkit-box;

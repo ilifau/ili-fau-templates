@@ -1,6 +1,6 @@
-// Main JS – loaded on pages with slider
-// or topic boxes shortcode
+// Main JS – loaded on pages with slider or topic boxes shortcode
 jQuery(document).ready(function($) {
+    // Slick Slider
     var slider = $('.slick-slider');
     if(typeof slider.slick === 'function') {
         $('.slick-slider').slick({
@@ -19,5 +19,10 @@ jQuery(document).ready(function($) {
             prevArrow: $('.ilifautpl-arrow.prev'),
             nextArrow: $('.ilifautpl-arrow.next'),
         });
+    }
+
+    // Add no-hover class
+    if (!('ontouchstart' in window || navigator.msMaxTouchPoints)) {
+        $('#ilifautpl-hero').addClass('no-touch');
     }
 });

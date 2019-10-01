@@ -141,12 +141,12 @@ $font_family_1: 'FontAwesome';
 		&:hover {
 			color: $color_1;
 			outline: none;
-			opacity: .9;
+			opacity: .45;
 		}
-		&:focus {
+		&:focus, &:active, &:visited {
 			color: $color_1;
 			outline: none;
-			opacity: .9;
+			opacity: .45;
 		}
 	}
 	.ilifautpl-arrow.prev {
@@ -164,6 +164,12 @@ $font_family_1: 'FontAwesome';
 		&::before {
 			content: '\f105';
 		}
+	}
+}
+#ilifautpl-hero.no-touch .ilifautpl-arrow {
+	display: none;
+	&:hover {
+		opacity: .9;
 	}
 }
 .ilifautpl-topic-boxes {
