@@ -43,8 +43,9 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
             $link_html = ! empty( $slide['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
             $ilifautpl_headline = $slide['headline'];
             $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
+            $ilifautpl_slide_url = wp_get_attachment_image_src( $slide['id'], 'ilifautpl-slide' );
 
-            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';
+            echo '<div class="slick-slide" style="background: #f1f1f1 url(' . esc_url( $ilifautpl_slide_url[0] ) . ') ' . $ilifautpl_meta[$key]['position'] . '">';
                 $ilifautpl_slider_overlay = get_post_meta( get_the_ID(), '_ilifautpl_slider_overlay', true );  
                 echo ( ! empty( $ilifautpl_slider_overlay ) && $ilifautpl_slider_overlay !== 'none' ) ? '<div class="ilifautpl-slide-overlay ilifautpl-slide-overlay--' . $ilifautpl_slider_overlay . '"></div>' : '';
 
