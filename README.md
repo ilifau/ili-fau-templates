@@ -3,7 +3,7 @@
 Landing Pages
 =============
 
-Version 0.0.5
+Version 0.0.6
 
 ***Das Plugin befindet sich derzeit In Entwicklung.*** Die hier angezeigten Informationen sind vorläufig.
 
