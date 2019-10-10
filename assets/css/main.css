@@ -292,6 +292,7 @@
           top: -0.125em; }
       #ilifautpl-hero .ilifautpl-slider-content p {
         margin-right: 0;
+        margin-top: .375em;
         font-size: 1.25em; } }
 @media screen and (max-width: 640px) {
   #ilifautpl-hero .ilifautpl-slider-content h3 {
