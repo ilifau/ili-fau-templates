@@ -145,4 +145,4 @@ get_header();
 	</div> <!-- /content -->
 <?php get_template_part('template-parts/footer', 'social'); ?>	
 <?php 
-get_footer(); 
+get_footer();
