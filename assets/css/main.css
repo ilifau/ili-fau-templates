@@ -287,7 +287,8 @@
       text-align: center; }
       #ilifautpl-hero .ilifautpl-slider-content h3 {
         font-size: 2.5em;
-        margin-right: 0; }
+        margin-right: 0;
+        line-height: 1.2; }
         #ilifautpl-hero .ilifautpl-slider-content h3:after {
           top: -0.125em; }
       #ilifautpl-hero .ilifautpl-slider-content p {
