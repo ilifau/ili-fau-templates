@@ -273,6 +273,8 @@ class Meta {
         echo '<select name="_ilifautpl_slider_overlay" id="_ilifautpl_slider_overlay">';
             foreach( array(
                 'none' => 'Nein, kein Overlay.',
+                'blue-gradient' => 'Blau (Farbverlauf)',
+                'black-gradient' => 'Schwarz (Farbverlauf)',
                 'blue' => 'Blaues Overlay',
                 'black' => 'Schwarzes Overlay',
             ) as $key => $val ) {
