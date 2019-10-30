@@ -40,7 +40,6 @@ jQuery(document).ready(function($) {
         $('.ilifautpl-input-slide-wrapper').each(function(index, slide) {
             var id = index + 1;
             $(slide).attr('data-id', id);
-            $(slide).find('.ilifautpl-label').text('Slide ' + id);
         });
     });
     

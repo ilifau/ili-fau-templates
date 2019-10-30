@@ -362,7 +362,7 @@ class Meta {
             $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'medium', false, array( 'id' => 'ilifautpl-slide-preview' ) );
             
             $data = array(
-                'image'    => $image,
+                'image' => $image,
             );
             
             wp_send_json_success( $data );

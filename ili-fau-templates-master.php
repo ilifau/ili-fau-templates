@@ -77,8 +77,21 @@ function load_textdomain() {
  * @return void
  */
 function add_image_sizes() {
-    add_image_size( 'ilifautpl-slide', 1920, 1080, true );
-    add_image_size( 'ilifautpl-topic-box', 800, 450, true);
+    add_image_size( 'ilifautpl-1920', 1920, 1080 );
+    add_image_size( 'ilifautpl-1600', 1600, 900 );
+    add_image_size( 'ilifautpl-1366', 1366, 768 );
+    add_image_size( 'ilifautpl-1024', 1024, 768 );
+    add_image_size( 'ilifautpl-800', 800, 480 );
+    add_image_size( 'ilifautpl-640', 640, 360 );
+
+    add_image_size( 'ilifautpl-1920-portrait', 1080, 1920, true, array('center', 'top') );
+    add_image_size( 'ilifautpl-1600-portrait', 900, 1600, true, array('center', 'top') );
+    add_image_size( 'ilifautpl-1366-portrait', 768, 1366, true, array('center', 'top') );
+    add_image_size( 'ilifautpl-1024-portrait', 768, 1024, true, array('center', 'top') );
+    add_image_size( 'ilifautpl-800-portrait', 480, 800, true, array('center', 'top') );
+    add_image_size( 'ilifautpl-640-portrait', 360, 640, true, array('center', 'top') );
+
+    add_image_size( 'ilifautpl-topic-box', 480, 480, array('center', 'top') );
 }
 
 /*
@@ -107,7 +120,21 @@ function deactivation() {
     // Bspw. wp_clear_scheduled_hook, flush_rewrite_rules, etc.
     
     // Bildgröße für Slides entfernen
-    remove_image_size( 'ilifautpl-slide' );
+    // Landscape
+    remove_image_size( 'ilifautpl-1920' );
+    remove_image_size( 'ilifautpl-1600' );
+    remove_image_size( 'ilifautpl-1366' );
+    remove_image_size( 'ilifautpl-1024' );
+    remove_image_size( 'ilifautpl-800' );
+    remove_image_size( 'ilifautpl-640' );
+
+    remove_image_size( 'ilifautpl-1920-portrait' );
+    remove_image_size( 'ilifautpl-1600-portrait' );
+    remove_image_size( 'ilifautpl-1366-portrait' );
+    remove_image_size( 'ilifautpl-1024-portrait' );
+    remove_image_size( 'ilifautpl-800-portrait' );
+    remove_image_size( 'ilifautpl-640-portrait' );
+
     remove_image_size( 'ilifautpl-topic-box' );
 }
 
