@@ -91,7 +91,7 @@ function add_image_sizes() {
     add_image_size( 'ilifautpl-800-portrait', 480, 800, true, array('center', 'top') );
     add_image_size( 'ilifautpl-640-portrait', 360, 640, true, array('center', 'top') );
 
-    add_image_size( 'ilifautpl-topic-box', 480, 480, array('center', 'top') );
+    add_image_size( 'ilifautpl-topic-box', 480, 480, array('center', 'center') );
 }
 
 /*
