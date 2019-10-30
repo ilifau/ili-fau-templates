@@ -55,7 +55,7 @@ function ilifautpl_get_slide_style( $slideID, $position = '' ) {
     }
 
     #ilifautpl-hero .slick-slide-' . $slideID . ' {
-        ' . $position . '
+        background-position: ' . $position . ';
     }
 
     @media screen and (orientation: landscape) and (min-width: 1601px) {
