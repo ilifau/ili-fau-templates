@@ -109,7 +109,7 @@
   #ilifautpl-hero .ilifautpl-arrow {
     position: absolute;
     font-size: 11em;
-    top: calc(50% - .6125em);
+    top: 50%;
     color: #fff;
     opacity: .45;
     transition: opacity .2s ease-in;
@@ -129,7 +129,8 @@
     left: .125em;
     padding: 0 0; }
     #ilifautpl-hero .ilifautpl-arrow.prev::before {
-      content: '\f104'; }
+      content: '\f104';
+      position: relative; }
   #ilifautpl-hero .ilifautpl-arrow.next {
     position: absolute;
     right: .125em;
@@ -255,8 +256,7 @@
     margin-top: 2.5em;
     transform: skewY(-2deg); }
   #ilifautpl-hero .ilifautpl-arrow {
-    font-size: 6.25em;
-    top: calc(50% - .5em); }
+    font-size: 6.25em; }
 
   .ilifautpl-slider-content h3 {
     font-size: 2.875em; }
