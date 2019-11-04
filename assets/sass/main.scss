@@ -137,7 +137,8 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-arrow {
 		position: absolute;
 		font-size: 11em;
-		top: 49%;
+		top: calc(51% - .5em);
+		height: 1em;
 		color: $color_1;
 		opacity: .45;
 		transition: opacity .2s ease-in;
@@ -310,7 +311,6 @@ $font_family_1: 'FontAwesome';
 		}
 		.ilifautpl-arrow {
 			font-size: 6.25em;
-			top: 47%;
 		}
 	}
     .ilifautpl-slider-content {

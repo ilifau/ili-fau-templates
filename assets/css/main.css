@@ -109,7 +109,8 @@
   #ilifautpl-hero .ilifautpl-arrow {
     position: absolute;
     font-size: 11em;
-    top: 49%;
+    top: calc(51% - .5em);
+    height: 1em;
     color: #fff;
     opacity: .45;
     transition: opacity .2s ease-in;
@@ -256,8 +257,7 @@
     margin-top: 2.5em;
     transform: skewY(-2deg); }
   #ilifautpl-hero .ilifautpl-arrow {
-    font-size: 6.25em;
-    top: 47%; }
+    font-size: 6.25em; }
 
   .ilifautpl-slider-content h3 {
     font-size: 2.875em; }
