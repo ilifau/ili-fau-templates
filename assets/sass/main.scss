@@ -137,7 +137,7 @@ $font_family_1: 'FontAwesome';
 	.ilifautpl-arrow {
 		position: absolute;
 		font-size: 11em;
-		top: 50%;
+		top: 49%;
 		color: $color_1;
 		opacity: .45;
 		transition: opacity .2s ease-in;
@@ -155,21 +155,22 @@ $font_family_1: 'FontAwesome';
 			opacity: .45;
 		}
 	}
-	.ilifautpl-arrow.prev {
+	.ilifautpl-arrow {
 		position: absolute;
-		left: .125em;
 		padding: 0 0;
+	}
+	.ilifautpl-arrow.prev {
+		left: .125em;
 		&::before {
 			content: '\f104';
 			position: relative;
 		}
 	}
 	.ilifautpl-arrow.next {
-		position: absolute;
 		right: .125em;
-		padding: 0 0;
 		&::before {
 			content: '\f105';
+			position: relative;
 		}
 	}
 }
@@ -309,6 +310,7 @@ $font_family_1: 'FontAwesome';
 		}
 		.ilifautpl-arrow {
 			font-size: 6.25em;
+			top: 47%;
 		}
 	}
     .ilifautpl-slider-content {
