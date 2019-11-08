@@ -99,7 +99,10 @@
       line-height: 1.125;
       text-shadow: 0 1px 2px black;
       padding: 0 0 .125em;
-      hyphens: none; }
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      hyphens: auto; }
     #ilifautpl-hero .ilifautpl-slider-content p {
       display: block;
       color: #fff;

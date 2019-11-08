@@ -124,7 +124,10 @@ $font_family_1: 'FontAwesome';
 			line-height: 1.125;
 			text-shadow: 0 1px 2px rgba(0, 0, 0, 1);
 			padding: 0 0 .125em;
-			hyphens: none;
+			-webkit-hyphens: auto;
+     	-moz-hyphens: auto;
+      -ms-hyphens: auto;
+			hyphens: auto;
 		}
 		p {
 			display: block;
