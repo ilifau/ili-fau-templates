@@ -23,9 +23,9 @@ function ilifautpl_show_fallback_title() {
     if( $ilifautpl_show_title !== '0' ) {
         echo '<div class="container">';
             echo '<div class="row">';
-                echo '<div class="container ilifautpl-slider-content">';
-                        echo '<h3 class="ilifautpl-no-border">' . get_the_title( get_the_ID() ) . '</h3>';
-                echo '</div>';
+                    echo '<div class="ilifautpl-slider-content"><div>';
+                            echo '<h3 class="ilifautpl-no-border">' . get_the_title( get_the_ID() ) . '</h3>';
+                    echo '</div></div>';
             echo '</div>';
         echo '</div>';
     }
@@ -134,8 +134,10 @@ function ilifautpl_get_slide_style( $slideID, $position = '' ) {
 
     </style>';
 
-    return $style;
+    echo $style;
 }
+
+add_action('wp_head', 'ilifautpl_get_slide_style');
 
 $ilifautpl_has_thumb = has_post_thumbnail( get_the_ID() );
 $ilifautpl_has_slides = is_array( $ilifautpl_meta ) && ! empty( $ilifautpl_meta ) && ! empty( $ilifautpl_meta[0]['id'] );
@@ -158,17 +160,17 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
 
                 echo '<div class="container">';
                     echo '<div class="row">';
-                        echo '<div class="container ilifautpl-slider-content">';
+                        echo '<div class="ilifautpl-slider-content"><div>';
                             echo '<a href="' . $slide['link'] . '">';
                                 if( ! empty( $ilifautpl_headline ) )
                                     echo '<h3>' . $ilifautpl_headline . '</h3>';
                                 
                                 if( ! empty( $slide['subtitle'] ) )
-                                    echo '<p><a href="' . $slide['link'] . '">' . $slide['subtitle'] . '</a></p>';
+                                    echo '<p>' . $slide['subtitle'] . '</p>';
                             
                             // echo '<p>' . $slide['subtitle'] . '<span class="ilifautpl-slide-read-more">' . $link_html . '</span></p>';
                             echo '</a>';
-                        echo '</div>';
+                        echo '</div></div>';
                     echo '</div>';
                 echo '</div>';
                 

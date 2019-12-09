@@ -7,6 +7,9 @@
   position: relative;
   background: #fff;
   margin: 0 0 2em; }
+  #ilifautpl-hero .row,
+  #ilifautpl-hero .container {
+    height: 100%; }
   #ilifautpl-hero::after {
     content: '';
     width: 100%;
@@ -81,9 +84,16 @@
         margin-right: .25em; }
   #ilifautpl-hero .ilifautpl-slider-content {
     box-sizing: border-box;
-    position: absolute;
-    bottom: 3.25em;
-    margin-bottom: 1em; }
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 3em;
+    width: calc(100% - 30px);
+    height: 100%;
+    margin: 0 15px;
+    position: relative;
+    z-index: 1; }
     #ilifautpl-hero .ilifautpl-slider-content a,
     #ilifautpl-hero .ilifautpl-slider-content a:hover,
     #ilifautpl-hero .ilifautpl-slider-content a:active,
@@ -93,23 +103,28 @@
     #ilifautpl-hero .ilifautpl-slider-content h3 {
       display: block;
       color: #fff;
-      font-size: 3.375em;
+      font-size: 3.5rem;
       letter-spacing: 1px;
       margin-left: 0;
+      margin-right: 0;
       line-height: 1.125;
       text-shadow: 0 1px 2px black;
       padding: 0 0 .125em;
-      -webkit-hyphens: none;
-      -moz-hyphens: none;
-      -ms-hyphens: none;
-      hyphens: none; }
+      transform: scale(1);
+      transition: transform .75s ease-in-out;
+      -webkit-hyphens: manual;
+      -moz-hyphens: manual;
+      -ms-hyphens: manual;
+      hyphens: manual; }
+      #ilifautpl-hero .ilifautpl-slider-content h3:hover {
+        transform: scale(1.025); }
     #ilifautpl-hero .ilifautpl-slider-content p {
       display: block;
       color: #fff;
-      margin-right: 1.5625em;
       font-size: 1.75em;
       line-height: 1.33;
-      text-shadow: 0 1px 2px black; }
+      text-shadow: 0 1px 2px black;
+      padding: 0 1em; }
   #ilifautpl-hero .ilifautpl-arrow {
     position: absolute;
     font-size: 11em;
@@ -163,7 +178,8 @@
   -o-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-left: -1em;
-  margin-right: -1em; }
+  margin-right: -1em;
+  justify-content: center; }
 
 .ilifautpl-topic-box {
   transition: all .3s ease-out;
@@ -240,21 +256,6 @@
   #ilifautpl-hero .slick-slide {
     height: 40em;
     position: relative; } }
-@media screen and (min-width: 1200px) {
-  .ilifautpl-slider-content h3 {
-    padding: 0 0; }
-    .ilifautpl-slider-content h3:not(.ilifautpl-no-border)::after {
-      content: '';
-      position: relative;
-      top: 0;
-      width: 0;
-      height: 3px;
-      display: block;
-      background: white;
-      transition: .2s ease-out;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); }
-    .ilifautpl-slider-content h3:hover::after {
-      width: 100%; } }
 @media screen and (max-width: 991px) {
   #ilifautpl-hero::after {
     height: 7.5em;
@@ -262,19 +263,25 @@
     transform: skewY(-2deg); }
   #ilifautpl-hero .ilifautpl-arrow {
     font-size: 6.25em; }
-
-  .ilifautpl-slider-content h3 {
+  #ilifautpl-hero .ilifautpl-slider-content h3 {
     font-size: 2.875em; }
-  .ilifautpl-slider-content p {
+  #ilifautpl-hero .ilifautpl-slider-content p {
     font-size: 1.4375em; }
 
   .ilifautpl-slider-fallback {
     margin-top: 1.5em; } }
 @media screen and (min-width: 1920px) {
-  .ilifautpl-slider-content h3 {
+  #ilifautpl-hero .ilifautpl-slider-content h3 {
     font-size: 3.75em; }
-  .ilifautpl-slider-content p {
+  #ilifautpl-hero .ilifautpl-slider-content p {
     font-size: 2em; } }
+@media screen and (max-width: 1024px) {
+  .ilifautpl-slider-content h3 {
+    font-size: 2.5em;
+    line-height: 1.2; }
+  .ilifautpl-slider-content p {
+    margin-top: .375em;
+    font-size: 1.375em; } }
 @media screen and (max-width: 768px) {
   .ilifautpl-slider-fallback {
     margin-top: 0; } }
@@ -285,44 +292,36 @@
 @media screen and (max-width: 767px) {
   #ilifautpl-hero {
     margin-bottom: 3em; }
+    #ilifautpl-hero .ilifautpl-slider-content {
+      padding: 0 3.5em 3em 3.5em; }
+      #ilifautpl-hero .ilifautpl-slider-content h3 {
+        font-size: 2.25em; }
+      #ilifautpl-hero .ilifautpl-slider-content p {
+        padding: 0 0; }
     #ilifautpl-hero::after {
       display: none; }
     #ilifautpl-hero .slick-slide {
       height: 50vh;
-      min-height: 15em; }
-    #ilifautpl-hero .ilifautpl-slider-content {
-      width: 80%;
-      left: 10%;
-      text-align: center; }
-      #ilifautpl-hero .ilifautpl-slider-content h3 {
-        font-size: 2.5em;
-        margin-right: 0;
-        line-height: 1.2; }
-        #ilifautpl-hero .ilifautpl-slider-content h3:after {
-          top: -0.125em; }
-      #ilifautpl-hero .ilifautpl-slider-content p {
-        margin-right: 0;
-        margin-top: .375em;
-        font-size: 1.25em; } }
+      min-height: 15em; } }
 @media screen and (max-width: 640px) {
-  #ilifautpl-hero .ilifautpl-slider-content h3 {
-    font-size: 1.5625em; }
-  #ilifautpl-hero .ilifautpl-slider-content p {
-    font-size: 1.125em; }
-  #ilifautpl-hero .ilifautpl-arrow em {
-    display: none; } }
-@media screen and (max-width: 639px) {
   #ilifautpl-hero .ilifautpl-slider-content h3 {
     font-size: 2em; }
   #ilifautpl-hero .ilifautpl-slider-content p {
-    font-size: 1em; }
+    font-size: 1.25em; }
   #ilifautpl-hero .slick-slide .ilifautpl-slide-credits {
     font-size: 0.625em; } }
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 479px) {
+  #ilifautpl-hero .ilifautpl-slider-content {
+    padding: 0 2em 3em 2em; }
+    #ilifautpl-hero .ilifautpl-slider-content h3 {
+      font-size: 1.75em; }
+    #ilifautpl-hero .ilifautpl-slider-content p {
+      font-size: 1.125em; } }
+@media screen and (max-width: 380px) {
   #ilifautpl-hero .ilifautpl-slider-content h3 {
-    font-size: 1.625em; }
+    font-size: 1.5em; }
   #ilifautpl-hero .ilifautpl-slider-content p {
-    font-size: .9375em; } }
+    font-size: 1em; } }
 /* Topic Boxes Responsive */
 @media screen and (min-width: 992px) {
   .ilifautpl-topic-box {
@@ -348,7 +347,7 @@
     /* IE 10 */
     flex: 0 1 50%;
     max-width: 50%; } }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 540px) {
   .ilifautpl-topic-box {
     -webkit-box-flex: 0 1 100%;
     /* OLD - iOS 6-, Safari 3.1-6 */
@@ -359,4 +358,7 @@
     -ms-flex: 0 1 100%;
     /* IE 10 */
     flex: 0 1 100%;
+    max-width: 360px; } }
+@media screen and (max-width: 360px) {
+  .ilifautpl-topic-box {
     max-width: 100%; } }

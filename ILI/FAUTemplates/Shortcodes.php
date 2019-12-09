@@ -80,19 +80,11 @@ class Shortcodes {
                     $topic_box_excerpt = $box->post_content;
                 }
                 
-                $html .= '<div class="ilifautpl-topic-box" id="ilifautpl-topic-box-' . $key  . '">';
+                $html .= '<div class="ilifautpl-topic-box" id="ilifautpl-topic-box-' . $key  . '" itemtype="http://schema.org/WebPage" itemscope>';
                     $html .= '<div aria-hidden="true" role="presentation" tabindex="-1" class="passpartout" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">';
                         $html .= '<meta itemprop="url" content="' . get_the_post_thumbnail_url( $box->ID, 'ilifautpl-topic-box' ) . '">';
                         $html .= '<a class="ilifautpl-topic-box-image" href="' . $topic_box_url . '" style="background:url(' . get_the_post_thumbnail_url( $box->ID, 'ilifautpl-topic-box') . ')">';
-                            $html .= '<h3 itemprop="title" class="ilifautpl-topic-box-title"><div class="ilifautpl-h3-layer"></div><div class="ilifautpl-topic-box-title-text">' . $box->post_title . '</div></h3>';
-                            // $html .= get_the_post_thumbnail(
-                            //     $box->ID,
-                            //     'ilifautpl-topic-box',
-                            //     array(
-                            //         'class' => 'ilifautpl-topic-box-image',
-                            //         'itemprop' => 'thumbnailUrl',
-                            //     )
-                            // );
+                            $html .= '<h3 itemprop="title" class="ilifautpl-topic-box-title"><span class="ilifautpl-h3-layer"></span><span class="ilifautpl-topic-box-title-text">' . $box->post_title . '</span></h3>';
                         $html .= '</a>';
                     $html .= '</div>';
                     $html .= '<p itemprop="description">' . $topic_box_excerpt;

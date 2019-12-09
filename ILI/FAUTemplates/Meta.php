@@ -125,7 +125,7 @@ class Meta {
             echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-links">URL</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-link" type="url" id="ilifautpl-input-slide-links" name="ilifautpl-input-slide-links[]" value="' . $link . '" placeholder="Link&hellip;">';
             echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-headlines">Überschrift</label>';
-            echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . $headline . '" placeholder="Überschrift&hellip;" maxlength="64">';
+            echo '<input class="ilifautpl-input ilifautpl-input-slide-headline" type="text" id="ilifautpl-input-slide-headlines" name="ilifautpl-input-slide-headlines[]" value="' . wp_kses($headline, array('&shy;', '&nbsp;')) . '" placeholder="Überschrift&hellip;" maxlength="64">';
             echo '<label class="ilifautpl-label" for="ilifautpl-input-slide-subtitle">Beschreibung</label>';
             echo '<input class="ilifautpl-input ilifautpl-input-slide-subtitle" id="ilifautpl-input-slide-subtitles" name="ilifautpl-input-slide-subtitles[]" value="' . $subtitle . '" placeholder="Schlagzeile&hellip;" maxlength="256">';
             echo '</div>';
@@ -417,8 +417,8 @@ class Meta {
                 'position' => isset( $positions[$key] ) ? sanitize_text_field( $positions[$key] ) : 'center center',
                 'url' => esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ),
                 'link' => isset( $links[$key] ) && filter_var( $links[$key], FILTER_VALIDATE_URL ) ? $links[$key] : '',
-                'headline' => isset( $headlines[$key] ) ? sanitize_text_field( $headlines[$key] ) : '',
-                'subtitle' => isset( $subtitles[$key] ) ? sanitize_text_field( $subtitles[$key] ) : '',
+                'headline' => isset( $headlines[$key] ) ? wp_kses( $headlines[$key], ['&shy;', '&nbsp;'] ) : '',
+                'subtitle' => isset( $subtitles[$key] ) ? wp_kses( $subtitles[$key], ['&shy;', '&nbsp;'] ) : '',
             ) );
         }
 
