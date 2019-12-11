@@ -260,8 +260,8 @@ $font_family_1: 'FontAwesome';
 		display: block;
 		height: 0;
 		padding-bottom: 125%;
-		background-size: cover !important;
-		background-position: top center !important;
+		background-size: cover;
+		background-position: top center;
 		transition: all .4s ease;
 	}
 	&::after {
