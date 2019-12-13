@@ -18,27 +18,31 @@ get_header();
     
 	<div id="content">
 		<div class="container">
-			<?php  echo fau_get_ad('werbebanner_seitlich',false);  ?>
+			<?php 
+
+						if( function_exists('fau_get_ad') ) {
+								echo fau_get_ad('werbebanner_seitlich', false);
+						}
             
-            <?php
-            
-                // Template part "Topic Boxes"
-                include 'template-parts/template-topic-boxes.php';
-                
-                // The Content
-                while ( have_posts() ) : the_post();
-                    echo '<div class="ilifautpl-landing-page-content">';
-                        the_content();
-                    echo '</div>';
-                endwhile; ?>
-                
-                <?php // iilifautpl options blogroll
-                if( get_post_meta($post->ID, '_ilifautpl_has_blogroll', true ) !== '0' ): ?>
+						// Template part "Topic Boxes"
+						include 'template-parts/template-topic-boxes.php';
+						
+						// The Content
+						while ( have_posts() ) : the_post();
+								echo '<div class="ilifautpl-landing-page-content">';
+										the_content();
+								echo '</div>';
+						endwhile;
+								
+						// iilifautpl options blogroll
+						if( get_post_meta($post->ID, '_ilifautpl_has_blogroll', true ) !== '0' ): ?>
 			
-                    <div class="row">
+						<div class="row">
     				
     				<div class="startpage-blogroll">
-    				    <main <?php echo fau_get_page_langcode($post->ID);?>>
+    				    <main <?php if( function_exists('fau_get_page_langcode') ) {
+									echo fau_get_page_langcode($post->ID);
+								} ?>>
                         
     					<h1 class="screen-reader-text"><?php the_title(); ?></h1>
     					
@@ -55,8 +59,12 @@ get_header();
 						$query = new WP_Query( 'tag='.$thistag );
 
 						 while ($query->have_posts() && ($i<$max) && ($number<$maxall) ) { 
-						    $query->the_post(); 
-						    echo fau_display_news_teaser($post->ID);
+								$query->the_post();
+
+								if( function_exists('fau_get_page_langcode') ) {
+										echo fau_get_page_langcode($post->ID);
+								}
+
 						    $i++;
 						    $number++;
 						    $displayedposts[] = $post->ID;
@@ -77,27 +85,33 @@ get_header();
 						    $query = new WP_Query(  array( 'post__not_in' => $displayedposts, 'posts_per_page'  => $num, 'has_password' => false, 'post_type' => 'post'  ) );							    
 						}
 					    } else {
-						 $args = '';
-						 
-						if (isset($newscat)) {
-						    $args = 'cat='.$newscat;	
-						}
-						if (isset($args)) {
-						    $args .= '&';
-						}
+								$args = '';
+								
+								if (isset($newscat)) {
+										$args = 'cat='.$newscat;	
+								}
+								if (isset($args)) {
+										$args .= '&';
+								}
 
-						$args .= 'post_type=post&has_password=0&posts_per_page='.get_theme_mod('start_max_newscontent');	
-						$query = new WP_Query( $args );
-					    }
+								$args .= 'post_type=post&has_password=0&posts_per_page='.get_theme_mod('start_max_newscontent');	
+								$query = new WP_Query( $args );
+						}
 					    while ($query->have_posts() ) { 
-						$query->the_post(); 
-						echo fau_display_news_teaser($post->ID);
-						 wp_reset_postdata();
-					    }
+							$query->the_post();
+
+							if( function_exists('fau_display_news_teaser') ) {
+								echo fau_display_news_teaser($post->ID);
+							}
+
+							wp_reset_postdata();
+						}
 					}
 					$showcatlink = get_theme_mod('start_link_news_show');
 					if (($showcatlink==true) && ($newscat>0)) {
-					    echo fau_get_category_links();
+							if( function_exists('fau_get_category_links') ) {
+									echo fau_get_category_links();
+							}
 					}
 					?>			    
 				    </main>	
@@ -124,21 +138,30 @@ get_header();
 				}
 				$nofallbackthumbs  = get_post_meta( $post->ID, 'fauval_portalmenu_nofallbackthumb', true );
 				$nothumbnails  = get_post_meta( $post->ID, 'fauval_portalmenu_thumbnailson', true ); 
-
-				fau_get_contentmenu($menuslug,$displaysub,0,$nothumbnails,$nofallbackthumbs);
+				
+				if( function_exists('fau_get_contentmenu') ) {
+						fau_get_contentmenu($menuslug,$displaysub,0,$nothumbnails,$nofallbackthumbs);
+				}
 	
 			 }
 			 
-			echo fau_get_ad('werbebanner_unten',true);
+			 	if( function_exists('fau_get_ad') ) {
+					echo fau_get_ad('werbebanner_unten',true);
+				}
 
-			$logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );			
-			if ($logoliste) { 
-			    /* New since 1.10.57 */
-			    $logos = fau_imagelink_get(array('size' => "logo-thumb", 'catid' => $logoliste, "autoplay" => true, "dots" => true));
-			    if ((isset($logos) && (!empty($logos)))) {
-				echo "<hr>\n";
-				echo $logos;
-			    }
+				$logoliste = get_post_meta( $post->ID, 'fauval_imagelink_catid', true );			
+				if ($logoliste) { 
+						/* New since 1.10.57 */
+						$logos = [];
+						
+						if( function_exists('fau_imagelink_get') ) {
+							$logos = fau_imagelink_get(array('size' => "logo-thumb", 'catid' => $logoliste, "autoplay" => true, "dots" => true));
+						}
+						
+						if ((isset($logos) && (!empty($logos)))) {
+						echo "<hr>\n";
+						echo $logos;
+				}
 			}		
 			 ?>			
 		</div> <!-- /container -->

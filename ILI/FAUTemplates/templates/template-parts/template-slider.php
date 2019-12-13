@@ -150,7 +150,11 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
         foreach( $ilifautpl_meta as $key => $slide ):
             $link_html = ! empty( $slide['link'] ) ? ' <a href="' . $ilifautpl_meta[$key]['link'] . '">' . __('Weiterlesen', 'ilifautpl') . '</a>' : '';
             $ilifautpl_headline = $slide['headline'];
-            $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
+            $ilifautpl_slide_atts = [];
+
+            if( function_exists('fau_get_image_attributs') ) {
+                $ilifautpl_slide_atts = fau_get_image_attributs( $slide['id'] );
+            }
 
             echo '<div class="slick-slide slick-slide-' . $slide['id'] . '">';
                 echo ilifautpl_get_slide_style( $slide['id'], $ilifautpl_meta[$key]['position'] );
@@ -194,7 +198,12 @@ if( $ilifautpl_has_slides || $ilifautpl_has_thumb ) {
         $basename = basename( plugin_dir_path(  dirname( __FILE__, 4 ) ) );
         $ilifautpl_default_image = esc_url( plugins_url() . '/' . $basename . '/assets/img/slide-default.jpg' );
     } else {
-        $ilifautpl_slide_atts = fau_get_image_attributs( $options['ili_fau_templates_slide_default'] );
+        $ilifautpl_slide_atts = [];
+
+        if( function_exists('fau_get_image_attributs') ) {
+            $ilifautpl_slide_atts = fau_get_image_attributs( $options['ili_fau_templates_slide_default'] );
+        }
+        
         $ilifautpl_default_image = esc_url( $upload_dir['baseurl'] . '/' . $ilifautpl_slide_atts['attachment_file'] );
     }
     

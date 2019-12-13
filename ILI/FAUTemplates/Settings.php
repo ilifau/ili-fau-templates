@@ -130,7 +130,12 @@ class Settings {
                 if( $this->options->ili_fau_templates_slide_default === '0' || empty( $this->options->ili_fau_templates_slide_default ) ) {
                     echo '<img class="ilifautpl-slide-preview" src="' . $placeholder . '" alt="" />';
                 } else {
-                    $atts = fau_get_image_attributs( $this->options->ili_fau_templates_slide_default );
+                    if( function_exists('fau_get_image_attributs') ) {
+                        $atts = fau_get_image_attributs( $this->options->ili_fau_templates_slide_default );
+                    } else {
+                        $atts = [];
+                    }
+
                     echo '<img class="ilifautpl-slide-preview" src="' . esc_url( $upload_dir['baseurl'] . '/' . $atts['attachment_file'] ) . '" alt="" />';
                 } ?>
                 

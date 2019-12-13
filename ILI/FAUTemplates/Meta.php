@@ -76,7 +76,7 @@ class Meta {
             $slide_id = (int)$key + 1;
 
             $id = ! empty( $slide['id'] ) ? $slide['id'] : '';
-            $atts = fau_get_image_attributs( $id );
+            $atts = function_exists('fau_get_image_attributs') ? fau_get_image_attributs( $id ) : [];
             $order = isset( $slide['order'] ) ? $slide['order'] : 0;
             $position = isset( $slide['position'] ) ? $slide['position'] : 'center center';
             $url = $upload_dir['baseurl'] . '/' . $atts['attachment_file'];
@@ -409,7 +409,7 @@ class Meta {
         $upload_dir = wp_upload_dir();
         
         foreach( $ids as $key => $id ) {
-            $atts = fau_get_image_attributs( $id );
+            $atts = function_exists('fau_get_image_attributs') ? fau_get_image_attributs( $id ) : [];
             
             array_push( $slides, array(
                 'id' => absint( $id ),
