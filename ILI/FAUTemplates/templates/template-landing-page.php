@@ -61,9 +61,9 @@ get_header();
 						 while ($query->have_posts() && ($i<$max) && ($number<$maxall) ) { 
 								$query->the_post();
 
-								if( function_exists('fau_get_page_langcode') ) {
-										echo fau_get_page_langcode($post->ID);
-								}
+								if( function_exists('fau_display_news_teaser') ) {
+                  echo fau_display_news_teaser($post->ID);
+                }
 
 						    $i++;
 						    $number++;
