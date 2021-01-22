@@ -165,10 +165,8 @@
       content: '\f105';
       position: relative; }
 
-#ilifautpl-hero.no-touch .ilifautpl-arrow {
-  display: none; }
-  #ilifautpl-hero.no-touch .ilifautpl-arrow:hover {
-    opacity: .9; }
+#ilifautpl-hero.no-touch .ilifautpl-arrow:hover {
+  opacity: .9; }
 
 .ilifautpl-topic-boxes {
   display: -webkit-box;
